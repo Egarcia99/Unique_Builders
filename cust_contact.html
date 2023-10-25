@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <title>Customer Contact Page</title>
+    <meta charset="utf-8" />
+
+    <link href="https://nrs-projects.humboldt.edu/~st10/styles/normalize.css"
+    type="text/css" rel="stylesheet" />
+    
+    <link href="login.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+  <h1 id="welcomeheader"> Contact Us <?= $username ?></h1>
+<form action="#" method="post">
+    <div class="header">
+      <h2 id="instructionheader">Please provide further information to ensure you get contacted accurately and as soon as possible </h2>
+    </div>
+    <input type="text" name="name" placeholder="Please enter your first and last name">
+    <br>
+    <input type="email" name="email" placeholder="Email Address">
+    <br>
+    <input type="tel" name="phone" placeholder="Phone Number">
+    <br>
+    <input type="text" name="job_description" placeholder="Job Description"  rows="4" cols="50">
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

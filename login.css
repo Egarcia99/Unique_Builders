@@ -1,0 +1,197 @@
+/* 
+adapted from: CS 328 hw4 problem9 & hw7 problem2
+by Gracie Ceja
+last modified: October 19, 2023
+
+CS 458 Software Engineering
+Semester Project: Unique Builders Company Website & Database
+Team: Tech Titans
+Fall 2023
+Prototype/Demo of Employeee Login
+Requirements: 2.1 & 2.2
+*/
+
+body
+{
+	background-color: white; 
+	color: black;	/* text color */
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+
+/* headers section */
+#welcomeheader
+{
+	background-color: rgb(249, 249, 249); /* very light gray */
+	padding: 0.7em;
+	font-size: 3em;
+	/* border section */
+	border: thin solid black;
+	border-radius: 5px;
+	/* text section */
+	text-align: center;
+	font-weight: normal;
+}
+
+#instructionheader
+{
+	background-color: lightgoldenrodyellow;
+	border: thin solid black;
+	padding: 1em;
+	/* text section */
+	text-align: center;
+	font-style: italic;
+	font-weight: normal;
+}
+/* end of headers section */
+
+
+/* form section */
+form
+{
+	background-color: rgb(249, 249, 249); /* very light gray */
+	border: thin solid black; 
+	padding: 2em;
+	height: 40em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	/* margin & width section */
+	margin-bottom: 2em;
+	margin-top: 1.8em;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30%;
+}
+
+#forgotpassword
+{
+	display: block;
+	background-color: rgb(199, 199, 199); /* gray */
+	width: 10em;
+	padding: 0.6em;
+	/* text section */
+	color: DodgerBlue;
+	text-decoration: underline;
+	text-align: center;
+	font-size: 0.8em;
+	font-weight: bold;
+	/* border section */
+	border: thin solid black;
+	border-radius: 5px;
+	/* margin section */
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.1em;
+	margin-bottom: 1em;
+	
+}
+
+/* This box is used on the forgot password */
+#or
+{
+	border: thin solid black;
+	background-color: rgb(219, 219, 219); /* gray */
+	width: 10%;
+	padding: 1em;
+	/* margin section */
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	/* text section */
+	text-align: center;
+	font-style: italic;
+}
+
+
+#timeoutMessage
+{
+	border: thin solid black;
+	background-color: rgb(219, 219, 219); /* gray */
+	width: 75%;
+	padding: 0.5em;
+	/* margin section */
+	margin-left: auto;
+	margin-right: auto;
+	/* text section */
+	text-align: center;
+	font-style: italic;
+	font-size: 0.7em;
+	color: red;
+}
+
+/* table for stage 3.2: inform user that info was sent to admin to make new account */
+.infoTable
+{
+	border: thin solid black;
+
+}
+
+
+/* input buttons section */
+/* these input boxes are used for username & password, on these paages: login (enter username) & login (enter password) */
+input[class="roundedinput"]
+{
+	display: block;
+	width: 8em;
+	padding: 2em;
+	text-align: center;
+	/* border section */
+	border: thin solid black;
+	border-radius: 25px;
+	/* margin section */
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+/* these input boxes are used for these paages: create new account, forgot password, & temporary password login */
+input[class="rectangleinput"]
+{
+	display: block;
+	width: 91%;
+	padding: 1em;
+	background-color: white; 
+	text-align: center;
+	font-style: italic;
+	font-size: 0.9em;
+	/* border section */
+	border: thin solid black;
+	/* margin section */
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+input[type="submit"]
+{
+	display: block;
+	width: 7.5em;
+	background-color: rgb(50, 198, 50); /* green */
+	text-align: center;
+	/* padding section */
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: auto;
+	padding-right: auto;
+	/* border section */
+	border: thin solid black;
+	border-radius: 20px;
+	/* margin section */
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+
+
+/* end of input buttons section */
+/* end of form section */
