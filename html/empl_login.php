@@ -24,9 +24,6 @@
     Requirements: 2.1 & 2.2
 -->
 
-
-<!-- this file doesn't work because it has php, but its file extension is .html instead of .php -->
-
 <head>
     <title>Employee Login | Unique Builders</title>
     <meta charset="utf-8" />
