@@ -10,7 +10,7 @@
 <!-- cs328 class HTML template: last modified 2023-02-22 -->
 
 <!--
-    adapted from: CS 328 hw7 problem2
+    adapted from: cs328 hw7 problem2
     by: Gracie Ceja
     last modified: October 19, 2023
 
@@ -36,7 +36,7 @@
           type="text/css" rel="stylesheet" />
           
 
-	<!-- css file adapted from from homework 4, problem 9 -->
+	<!-- css file adapted from from cs328 homework 4, problem 9 -->
     <link href="css/login.css" type="text/css" rel="stylesheet" />
 
 </head>
