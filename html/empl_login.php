@@ -14,7 +14,7 @@
     by: Gracie Ceja
     last modified: October 19, 2023
 
-    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php
+    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php
 
     CS 458 Software Engineering
     Semester Project: Unique Builders Company Website & Database
@@ -87,7 +87,7 @@
         <h1 id="welcomeheader">Welcome</h1>
 
         <!-- log in form adapted from hw4 of cs328 -->
-        <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php">
+        <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php">
             <h2 id="instructionheader">Please Enter Your Username Below</h2>
 
             <input type="text" name="username" class="roundedinput" required="required" />
@@ -161,7 +161,7 @@
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
             <!-- log in form adapted from hw4 of cs328 -->
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php">
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php">
                 <h2 id="instructionheader">Please Provide Further Information Below</h2>
 
                 <input type="text" name="name" class="rectangleinput" placeholder="First and last name or username" required="required" />
@@ -198,7 +198,7 @@
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
             <!-- log in form adapted from hw4 of cs328 -->
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php">
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php">
                 <h2 id="instructionheader">Please Enter Your Password Below</h2>
 
                 <input type="password" name="password" class="roundedinput" required="required" />
@@ -229,7 +229,7 @@
             <!-- Personalized header because they entered their username -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php">
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php">
                 <h2 id="instructionheader">Please Provide Needed Information Below</h2>
 
                 <input type="text" name="emailForgotPassword" class="rectangleinput" placeholder="Confirm Email Address" />
@@ -251,7 +251,7 @@
             <!-- Personalized header because they entered their username -->
             <h1 id="welcomeheader">Thank You <?= $username ?></h1>
 
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php" id="goToLogin">
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php" id="goToLogin">
                 <table class="infoTable">
                     <tr> <td>Hello <?= $username ?></td> </tr>
                     <tr> <td>Please be patient as we send you an email or text message 
@@ -273,7 +273,7 @@
             <!-- Personalized header because they entered their username -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php">
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php">
                 <h2 id="instructionheader">Please Provide Needed Information Below</h2>
 
                 <input type="text" name="tempPassword" class="rectangleinput" placeholder="Temporary Password" />
@@ -387,7 +387,7 @@
                 <h1 id="welcomeheader">Welcome <?= $username ?></h1>
     
                 <!-- log in form adapted from hw4 of cs328 -->
-                <form method="get" action="https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php">
+                <form method="get" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php">
                     <h2 id="instructionheader">Please Enter Your Password Below</h2>
     
                     <input type="password" name="lockedOut" class="roundedinput" required="required" />
@@ -415,7 +415,7 @@
                 <h1 id="welcomeheader">Welcome <?= $username ?></h1>
     
                 <!-- log in form adapted from hw4 of cs328 -->
-                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/prototype-sprint3/login-demo.php">
+                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php">
                     <h2 id="instructionheader">Please Enter Your Password Below</h2>
     
                     <input type="password" name="password" class="roundedinput" required="required" />
