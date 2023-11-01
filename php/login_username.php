@@ -25,20 +25,22 @@
 <!-- 
     This website displays all the various pages of login (such as enter username & forgot password)
     as different webpages:
-    webpage 1.0 for entering username (login_username.php)
-    webpages 2.0 for entering password: (login_password.php)
+    webpage 1.0 for entering username                                                  (login_username.php)
+    webpages 2.0 for entering password:                                                (login_password.php)
         webpage 2.1 for new users to also enter more info
         webpage 2.2 for returning users to just enter password or select forgot password
-    webpages 3.0 for forgot password (login_forgot_password.php)
-        webpage 3.1 for entering contact info to request password reset from admin
-        webpage 3.2 to inform the user that their info was sent to an admin
-        webpage 3.3 for them to login wit ha temporary password & make a new password
-    webpage 4.0 for trying to log them in to the database
-        webpage 4.1 correct password, they are lgoged in successfully & go to employee homepage?
-        webpage 4.2 incorrect password, they are sent back to stage 2.2
-        webpage 4.3 they got locked out from too many invalid password login attempts (looks like stage 2.2)
-    
-    This file is for: webpage 1.0 for entering username.
+    webpages 3.0 for forgot password                                                    
+        webpage 3.1 for entering contact info to request password reset from admin      (login_forgot_password.php)
+        webpage 3.2 to inform the user that their info was sent to an admin             (inform-user.php)
+        webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
+    webpage 4.0 for trying to log them in to the database                               (login-empl.php)
+        webpage 4.1 correct password, they are logged in & go to employee homepage
+        webpage 4.2 incorrect password, they are sent back to webpage 2.2
+        webpage 4.3 they got locked out from too many invalid password login attempts (looks like webpage 2.2)
+
+    total: 6 files
+        
+    This file is for: webpage 1.0 enter username.
 -->
 
 

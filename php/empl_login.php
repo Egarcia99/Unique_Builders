@@ -51,7 +51,7 @@
         stage 3.0 for forgot password
             stage 3.1 for entering contact info to request password reset from admin
             stage 3.2 to inform the user that their info was sent to an admin
-            stage 3.3 for them to login wit ha temporary password & make a new password
+            stage 3.3 for them to login with a temporary password & make a new password
         stage 4.0 for trying to log them in to the database
             stage 4.1 correct password, they are lgoged in successfully & go to employee homepage?
             stage 4.2 incorrect password, they are sent back to stage 2.2
@@ -447,11 +447,9 @@
         }
 
     } // end of elseif for stage 4.0
-
-
-
-
     ?>
+
+    
 </body>
 </html>
 login-demo.php
