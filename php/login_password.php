@@ -28,7 +28,7 @@
         webpage 3.1 for entering contact info to request password reset from admin      (login_forgot_password.php)
         webpage 3.2 to inform the user that their info was sent to an admin             (inform-user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
-    webpage 4.0 for trying to log them in to the database                               (empl-login.php)
+    webpage 4.0 for trying to log them in to the database                               (login-empl.php)
         webpage 4.1 correct password, they are logged in & go to employee homepage
         webpage 4.2 incorrect password, they are sent back to webpage 2.2
         webpage 4.3 they got locked out from too many invalid password login attempts (looks like webpage 2.2)
@@ -151,6 +151,8 @@ user has attempted to login with username but not password yet
         else
         {
             // next stage: 4.0 (logging in to database)
+            // initialize this to prepare for next stage
+            $_SESSION["badPasswordAttempts"] = 0;
             ?>
 
             <!-- Personalized header because they entered their username -->
