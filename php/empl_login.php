@@ -20,7 +20,7 @@
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
     Fall 2023
-    Prototype/Demo of Employeee Login
+    Prototype/Demo of Employeee Login (old version for sprint 3)
     Requirements: 2.1 & 2.2
 -->
 

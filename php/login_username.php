@@ -1,4 +1,3 @@
-
 <?php
     session_start();
 ?>
@@ -11,7 +10,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 3, 2023
+    last modified: November 4, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php
     CS 458 Software Engineering
@@ -31,9 +30,9 @@
         webpage 2.2 for returning users to just enter password or select forgot password
     webpages 3.0 for forgot password                                                    
         webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php)
-        webpage 3.2 to inform the user that their info was sent to an admin             (inform-user.php)
+        webpage 3.2 to inform the user that their info was sent to an admin             (inform_user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
-    webpage 4.0 for trying to log them in to the database                               (login-empl.php)
+    webpage 4.0 for trying to log them in to the database                               (login_empl.php)
         webpage 4.1 correct password, they are logged in & go to employee homepage
         webpage 4.2 incorrect password, they are sent back to webpage 2.2
         webpage 4.3 they got locked out from too many invalid password login attempts (looks like webpage 2.2)

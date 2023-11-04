@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -6,7 +10,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 3, 2023
+    last modified: November 4, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_password.php
     CS 458 Software Engineering
@@ -26,9 +30,9 @@
         webpage 2.2 for returning users to just enter password or select forgot password
     webpages 3.0 for forgot password                                                    
         webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php)
-        webpage 3.2 to inform the user that their info was sent to an admin             (inform-user.php)
+        webpage 3.2 to inform the user that their info was sent to an admin             (inform_user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
-    webpage 4.0 for trying to log them in to the database                               (login-empl.php)
+    webpage 4.0 for trying to log them in to the database                               (login_empl.php)
         webpage 4.1 correct password, they are logged in & go to employee homepage
         webpage 4.2 incorrect password, they are sent back to webpage 2.2
         webpage 4.3 they got locked out from too many invalid password login attempts (looks like webpage 2.2)
@@ -127,7 +131,7 @@
                 <h2 id="instructionheader">Please Provide Further Information Below</h2>
 
                 <input type="text" name="name" class="rectangleinput" placeholder="First and last name or username" required="required" />
-                <input type="text" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
+                <input type="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
                 <input type="text" name="phonenum" class="rectangleinput" placeholder="Phone Number" required="required" />
                 <input type="password" name="password" class="rectangleinput" placeholder="Password" required="required" />
                 <input type="password" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" required="required" />
@@ -151,8 +155,9 @@
         else
         {
             // next stage: 4.0 (logging in to database)
-            // initialize this to prepare for next stage
+            // initialize these to prepare for next stage
             $_SESSION["badPasswordAttempts"] = 0;
+            $_SESSION["locked_out"] = false;
             ?>
 
             <!-- Personalized header because they entered their username -->
@@ -164,15 +169,12 @@
 
                 <input type="password" name="password" class="roundedinput" required="required" />
 
-                <!-- this goes to the forgot password page -->
-                <form method="post" id="forgotpasswordlink" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php">
-                    <input type="submit" name="stage" value="Forgot Password?" id="forgotpassword" />
-                </form>
+                <p><a href="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
 
                 <input type="submit" name="submit" value="Submit" />
             </form>
-            <?php
 
+            <?php
         }   // end of else for the login (enter password) page
 
     ?>

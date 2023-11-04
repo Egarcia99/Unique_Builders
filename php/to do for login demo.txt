@@ -1,0 +1,8 @@
+Emilyo: 
+Gracie:
+Goal 1: Have at least employee login php set up. This means separate files and the php connection tested and ran through NRS projects for the time being.
+Goal 2: Update the CSS for the employee login and customer contact form. which is one local css file called login. Change the format to correlate better with the website colors.
+Goal 3. Make sure we have a running prototype on nrs projects public_html at the dispoable for the test runner that will be using our prototype next Wednesday.
+
+
+I will check back with you guys on monday to see how much we have accomplished so far.

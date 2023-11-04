@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -6,7 +10,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 1, 2023
+    last modified: November 4, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
     CS 458 Software Engineering
@@ -26,9 +30,9 @@
         webpage 2.2 for returning users to just enter password or select forgot password
     webpages 3.0 for forgot password                                                    
         webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php)
-        webpage 3.2 to inform the user that their info was sent to an admin             (inform-user.php)
+        webpage 3.2 to inform the user that their info was sent to an admin             (inform_user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
-    webpage 4.0 for trying to log them in to the database                               (login-empl.php)
+    webpage 4.0 for trying to log them in to the database                               (login_empl.php)
         webpage 4.1 correct password, they are logged in & go to employee homepage
         webpage 4.2 incorrect password, they are sent back to webpage 2.2
         webpage 4.3 they got locked out from too many invalid password login attempts (looks like webpage 2.2)
@@ -59,7 +63,7 @@
 <body>
 
 <?php
-    // stage 4.0: try to login actually after enter username & password
+    // webpage 4.0: try to login actually after enter username & password
 
         // get username from session variable
         $username = strip_tags($_SESSION["username"]);
@@ -89,7 +93,7 @@
         $connObj = oci_connect($username, $password, $dbConnStr);
            
         // if can't log in, password is bad
-        if (! $connobj )
+        if (! $connObj )
         {
             $_SESSION["badPasswordAttempts"]++;
 
@@ -139,20 +143,20 @@
                 $_SESSION["locked_out"] = false;
                 $_SESSION["lockout_time"] = strtotime('May 1, 2023');
                 ?>
-
                 <!-- Personalized header because they entered their username -->
-                <h1 id="welcomeheader">Welcome <?= $username ?></h1>
-    
+
+
                 <!-- log in form adapted from hw4 of cs328 -->
                 <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php">
                     <h2 id="instructionheader">Please Enter Your Password Below</h2>
-    
-                    <input type="password" name="password" class="roundedinput" required="required" />
-                    <input type="submit" name="submit" value="Forgot Password?" id="forgotpassword" />
 
+                    <input type="password" name="password" class="roundedinput" required="required" />
+
+                    <p><a href="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
 
                     <input type="submit" name="submit" value="Submit" />
                 </form>
+
                 <?php   
             }
 
