@@ -1,5 +1,3 @@
 still need to implement these things: 
-    1. make the email to admin (for forgot password) not repeat too much to not spam me
-    2. check if they entered the correct contact info 
-    3. lock them out after too many bad password attempts
-    4. send their info to admin to create new account
+    1. check if they entered the correct contact info 
+    2. lock them out after too many bad password attempts

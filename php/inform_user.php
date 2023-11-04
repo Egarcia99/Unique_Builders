@@ -38,6 +38,7 @@
         $infoSent = "True";
         $_SESSION["infoSent"] = "True";
     }
+    // don't send the email again
     elseif($infoSent == "True")
     {
         $infoSent = "True";

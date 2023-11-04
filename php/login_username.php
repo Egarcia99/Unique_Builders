@@ -1,6 +1,60 @@
 <?php
     session_start();
+
+    // user's first time to this, so just initialize these variables
+    if($_SERVER['REQUEST_METHOD'] == 'GET')
+    {
+        $_SESSION["username"] = null;
+        $_SESSION["newUser"] = null;
+        $_SESSION["newInfoSent"] = "False";
+
+    }
+    else
+    {
+        // check if the user is a new user
+        $newUser = $_SESSION["newUser"];
+        // if they are a new user, send an email to contact admin to create new account
+        if($newUser == "True")
+        {
+            // get info from previous page via $_SESSION variable
+            $newInfoSent = $_SESSION["newInfoSent"];
+
+            // email to admin to ask them to help user to create an account
+            // this should send to admin's email, but I'll use mine for now
+            if($newInfoSent == "False") 
+            {
+                // get user info from $_SESSION & $_POST variables
+                $username = $_SESSION["username"];
+                $name = $_POST["name"];
+                $email = $_POST["email"];
+                $phoneNum = $_POST["phoneNum"];
+                $password = $_POST["password"];
+
+                // prepare the message
+                $message = "Dear Admin,
+
+                The employee " . $name . " has requested a new user account.
+                Please make them an account with the following info: 
+                username: " . $username . "
+                email: " . $email . "
+                phone number: " . $phoneNum . "
+                password: " . $password . "
+
+                Sincerely,
+                login_username.php in UniqueBuilders.net
+                [This email was sent automatically; I cannot read any replies to it.]";
+
+                // send the email
+                mail("glc47@humboldt.edu", "New account request from user: " . $name,
+                $message, "From: employeeLogin@UniqueBuilders.net");
+                $newInfoSent = "True";
+                $_SESSION["newInfoSent"] = "True";
+            }   // end if of sending email
+        }   // end if of checking of user is a new user
+    }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">

@@ -121,6 +121,7 @@
         if($currentUser = "FALSE" && $username != "testpasswordlogin")
         {
             // return to regular login page after this
+            $_SESSION["newUser"] = "True";
             ?>
  
             <!-- Personalized header because they entered their username -->
@@ -132,24 +133,14 @@
 
                 <input type="text" name="name" class="rectangleinput" placeholder="First and last name or username" required="required" />
                 <input type="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
-                <input type="text" name="phonenum" class="rectangleinput" placeholder="Phone Number" required="required" />
+                <input type="text" name="phoneNum" class="rectangleinput" placeholder="Phone Number" required="required" />
                 <input type="password" name="password" class="rectangleinput" placeholder="Password" required="required" />
                 <input type="password" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" required="required" />
 
                 <input type="submit" name="submit" value="Submit" />
             </form> 
-            <?php
-            /* 
-            need to implement a way for this info to get into the database.
-            it should be emailed to admin so they can manually add the employee.
-            idk how tho.
-            */
             
-            // close session
-            unset($_POST["username"]);
-            unset($_POST["password"]);
-            session_destroy();
-
+            <?php
         }   // end of if for the create new account page (webpage 2.1)
         // webpage 2.2: username is in system, load page to login (enter password)
         else
@@ -158,6 +149,7 @@
             // initialize these to prepare for next stage
             $_SESSION["badPasswordAttempts"] = 0;
             $_SESSION["locked_out"] = false;
+            $_SESSION["newUser"] = "False";
             ?>
 
             <!-- Personalized header because they entered their username -->
