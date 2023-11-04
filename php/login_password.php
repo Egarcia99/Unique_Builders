@@ -6,7 +6,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 1, 2023
+    last modified: November 3, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_password.php
     CS 458 Software Engineering
@@ -25,7 +25,7 @@
         webpage 2.1 for new users to also enter more info
         webpage 2.2 for returning users to just enter password or select forgot password
     webpages 3.0 for forgot password                                                    
-        webpage 3.1 for entering contact info to request password reset from admin      (login_forgot_password.php)
+        webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php)
         webpage 3.2 to inform the user that their info was sent to an admin             (inform-user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
     webpage 4.0 for trying to log them in to the database                               (login-empl.php)
@@ -53,16 +53,17 @@
           
 
 	<!-- css file adapted from from cs328 homework 4, problem 9 -->
-    <link href="css/login.css" type="text/css" rel="stylesheet" />
+    <link href="../css/login.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body>
 
-<?php
-/*  
-webpage 2.0 (displays either webpage 2.1 or webpage 2.2):
-user has attempted to login with username but not password yet
-*/
+    <?php
+        /*  
+        webpage 2.0 (displays either webpage 2.1 or webpage 2.2):
+        user has attempted to login with username but not password yet
+        */
+
         // next step: check if they are new or returning user, to determine the next state
 
         // connection section adapted from cs328 hw7 problem1
@@ -71,7 +72,7 @@ user has attempted to login with username but not password yet
         // put username into session variable to use again later to recconnect
         $_SESSION["username"] = $username;
 
-        // use account that can only see usernames
+        // use account that can only see usernames (not an actual account on nrs-projects)
         $conn1Username = "SeeUsers";
         $conn1Password = "SecretPassword42";
 
@@ -117,7 +118,7 @@ user has attempted to login with username but not password yet
         {
             // return to regular login page after this
             ?>
-
+ 
             <!-- Personalized header because they entered their username -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
@@ -129,7 +130,7 @@ user has attempted to login with username but not password yet
                 <input type="text" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
                 <input type="text" name="phonenum" class="rectangleinput" placeholder="Phone Number" required="required" />
                 <input type="password" name="password" class="rectangleinput" placeholder="Password" required="required" />
-                <input type="password" name="confirmpassword" class="rectangleinput" placeholder="Confirm Password" required="required" />
+                <input type="password" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" required="required" />
 
                 <input type="submit" name="submit" value="Submit" />
             </form> 
@@ -143,7 +144,6 @@ user has attempted to login with username but not password yet
             // close session
             unset($_POST["username"]);
             unset($_POST["password"]);
-            $_POST["stage1"] = "true";
             session_destroy();
 
         }   // end of if for the create new account page (webpage 2.1)
@@ -172,7 +172,6 @@ user has attempted to login with username but not password yet
                 <input type="submit" name="submit" value="Submit" />
             </form>
             <?php
-        // need to add 2 things: 1. actual login functionality 2. js for incorrect password
 
         }   // end of else for the login (enter password) page
 

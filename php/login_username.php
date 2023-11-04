@@ -11,7 +11,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 1, 2023
+    last modified: November 3, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php
     CS 458 Software Engineering
@@ -30,7 +30,7 @@
         webpage 2.1 for new users to also enter more info
         webpage 2.2 for returning users to just enter password or select forgot password
     webpages 3.0 for forgot password                                                    
-        webpage 3.1 for entering contact info to request password reset from admin      (login_forgot_password.php)
+        webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php)
         webpage 3.2 to inform the user that their info was sent to an admin             (inform-user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
     webpage 4.0 for trying to log them in to the database                               (login-empl.php)
@@ -58,7 +58,7 @@
           
 
 	<!-- css file adapted from from cs328 homework 4, problem 9 -->
-    <link href="css/login.css" type="text/css" rel="stylesheet" />
+    <link href="../css/login.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body>

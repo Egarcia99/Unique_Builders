@@ -8,7 +8,7 @@
     by: Gracie Ceja
     last modified: November 1, 2023
 
-    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_password.php
+    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
     CS 458 Software Engineering
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
@@ -25,7 +25,7 @@
         webpage 2.1 for new users to also enter more info
         webpage 2.2 for returning users to just enter password or select forgot password
     webpages 3.0 for forgot password                                                    
-        webpage 3.1 for entering contact info to request password reset from admin      (login_forgot_password.php)
+        webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php)
         webpage 3.2 to inform the user that their info was sent to an admin             (inform-user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
     webpage 4.0 for trying to log them in to the database                               (login-empl.php)
@@ -53,27 +53,30 @@
           
 
 	<!-- css file adapted from from cs328 homework 4, problem 9 -->
-    <link href="css/login.css" type="text/css" rel="stylesheet" />
+    <link href="../css/login.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body>
 
 <?php
-// stage 4.0: try to login actually after enter username & password
-        ?>
-            <h1>testing header!!! webpage 4.0!!! bad attempts = <?= $_SESSION["badPasswordAttempts"] ?> </h1>
-        <?php
-        // get username from session variable
-        $username = $_SESSION["username"];
+    // stage 4.0: try to login actually after enter username & password
 
-        // attempt to login
+        // get username from session variable
+        $username = strip_tags($_SESSION["username"]);
+        // password from form, but first check whether regular or temp password
+        if(null !== trim($_POST["tempPassword"]))
+        {
+            $password = $_POST["tempPassword"];
+        }
+        else
+        {
+            $password = $_POST["password"];
+        }
+        
+
 
         // connection section adapted from cs328 hw7 problem1
-        // get username & password from form
-        $username = strip_tags($_SESSION["username"]);
-        $password = strip_tags($_POST["password"]);
-        // put username & password into session variable to use again later to recconnect
-        $_SESSION["username"] = $username;
+        // put password into session variable to use again later to recconnect
         $_SESSION["password"] = $password;
 
         // login with username & password
@@ -93,15 +96,20 @@
             // stage 4.3: 
             // timeout because too many inccorect password attempts
             // 5 is just an example value, idk what the limit should be.
-            if($_SESSION["badPasswordAttempts"] > 5 || ($_SESSION["locked_out"] == true && date_diff(date(), $_SESSION["lockout_time"]) < 24hr))
+            if($_SESSION["badPasswordAttempts"] > 5 || ($_SESSION["locked_out"] == true && date_diff(date(), $_SESSION["lockout_time"])->h < 24))
             {
                 // close session & try to lock them out
                 unset($_POST["username"]);
                 unset($_POST["password"]);
                 $_SESSION["locked_out"] = true;
-                $_SESSION["lockout_time"] = date();
-
+                // if they were already locked out, don't reset the timer
+                if(date_diff(date(), $_SESSION["lockout_time"])->h >= 24)
+                {
+                    $_SESSION["lockout_time"] = date();
+                }
                 ?>
+                
+
                 <!-- Personalized header because they entered their username -->
                 <h1 id="welcomeheader">Welcome <?= $username ?></h1>
     
@@ -117,24 +125,26 @@
                         try again in 24 hours
                     </p>
 
-                    <input type="submit" name="submit" value="Submit" />
+                    <input type="submit" name="Timeout" value="Submit" />
                 </form>
                 <?php
-                // should have functionality for them to be locked out but idk how.
+                // should have functionality for them to be locked out even when session is over, but idk how.
+                // maybe they have a value in the database of lockout time that can be updated? idk
             }
             // stage 4.2:
             // don't lock them out yet
             else
             {
-                // next stage: 4.0 (logging in to database)
-                $_SESSION["stage"] = 4.0;
-    
+                // make sure they are not locked out
+                $_SESSION["locked_out"] = false;
+                $_SESSION["lockout_time"] = strtotime('May 1, 2023');
                 ?>
+
                 <!-- Personalized header because they entered their username -->
                 <h1 id="welcomeheader">Welcome <?= $username ?></h1>
     
                 <!-- log in form adapted from hw4 of cs328 -->
-                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php">
+                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php">
                     <h2 id="instructionheader">Please Enter Your Password Below</h2>
     
                     <input type="password" name="password" class="roundedinput" required="required" />
@@ -151,9 +161,6 @@
         // their password is correct & they have logged in succesfully.
         else
         {
-            // current stage = 4.1
-            $_SESSION["stage"] = 4.1;
-
             // here should be code to go to the page for when the employee is logged in
             ?>
                 <!-- Personalized header because they logged in -->
