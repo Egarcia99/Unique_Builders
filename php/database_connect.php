@@ -30,7 +30,7 @@
             "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
                                         (HOST = $host)
                                         (PORT = $port))
-                            (CONNECT_DATA = (SID = $sid)))"
+                            (CONNECT_DATA = (SID = $sid)))";
 
             // Establish the Oracle database connection
             $connection = oci_connect($db_username, $db_password, $db_conn_str);
