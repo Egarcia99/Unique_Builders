@@ -156,7 +156,7 @@
             <script src="empl_info_val.js"></script>
             
             <?php
-            createEmplAct();
+            createEmplAct($username);
             $newUser = false;
         }   // end of if for the create new account page (webpage 2.1)
         // webpage 2.2: username is in system, load page to login (enter password)

@@ -11,13 +11,13 @@
     require_once("login_password.php");
 ?>
 <?php
-    function createEmplAct()
+    function createEmplAct($empl_id)
     {
-        $firstname = strip_tags($_POST["firstname"]);
-        $lastname = strip_tags($_POST["lastname"]);
+        $firstName = strip_tags($_POST["firstname"]);
+        $lastName = strip_tags($_POST["lastname"]);
         $email = strip_tags($_POST["email"]);
         $phoneNum = strip_tags($_POST["phoneNum"]);
-        $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+        $passWord = password_hash($_POST["password"], PASSWORD_BCRYPT);
         
         $dbConnStr = "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
                                                   (HOST = cedar.humboldt.edu)
@@ -39,12 +39,11 @@
             WHERE empl_id = :username";
 
         $emplUpdateStmt = oci_parse($connObj, $emplUpdateString);
-        oci_bind_by_name($emplUpdateStmt, ":firstname", $firstname);
-        oci_bind_by_name($emplUpdateStmt, ":lastname", $lastname);
-        oci_bind_by_name($emplUpdateStmt, ":emplpass", $password);
+        oci_bind_by_name($emplUpdateStmt, ":firstname", $firsName);
+        oci_bind_by_name($emplUpdateStmt, ":emplpass", $passWord);
         oci_bind_by_name($emplUpdateStmt, ":email", $email);
         oci_bind_by_name($emplUpdateStmt, ":phone", $phoneNum);
-        oci_bind_by_name($emplUpdateStmt, ":username", $username);
+        oci_bind_by_name($emplUpdateStmt, ":username", $empl_id);
 
         oci_execute($emplUpdateStmt, OCI_DEFAULT);
 
