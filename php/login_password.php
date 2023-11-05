@@ -96,7 +96,7 @@
         // set up query string & statement
         $usernameQueryString = "SELECT empl_id empl_password
                                 FROM Employee
-                                WHERE empl_id = :username"
+                                WHERE empl_id = :username";
         $usernameStmt = oci_parse($connObj, $usernameQueryString);
         oci_bind_by_name($usernameStmt, ":username", $username);
 
