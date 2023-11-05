@@ -91,7 +91,11 @@
                                                 (CONNECT_DATA = (SID = STUDENT)))";   // this must be changed to info of DB for out project
         // connection object
         $connObj = oci_connect($username, $password, $dbConnStr);
-           
+        require_once("database_connect.php");
+        //$connObj = db_conn_sess();
+        /*==============
+            db connection for when we have it setup
+        ==================*/
         // if can't log in, password is bad
         if (! $connObj )
         {

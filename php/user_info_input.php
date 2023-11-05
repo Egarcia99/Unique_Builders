@@ -1,9 +1,9 @@
 <?php
     /*=====
-        function: passWordForm: string -> void
-        purpose: expects a password and submits the password to be checked
-        if it matches the hashed and salted password in the database to the 
-        associated user.
+        function: createEmplAct():
+        purpose: expects empl info from the empl info form 
+                 then input the information into the database for
+                 expected username
 
         by: Colton Boyd, Gracie Ceja
         last modified: 2023-11-04
@@ -25,10 +25,11 @@
                                                   (CONNECT_DATA = (SID = STUDENT)))";   // this must be changed to info of DB for out project
         // connection object
         $connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
-        
-        if (!$connObj) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        require_once("database_connect.php");
+        //$connObj = db_conn_sess();
+        /*==============
+            db connection for when we have it setup
+        ==================*/
         $emplUpdateString = "UPDATE Employee 
             SET empl_first_name = :firstname,
                 empl_last_name = :lastname,
