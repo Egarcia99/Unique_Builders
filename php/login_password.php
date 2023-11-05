@@ -91,8 +91,9 @@
 
         // check if the entered username exists in the database already or no.
         // set up query string & statement
-        $usernameQueryString = "SELECT :username
-                                FROM Employee";
+        $usernameQueryString = "SELECT empl_id empl_password
+                                FROM Employee
+                                where empl_id = :username"
         $usernameStmt = oci_parse($connObj, $usernameQueryString);
         oci_bind_by_name($usernameStmt, ":username", $username);
 
@@ -100,13 +101,18 @@
         oci_execute($usernameStmt, OCI_DEFAULT);
         
         // loop through usernames until username is found or all usernames have been checked
-        $currentUser = "FALSE";
+        $newUser = false;
+        $currentUser = false;
         while(oci_fetch($usernameStmt)){
-            $usr = oci_result($usernameStmt, 1);  // get next username from database
+            $usr = oci_result($usernameStmt, 1); // get next username from database
+            $passWord = oci_result($usernameStmt,2);
             if($usr == $username){
                 // this means the user currently has an account.
-                $currentUser = "TRUE";
-                break;
+                $currentUser = true;
+                if($passWord == NULL)
+                {
+                    $newUser = true;    
+                }
             }
         }
 
@@ -118,10 +124,10 @@
 
         // webpage 2.1, for new users: username is not in system, load page to create new account
         // (the thing about testpasswordlogin is so I can test the other page. remove it once it is no longer neccessary)
-        if($currentUser = "FALSE" && $username != "testpasswordlogin")
+        if($currentUser == true && $newUser == true)
         {
             // return to regular login page after this
-            $_SESSION["newUser"] = "True";
+    
             ?>
  
             <!-- Personalized header because they entered their username -->
@@ -141,15 +147,16 @@
             </form> 
             
             <?php
+            $newUser = false;
         }   // end of if for the create new account page (webpage 2.1)
         // webpage 2.2: username is in system, load page to login (enter password)
-        else
+        elseif($currentUser == true && $newUser == false)
         {
             // next stage: 4.0 (logging in to database)
             // initialize these to prepare for next stage
             $_SESSION["badPasswordAttempts"] = 0;
             $_SESSION["locked_out"] = false;
-            $_SESSION["newUser"] = "False";
+    
             ?>
 
             <!-- Personalized header because they entered their username -->
@@ -168,6 +175,15 @@
 
             <?php
         }   // end of else for the login (enter password) page
+        else
+        {
+            ?>
+            <h1 id="notfoundheader">Employee Not Found</h1>
+            <p id="notfoundmessage">The employee you are trying to log in as does not exist. If you need assistance, please contact the IT admin.</p>
+            <?php
+            header("Location: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php");
+            exit;
+        }
 
     ?>
     
