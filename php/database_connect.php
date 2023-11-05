@@ -39,7 +39,7 @@
                 $error = oci_error();
                 die("Oracle Connection failed: " . $error['message']);
             }
-
+            return $connection;
         }
         
 ?>
