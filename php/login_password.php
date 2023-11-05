@@ -2,6 +2,9 @@
     session_start();
 ?>
 
+<?php
+    require_once("user_info_input.php");
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -93,7 +96,7 @@
         // set up query string & statement
         $usernameQueryString = "SELECT empl_id empl_password
                                 FROM Employee
-                                where empl_id = :username"
+                                WHERE empl_id = :username"
         $usernameStmt = oci_parse($connObj, $usernameQueryString);
         oci_bind_by_name($usernameStmt, ":username", $username);
 
@@ -134,10 +137,11 @@
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
             <!-- log in form adapted from hw4 of cs328 -->
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php">
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php" onsubmit="return validateForm();">
                 <h2 id="instructionheader">Please Provide Further Information Below</h2>
 
-                <input type="text" name="name" class="rectangleinput" placeholder="First and last name or username" required="required" />
+                <input type="text" name="firstname" class="rectangleinput" placeholder="First name" required="required" />
+                <input type="text" name="lastname" class="rectangleinput" placeholder="Last name" required="required" />
                 <input type="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
                 <input type="text" name="phoneNum" class="rectangleinput" placeholder="Phone Number" required="required" />
                 <input type="password" name="password" class="rectangleinput" placeholder="Password" required="required" />
@@ -145,8 +149,10 @@
 
                 <input type="submit" name="submit" value="Submit" />
             </form> 
+            <script src="empl_info_val.js"></script>
             
             <?php
+            createEmplAct();
             $newUser = false;
         }   // end of if for the create new account page (webpage 2.1)
         // webpage 2.2: username is in system, load page to login (enter password)
