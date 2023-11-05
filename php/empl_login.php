@@ -122,7 +122,6 @@
                                                   (CONNECT_DATA = (SID = STUDENT)))";   // this must be changed to info of DB for out project
         // connection object
         $connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
-
         // check if the entered username exists in the database already or no.
         // set up query string & statement
         $usernameQueryString = "SELECT :username

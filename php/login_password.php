@@ -2,6 +2,9 @@
     session_start();
 ?>
 
+<?php
+    require_once("user_info_input.php");
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -88,11 +91,16 @@
                                                   (CONNECT_DATA = (SID = STUDENT)))";   // this must be changed to info of DB for out project
         // connection object
         $connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
-
+        require_once("database_connect.php");
+        //$connObj = db_conn_sess();
+        /*==============
+            db connection for when we have it setup
+        ==================*/
         // check if the entered username exists in the database already or no.
         // set up query string & statement
-        $usernameQueryString = "SELECT :username
-                                FROM Employee";
+        $usernameQueryString = "SELECT empl_id empl_password
+                                FROM Employee
+                                WHERE empl_id = :username";
         $usernameStmt = oci_parse($connObj, $usernameQueryString);
         oci_bind_by_name($usernameStmt, ":username", $username);
 
@@ -100,13 +108,18 @@
         oci_execute($usernameStmt, OCI_DEFAULT);
         
         // loop through usernames until username is found or all usernames have been checked
-        $currentUser = "FALSE";
+        $newUser = false;
+        $currentUser = false;
         while(oci_fetch($usernameStmt)){
-            $usr = oci_result($usernameStmt, 1);  // get next username from database
+            $usr = oci_result($usernameStmt, 1); // get next username from database
+            $passWord = oci_result($usernameStmt,2);
             if($usr == $username){
                 // this means the user currently has an account.
-                $currentUser = "TRUE";
-                break;
+                $currentUser = true;
+                if($passWord == NULL)
+                {
+                    $newUser = true;    
+                }
             }
         }
 
@@ -118,20 +131,21 @@
 
         // webpage 2.1, for new users: username is not in system, load page to create new account
         // (the thing about testpasswordlogin is so I can test the other page. remove it once it is no longer neccessary)
-        if($currentUser = "FALSE" && $username != "testpasswordlogin")
+        if($currentUser == true && $newUser == true)
         {
             // return to regular login page after this
-            $_SESSION["newUser"] = "True";
+    
             ?>
  
             <!-- Personalized header because they entered their username -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
             <!-- log in form adapted from hw4 of cs328 -->
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php">
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php" onsubmit="return validateForm();">
                 <h2 id="instructionheader">Please Provide Further Information Below</h2>
 
-                <input type="text" name="name" class="rectangleinput" placeholder="First and last name or username" required="required" />
+                <input type="text" name="firstname" class="rectangleinput" placeholder="First name" required="required" />
+                <input type="text" name="lastname" class="rectangleinput" placeholder="Last name" required="required" />
                 <input type="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
                 <input type="text" name="phoneNum" class="rectangleinput" placeholder="Phone Number" required="required" />
                 <input type="password" name="password" class="rectangleinput" placeholder="Password" required="required" />
@@ -139,17 +153,20 @@
 
                 <input type="submit" name="submit" value="Submit" />
             </form> 
+            <script src="empl_info_val.js"></script>
             
             <?php
+            createEmplAct($username);
+            $newUser = false;
         }   // end of if for the create new account page (webpage 2.1)
         // webpage 2.2: username is in system, load page to login (enter password)
-        else
+        elseif($currentUser == true && $newUser == false)
         {
             // next stage: 4.0 (logging in to database)
             // initialize these to prepare for next stage
             $_SESSION["badPasswordAttempts"] = 0;
             $_SESSION["locked_out"] = false;
-            $_SESSION["newUser"] = "False";
+    
             ?>
 
             <!-- Personalized header because they entered their username -->
@@ -168,6 +185,15 @@
 
             <?php
         }   // end of else for the login (enter password) page
+        else
+        {
+            ?>
+            <h1 id="notfoundheader">Employee Not Found</h1>
+            <p id="notfoundmessage">The employee you are trying to log in as does not exist. If you need assistance, please contact the IT admin.</p>
+            <?php
+            header("Location: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php");
+            exit;
+        }
 
     ?>
     
