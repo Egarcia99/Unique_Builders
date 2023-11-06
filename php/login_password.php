@@ -134,8 +134,6 @@
                 <form method="post" action="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/user_info_input.php" id="myForm" onsubmit="return validateForm()">
                 <h2 id="instructionheader">Please Provide Further Information Below</h2>
 
-                <input type="text" id="firstname" name="firstname" class="rectangleinput" placeholder="First name" required="required" pattern="[A-Za-z]+" title="Only letters allowed" />
-                <input type="text" id="lastname" name="lastname" class="rectangleinput" placeholder="Last name" required="required" pattern="[A-Za-z]+" title="Only letters allowed" />
                 <input type="email" id="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
                 <input type="tel" id="phoneNum" name="phoneNum" class="rectangleinput" placeholder="Phone Number" required="required" pattern="[0-9]{10}" title="10 digit phone number" />
                 <input type="password" id="password" name="password" class="rectangleinput" placeholder="Password" required="required" />
