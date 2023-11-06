@@ -85,10 +85,7 @@
 
         // login with username & password
         // set up db connection string
-        $dbConnStr = "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
-                                                (HOST = cedar.humboldt.edu)
-                                                (PORT = 1521))
-                                                (CONNECT_DATA = (SID = STUDENT)))";   // this must be changed to info of DB for out project
+        
         // connection object
         $connObj = oci_connect($username, $password, $dbConnStr);
         require_once("database_connect.php");
@@ -97,7 +94,8 @@
             db connection for when we have it setup
         ==================*/
         // if can't log in, password is bad
-        if (! $connObj )
+        require_once("verify_password.php");
+        if (!verifyPassword($username,$password))
         {
             $_SESSION["badPasswordAttempts"]++;
 
@@ -125,8 +123,8 @@
                 <form method="get" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php">
                     <h2 id="instructionheader">Please Enter Your Password Below</h2>
     
-                    <input type="password" name="lockedOut" class="roundedinput" required="required" />
-                    <input type="submit" name="timedOut" value="Forgot Password?" id="forgotpassword" />
+                    <input type="password" name="lockedOut" class="roundedinput" required="required" disabled/>
+                    <input type="submit" name="timedOut" value="Forgot Password?" id="forgotpassword" disabled />
     
                     <p id="timeoutMessage">
                         You have been Timeout due to too many inaccurate password attempts
@@ -146,22 +144,7 @@
                 // make sure they are not locked out
                 $_SESSION["locked_out"] = false;
                 $_SESSION["lockout_time"] = strtotime('May 1, 2023');
-                ?>
-                <!-- Personalized header because they entered their username -->
-
-
-                <!-- log in form adapted from hw4 of cs328 -->
-                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php">
-                    <h2 id="instructionheader">Please Enter Your Password Below</h2>
-
-                    <input type="password" name="password" class="roundedinput" required="required" />
-
-                    <p><a href="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
-
-                    <input type="submit" name="submit" value="Submit" />
-                </form>
-
-                <?php   
+                passwordForm($username);
             }
 
 
