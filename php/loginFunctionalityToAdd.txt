@@ -1,3 +1,3 @@
 still need to implement these things: 
-    1. check if they entered the correct contact info 
-    2. lock them out after too many bad password attempts
+    1. check if they entered the correct contact info (the js code is already there, it just needs the connection to database so it can get the contact info to properly compare it)
+    2. lock them out after too many bad password attempts (this should involve the database to track the login attempts for a given user)
