@@ -1,7 +1,20 @@
 <?php
-    /*=====
-        need a description here
-    =====*/
+    /*
+    by: Colton Boyd
+    last modified: November 4, 2023
+
+    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
+    CS 458 Software Engineering
+    Semester Project: Unique Builders Company Website & Database
+    Team: Tech Titans
+    Fall 2023
+    Employeee Login: Make New Account
+    Requirement: 2.1 Employee Login
+
+    This file adds a password and contact info for a new user to the database.
+    Then, it redirects them to the employee login page so they can login with their password.
+-->
+*/
     session_start();
     require_once("empl_handling.php");
 ?>

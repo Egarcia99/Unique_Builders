@@ -10,8 +10,8 @@
 
 <!--
     adapted from: CS 328 hw7 problem2
-    by: Gracie Ceja
-    last modified: November 4, 2023
+    by: Gracie Ceja and Colton Boyd
+    last modified: November 5, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~crb119/public_html/CS_458/php/login_password.php
     CS 458 Software Engineering
@@ -56,7 +56,6 @@
     <link href="https://nrs-projects.humboldt.edu/~st10/styles/normalize.css"
           type="text/css" rel="stylesheet" />
           
-
 	<!-- css file adapted from from cs328 homework 4, problem 9 -->
     <link href="../css/login.css" type="text/css" rel="stylesheet" />
 
@@ -77,27 +76,28 @@
         // put username into session variable to use again later to recconnect
         $_SESSION["username"] = $username;
 
-        // use account that can only see usernames (not an actual account on nrs-projects)
+        /* use account that can only see usernames (not an actual account on nrs-projects)
         $conn1Username = "SeeUsers";
         $conn1Password = "SecretPassword42";
-
+        */
 
         // set up db connection string
         $dbConnStr = "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
                                                   (HOST = cedar.humboldt.edu)
                                                   (PORT = 1521))
-                                                  (CONNECT_DATA = (SID = STUDENT)))";   // this must be changed to info of DB for out project
+                                                  (CONNECT_DATA = (SID = STUDENT)))";   
+                                                  // this must be changed to info of DB for our project
         // connection object
         //$connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
         require_once("../../../private/database_connect.php");
         $connObj = db_conn_sess();
-        
         /*==============
             db connection for when we have it setup
         ==================*/
+
         // check if the entered username exists in the database already or no.
         // set up query string & statement
-        $usernameQueryString = "SELECT empl_id , empl_password
+        $usernameQueryString = "SELECT empl_id, empl_password
                                 FROM Employee
                                 WHERE empl_id = :username";
         $usernameStmt = oci_parse($connObj, $usernameQueryString);
@@ -109,10 +109,12 @@
         // loop through usernames until username is found or all usernames have been checked
         $newUser = false;
         $currentUser = false;
-        while(oci_fetch($usernameStmt)){
+        while(oci_fetch($usernameStmt))
+        {
             $usr = oci_result($usernameStmt, 1); // get next username from database
             $passWord = oci_result($usernameStmt,2);
-            if($usr == $username){
+            if($usr == $username)
+            {
                 // this means the user currently has an account.
                 $currentUser = true;
                 if($passWord == NULL)
@@ -121,17 +123,18 @@
                 }
             }
         }
+
+        // they are a new user, so ask them for info toput into the database
         if($currentUser == true && $newUser == true)
-                {
-                    // return to regular login page after this
+        {
+            // return to regular login page after this
+            ?>
 
-                    ?>
+            <!-- Personalized header because they entered their username -->
+            <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
-                    <!-- Personalized header because they entered their username -->
-                    <h1 id="welcomeheader">Welcome <?= $username ?></h1>
-
-                    <!-- log in form adapted from hw4 of cs328 -->
-                <form method="post" action="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/user_info_input.php" id="myForm" onsubmit="return validateForm()">
+            <!-- login form adapted from hw4 of cs328 -->
+            <form method="post" action="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/user_info_input.php" id="myForm" onsubmit="return validateForm()">
                 <h2 id="instructionheader">Please Provide Further Information Below</h2>
 
                 <input type="email" id="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
@@ -141,43 +144,44 @@
 
                 <input type="submit" name="submit" value="Submit" />
             </form>
-                <script>
-                    function validateForm() {
-                        var password = document.getElementById("password").value;
-                        var confirmPassword = document.getElementById("confirmPassword").value;
 
-                        if (password != confirmPassword) {
-                            alert("Confirmed Password do not match Password");
-                            return false;
-                        }
+            <script>
+                function validateForm() {
+                    var password = document.getElementById("password").value;
+                    var confirmPassword = document.getElementById("confirmPassword").value;
 
-                        return true;
+                    if (password != confirmPassword) {
+                        alert("Confirmed Password does not match Password");
+                        return false;
                     }
-                </script>
-                <?php
-                }   // end of if for the create new account page (webpage 2.1)
-            elseif($currentUser == true && $newUser == false)
-                {
-                    emplHandling();
+                    return true;
                 }
-            else
-                {
-                    // this means the user does not have an account.
-                    ?>
-                    <h1 id="notfoundheader">Employee Not Found</h1>
-                    <p id="notfoundmessage">The employee you are trying to log in as does not exist. If you need assistance, please contact the IT admin.</p>
-                    
-                    <a href="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/login_username.php">Try again </a>
-                    
-                    <?php
-                
-                    exit;
-                }
+            </script>
+
+        <?php
+        }   // end of if for the create new account page (webpage 2.1)
+        // user is a current user and not a new user, so give them form to enter password to log in
+        elseif($currentUser == true && $newUser == false)
+        {
+            emplHandling();
+        }
+        // the user does not have an account.
+        else
+        {
+            ?>
+            <h1 id="notfoundheader">Employee Not Found</h1>
+            <p id="notfoundmessage">The employee you are trying to log in as does not exist. If you need assistance, please contact the IT admin.</p>
+            
+            <a href="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/login_username.php">Try again </a>
+            
+            <?php
+            exit;
+        }
+
         // free the statement & close the connection
         oci_free_statement($usernameStmt);
         oci_close($connObj);
-
     ?>
-        
+
 </body>
 </html>

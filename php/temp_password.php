@@ -10,7 +10,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 4, 2023
+    last modified: November 5, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/temp_password.php
     CS 458 Software Engineering
@@ -65,13 +65,13 @@
 <!-- stage 3.3: login with temporary password & make new password-->
 
     <?php
-        // next stage: 4.0 (logging in to database)
-        // initialize these to prepare for next stage
-        $_SESSION["badPasswordAttempts"] = 0;
-        $_SESSION["locked_out"] = false;
+    // next stage: 4.0 (logging in to database)
+    // initialize these to prepare for next stage
+    $_SESSION["badPasswordAttempts"] = 0;
+    $_SESSION["locked_out"] = false;
 
-        // get username from session variable
-        $username = $_SESSION["username"];
+    // get username from session variable
+    $username = $_SESSION["username"];
     ?>
 
     <!-- Personalized header because they entered their username -->
