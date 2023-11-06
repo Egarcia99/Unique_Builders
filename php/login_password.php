@@ -1,10 +1,8 @@
 <?php
     session_start();
+    require_once("empl_handling.php");
 ?>
 
-<?php
-    require_once("user_info_input.php");
-?>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
@@ -15,7 +13,7 @@
     by: Gracie Ceja
     last modified: November 4, 2023
 
-    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_password.php
+    you can run this using the URL: https://nrs-projects.humboldt.edu/~crb119/public_html/CS_458/php/login_password.php
     CS 458 Software Engineering
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
@@ -90,15 +88,16 @@
                                                   (PORT = 1521))
                                                   (CONNECT_DATA = (SID = STUDENT)))";   // this must be changed to info of DB for out project
         // connection object
-        $connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
-        require_once("database_connect.php");
-        //$connObj = db_conn_sess();
+        //$connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
+        require_once("../../../private/database_connect.php");
+        $connObj = db_conn_sess();
+        
         /*==============
             db connection for when we have it setup
         ==================*/
         // check if the entered username exists in the database already or no.
         // set up query string & statement
-        $usernameQueryString = "SELECT empl_id empl_password
+        $usernameQueryString = "SELECT empl_id , empl_password
                                 FROM Employee
                                 WHERE empl_id = :username";
         $usernameStmt = oci_parse($connObj, $usernameQueryString);
@@ -106,7 +105,7 @@
 
         // execute statement & get info from it
         oci_execute($usernameStmt, OCI_DEFAULT);
-        
+        echo $username;
         // loop through usernames until username is found or all usernames have been checked
         $newUser = false;
         $currentUser = false;
@@ -122,80 +121,65 @@
                 }
             }
         }
+        if($currentUser == true && $newUser == true)
+                {
+                    // return to regular login page after this
 
+                    ?>
+
+                    <!-- Personalized header because they entered their username -->
+                    <h1 id="welcomeheader">Welcome <?= $username ?></h1>
+
+                    <!-- log in form adapted from hw4 of cs328 -->
+                <form method="post" action="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/user_info_input.php" id="myForm" onsubmit="return validateForm()">
+                <h2 id="instructionheader">Please Provide Further Information Below</h2>
+
+                <input type="text" id="firstname" name="firstname" class="rectangleinput" placeholder="First name" required="required" pattern="[A-Za-z]+" title="Only letters allowed" />
+                <input type="text" id="lastname" name="lastname" class="rectangleinput" placeholder="Last name" required="required" pattern="[A-Za-z]+" title="Only letters allowed" />
+                <input type="email" id="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
+                <input type="tel" id="phoneNum" name="phoneNum" class="rectangleinput" placeholder="Phone Number" required="required" pattern="[0-9]{10}" title="10 digit phone number" />
+                <input type="password" id="password" name="password" class="rectangleinput" placeholder="Password" required="required" />
+                <input type="password" id="confirmPassword" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" required="required" />
+
+                <input type="submit" name="submit" value="Submit" />
+            </form>
+                <script>
+                    function validateForm() {
+                        var password = document.getElementById("password").value;
+                        var confirmPassword = document.getElementById("confirmPassword").value;
+
+                        if (password != confirmPassword) {
+                            alert("Confirmed Password do not match Password");
+                            return false;
+                        }
+
+                        return true;
+                    }
+                </script>
+                <?php
+                }   // end of if for the create new account page (webpage 2.1)
+            elseif($currentUser == true && $newUser == false)
+                {
+                    emplHandling();
+                }
+            else
+                {
+                    // this means the user does not have an account.
+                    ?>
+                    <h1 id="notfoundheader">Employee Not Found</h1>
+                    <p id="notfoundmessage">The employee you are trying to log in as does not exist. If you need assistance, please contact the IT admin.</p>
+                    
+                    <a href="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/login_username.php">Try again </a>
+                    
+                    <?php
+                
+                    exit;
+                }
         // free the statement & close the connection
         oci_free_statement($usernameStmt);
         oci_close($connObj);
 
-        // 2 possible webpage states in webpage 2: webpage 2.1 for new users, webpage 2.2 for returning users
-
-        // webpage 2.1, for new users: username is not in system, load page to create new account
-        // (the thing about testpasswordlogin is so I can test the other page. remove it once it is no longer neccessary)
-        if($currentUser == true && $newUser == true)
-        {
-            // return to regular login page after this
-    
-            ?>
- 
-            <!-- Personalized header because they entered their username -->
-            <h1 id="welcomeheader">Welcome <?= $username ?></h1>
-
-            <!-- log in form adapted from hw4 of cs328 -->
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php" onsubmit="return validateForm();">
-                <h2 id="instructionheader">Please Provide Further Information Below</h2>
-
-                <input type="text" name="firstname" class="rectangleinput" placeholder="First name" required="required" />
-                <input type="text" name="lastname" class="rectangleinput" placeholder="Last name" required="required" />
-                <input type="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
-                <input type="text" name="phoneNum" class="rectangleinput" placeholder="Phone Number" required="required" />
-                <input type="password" name="password" class="rectangleinput" placeholder="Password" required="required" />
-                <input type="password" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" required="required" />
-
-                <input type="submit" name="submit" value="Submit" />
-            </form> 
-            <script src="empl_info_val.js"></script>
-            
-            <?php
-            createEmplAct($username);
-            $newUser = false;
-        }   // end of if for the create new account page (webpage 2.1)
-        // webpage 2.2: username is in system, load page to login (enter password)
-        elseif($currentUser == true && $newUser == false)
-        {
-            // next stage: 4.0 (logging in to database)
-            // initialize these to prepare for next stage
-            $_SESSION["badPasswordAttempts"] = 0;
-            $_SESSION["locked_out"] = false;
-    
-            ?>
-
-            <!-- Personalized header because they entered their username -->
-            <h1 id="welcomeheader">Welcome <?= $username ?></h1>
-
-            <!-- log in form adapted from hw4 of cs328 -->
-            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php">
-                <h2 id="instructionheader">Please Enter Your Password Below</h2>
-
-                <input type="password" name="password" class="roundedinput" required="required" />
-
-                <p><a href="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
-
-                <input type="submit" name="submit" value="Submit" />
-            </form>
-
-            <?php
-        }   // end of else for the login (enter password) page
-        else
-        {
-            ?>
-            <h1 id="notfoundheader">Employee Not Found</h1>
-            <p id="notfoundmessage">The employee you are trying to log in as does not exist. If you need assistance, please contact the IT admin.</p>
-            <?php
-            header("Location: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php");
-            exit;
-        }
-
     ?>
-    
+        
 </body>
 </html>
