@@ -23,22 +23,8 @@
                 $_SESSION["badPasswordAttempts"] = 0;
                 $_SESSION["locked_out"] = false;
                 $username = $_SESSION["username"];
-                ?>
+                passwordForm($username);
                 
-                <!-- Personalized header because they entered their username -->
-                <h1 id="welcomeheader">Welcome <?= $username ?></h1>
-
-                <!-- log in form adapted from hw4 of cs328 -->
-                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php">
-                    <h2 id="instructionheader">Please Enter Your Password Below</h2>
-
-                    <input type="password" name="password" class="roundedinput" required="required" />
-
-                    <p><a href="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
-
-                    <input type="submit" name="submit" value="Submit" />
-                </form>
-
-                <?php
+               
             }   // end of function for the login (enter password) page     
     ?>

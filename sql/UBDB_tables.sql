@@ -6,7 +6,7 @@ create table Employee (
     EMPL_ID CHAR(6),
     empl_first_name VARCHAR2(30),
     empl_last_name VARCHAR2(30),
-    empl_password VARCHAR2(50),
+    empl_password VARCHAR2(60),
     email VARCHAR2(50),
     phone_number CHAR(12),
     empl_role VARCHAR2(35),
