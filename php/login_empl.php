@@ -69,7 +69,12 @@
         // get username from session variable
         $username = strip_tags($_SESSION["username"]);
         // password from form, but first check whether regular or temp password
-        $tempPass = trim($_POST["tempPassword"]);
+        // get temp password
+        if(isset($_POST["tempPassword"]))
+        {
+            $_SESSION["tempPassword"] = trim($_POST["tempPassword"]);
+        }
+        $tempPass = $_SESSION["tempPassword"];
         if(isset($tempPass))
         {
             $password = $_POST["tempPassword"];
@@ -80,21 +85,19 @@
         }
         
 
-
         // connection section adapted from cs328 hw7 problem1
         // put password into session variable to use again later to recconnect
         $_SESSION["password"] = $password;
 
         // login with username & password
-        // set up db connection string
-        
-        // connection object
-        $connObj = oci_connect($username, $password, $dbConnStr);
-        require_once("database_connect.php");
-        //$connObj = db_conn_sess();
+        // set up db connection 
+        require_once("../../../database_connect.php");
+        $connObj = db_conn_sess();
         /*==============
             db connection for when we have it setup
         ==================*/
+
+
         // if can't log in, password is bad
         require_once("verify_password.php");
         if (!verifyPassword($username,$password))

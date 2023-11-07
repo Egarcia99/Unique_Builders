@@ -78,18 +78,9 @@
         $_SESSION["username"] = $username;
 
         /* use account that can only see usernames (not an actual account on nrs-projects)
-        $conn1Username = "SeeUsers";
-        $conn1Password = "SecretPassword42";
-        */
-
-        // set up db connection string
-        $dbConnStr = "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
-                                                  (HOST = cedar.humboldt.edu)
-                                                  (PORT = 1521))
-                                                  (CONNECT_DATA = (SID = STUDENT)))";   
-                                                  // this must be changed to info of DB for our project
+         this must be changed to info of DB for our project */
+         
         // connection object
-        //$connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
         require_once("../../../private/database_connect.php");
         $connObj = db_conn_sess();
         /*==============
