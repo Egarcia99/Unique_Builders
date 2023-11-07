@@ -1,6 +1,7 @@
 
 <?php
     session_start();
+    // Deprecated file, kept for reference
 ?>
 
 
@@ -12,7 +13,7 @@
 <!--
     adapted from: cs328 hw7 problem2
     by: Gracie Ceja
-    last modified: October 19, 2023
+    last modified: November 7, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/prototype-sprint3/login-demo.php
 

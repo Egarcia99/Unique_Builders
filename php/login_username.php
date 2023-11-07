@@ -1,63 +1,5 @@
 <?php
     session_start();
-
-    /*
-    we are no longer using this,
-    instead of emailing admin, we just put their info directly into the database
-
-    // user's first time to this, so just initialize these variables
-    if($_SERVER['REQUEST_METHOD'] == 'GET')
-    {
-        $_SESSION["username"] = null;
-        $_SESSION["newUser"] = null;
-        $_SESSION["newInfoSent"] = "False";
-
-    }
-    else
-    {
-        // check if the user is a new user
-        $newUser = $_SESSION["newUser"];
-        // if they are a new user, send an email to contact admin to create new account
-        if($newUser == "True")
-        {
-            // get info from previous page via $_SESSION variable
-            $newInfoSent = $_SESSION["newInfoSent"];
-
-            // email to admin to ask them to help user to create an account
-            // this should send to admin's email, but I'll use mine for now
-            if($newInfoSent == "False") 
-            {
-                // get user info from $_SESSION & $_POST variables
-                $username = $_SESSION["username"];
-                $name = $_POST["name"];
-                $email = $_POST["email"];
-                $phoneNum = $_POST["phoneNum"];
-                $password = $_POST["password"];
-
-                // prepare the message
-                $message = "Dear Admin,
-
-                The employee " . $name . " has requested a new user account.
-                Please make them an account with the following info: 
-                username: " . $username . "
-                email: " . $email . "
-                phone number: " . $phoneNum . "
-                password: " . $password . "
-
-                Sincerely,
-                login_username.php in UniqueBuilders.net
-                [This email was sent automatically; I cannot read any replies to it.]";
-
-                // send the email
-                mail("glc47@humboldt.edu", "New account request from user: " . $name,
-                $message, "From: employeeLogin@UniqueBuilders.net");
-                $newInfoSent = "True";
-                $_SESSION["newInfoSent"] = "True";
-            }   // end if of sending email
-        }   // end if of checking of user is a new user
-    }
-    */
-
 ?>
 
 
@@ -69,7 +11,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 6, 2023
+    last modified: November 7, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php
     CS 458 Software Engineering
@@ -85,18 +27,19 @@
     as different webpages:
     webpage 1.0 for entering username                                                  (login_username.php)
     webpages 2.0 for entering password:                                                (login_password.php)
-        webpage 2.1 for new users to also enter more info
-        webpage 2.2 for returning users to just enter password or select forgot password
+        webpage 2.1 for new users to also enter more info                              (user_info_input.php)
+        webpage 2.2 for returning users to just enter password or pick forgot password (empl_handling.php & password_form.php)
     webpages 3.0 for forgot password                                                    
-        webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php)
+        webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php & valid_contact_info.js)
         webpage 3.2 to inform the user that their info was sent to an admin             (inform_user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
-    webpage 4.0 for trying to log them in to the database                               (login_empl.php)
+    webpage 4.0 for trying to log them in to the database                               (login_empl.php & verify_password.php)
         webpage 4.1 correct password, they are logged in & go to employee homepage
         webpage 4.2 incorrect password, they are sent back to webpage 2.2
-        webpage 4.3 they got locked out from too many invalid password login attempts (looks like webpage 2.2)
+        webpage 4.3 they got locked out from too many invalid password login attempts 
 
-    total: 6 files
+    also, database_connect.php (used by many files)
+    total: 12 files (11 php, 1 js)
         
     This file is for: webpage 1.0 enter username.
 -->

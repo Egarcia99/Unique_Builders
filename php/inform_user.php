@@ -60,7 +60,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 6, 2023
+    last modified: November 7, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/inform_user.php
     CS 458 Software Engineering
@@ -76,18 +76,19 @@
     as different webpages:
     webpage 1.0 for entering username                                                  (login_username.php)
     webpages 2.0 for entering password:                                                (login_password.php)
-        webpage 2.1 for new users to also enter more info
-        webpage 2.2 for returning users to just enter password or select forgot password
+        webpage 2.1 for new users to also enter more info                              (user_info_input.php)
+        webpage 2.2 for returning users to just enter password or pick forgot password (empl_handling.php & password_form.php)
     webpages 3.0 for forgot password                                                    
-        webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php)
+        webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php & valid_contact_info.js)
         webpage 3.2 to inform the user that their info was sent to an admin             (inform_user.php)
         webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
-    webpage 4.0 for trying to log them in to the database                               (login_empl.php)
+    webpage 4.0 for trying to log them in to the database                               (login_empl.php & verify_password.php)
         webpage 4.1 correct password, they are logged in & go to employee homepage
         webpage 4.2 incorrect password, they are sent back to webpage 2.2
-        webpage 4.3 they got locked out from too many invalid password login attempts (looks like webpage 2.2)
+        webpage 4.3 they got locked out from too many invalid password login attempts 
 
-    total: 6 files
+    also, database_connect.php (used by many files)
+    total: 12 files (11 php, 1 js)
         
     This file is for: webpage 3.2 inform user
 -->
