@@ -10,7 +10,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 5, 2023
+    last modified: November 7, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/temp_password.php
     CS 458 Software Engineering

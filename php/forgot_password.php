@@ -7,21 +7,16 @@
         
     // first, connect to database to get their contact info 
     // use account that can only see usernames & contact info (not an actual account on nrs-projects)
-    $conn2Username = "SeeUsersAndContactInfo";
-    $conn2Password = "SecretPassword80";
-
-
-    // set up db connection string
-    $dbConnStr = "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
-                                            (HOST = cedar.humboldt.edu)
-                                            (PORT = 1521))
-                                            (CONNECT_DATA = (SID = STUDENT)))";   // this must be changed to info of DB for out project
-    // connection object
-    $connObj = oci_connect($conn2Username, $conn2Password, $dbConnStr);
+    // set up db connection 
+    require_once("../../../private/database_connect.php");
+    $connObj = db_conn_sess();
+    /*==============
+        db connection for when we have it setup
+    ==================*/
 
     // check if the entered username exists in the database already or no.
     // set up query string & statement
-    $contactInfoQueryString = "SELECT EMPL_ID, email, phone_number
+    $contactInfoQueryString = "SELECT empl_id, email, phone_number
                                 FROM Employee
                                 where EMPL_ID = :username";
     $contactInfoStmt = oci_parse($connObj, $contactInfoQueryString);
