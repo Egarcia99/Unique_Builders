@@ -11,187 +11,101 @@ Prototype/Demo of Employeee Login
 Requirements: 2.1 & 2.2
 */
 
-body
-{
-	background-color: white; 
-	color: black;	/* text color */
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	margin-left: auto;
-	margin-right: auto;
-	width: 90%;
+body {
+    background-color: #FAD004; /* Business-friendly yellow */
+    color: #000000; /* Black text for readability */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More business-like font */
+    font-size: 1em;
+    margin: 0 auto;
+    width: 80%;
 }
-
 
 /* headers section */
-#welcomeheader
-{
-	background-color: rgb(249, 249, 249); /* very light gray */
-	padding: 0.7em;
-	font-size: 3em;
-	/* border section */
-	border: thin solid black;
-	border-radius: 5px;
-	/* text section */
-	text-align: center;
-	font-weight: normal;
+#welcomeheader {
+    background-color: #000000; /* Black background for the header */
+    color: #ffffff; /* White text for contrast */
+    padding: 0.5em;
+    font-size: 2.5em; /* Slightly smaller for a more professional look */
+    text-align: center;
+    font-weight: normal;
+    background-image: url("../images/UB_logo.jpg"); /* Business logo */
+    background-repeat: no-repeat;
+    background-position: left 10px center; /* Logo on the left side */
+    background-size: 80px; /* Adjust size as needed */
 }
 
-#instructionheader
-{
-	background-color: lightgoldenrodyellow;
-	border: thin solid black;
-	padding: 1em;
-	/* text section */
-	text-align: center;
-	font-style: italic;
-	font-weight: normal;
+#instructionheader {
+    background-color: #000000; /* Black background for instructions */
+    color: #ffffff; /* White text for readability */
+    padding: 0.5em;
+    text-align: center;
+    font-weight: normal;
 }
-/* end of headers section */
-
 
 /* form section */
-form
-{
-	background-color: rgb(249, 249, 249); /* very light gray */
-	border: thin solid black; 
-	padding: 2em;
-	height: 40em;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	/* margin & width section */
-	margin-bottom: 2em;
-	margin-top: 1.8em;
-	margin-left: auto;
-	margin-right: auto;
-	width: 30%;
+form {
+    background-color: #000000; /* Black background for the form */
+    color: #ffffff; /* White text for contrast */
+    border: 1px solid #ffffff; /* White border for visibility */
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Adjusted for better spacing */
+    margin: 1em auto;
+    width: 30%; /* Width adjusted for a more typical form size */
 }
 
-#forgotpassword
-{
-	display: block;
-	background-color: rgb(199, 199, 199); /* gray */
-	width: 10em;
-	padding: 0.6em;
-	/* text section */
-	color: DodgerBlue;
-	text-decoration: underline;
-	text-align: center;
-	font-size: 0.8em;
-	font-weight: bold;
-	/* border section */
-	border: thin solid black;
-	border-radius: 5px;
-	/* margin section */
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 0.1em;
-	margin-bottom: 1em;
-	
+/* input fields */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px; /* Less padding for a slimmer look */
+    margin: 10px 0; /* Margin for spacing */
+    background-color: #333333; /* Darker background for the input */
+    border: 1px solid #555555; /* Subtle border for the inputs */
+    color: #ffffff; /* White text for readability */
+    font-size: 1em;
 }
-
-/* This box is used on the forgot password */
-#or
-{
-	border: thin solid black;
-	background-color: rgb(219, 219, 219); /* gray */
-	width: 10%;
-	padding: 1em;
-	/* margin section */
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 2em;
-	margin-bottom: 2em;
-	/* text section */
-	text-align: center;
-	font-style: italic;
-}
-
-
-#timeoutMessage
-{
-	border: thin solid black;
-	background-color: rgb(219, 219, 219); /* gray */
-	width: 75%;
-	padding: 0.5em;
-	/* margin section */
-	margin-left: auto;
-	margin-right: auto;
-	/* text section */
-	text-align: center;
-	font-style: italic;
-	font-size: 0.7em;
-	color: red;
-}
-
-/* table for stage 3.2: inform user that info was sent to admin to make new account */
-.infoTable
-{
-	border: thin solid black;
-
-}
-
 
 /* input buttons section */
-/* these input boxes are used for username & password, on these paages: login (enter username) & login (enter password) */
-input[class="roundedinput"]
-{
-	display: block;
-	width: 8em;
-	padding: 2em;
-	text-align: center;
-	/* border section */
-	border: thin solid black;
-	border-radius: 25px;
-	/* margin section */
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1em;
-	margin-bottom: 1em;
+input[type="submit"] {
+    background-color: #4CAF50; /* Green background for the submit button */
+    color: #ffffff; /* White text for readability */
+    padding: 10px 20px; /* Padding adjusted for a more typical button size */
+    border: none; /* No border for a cleaner button */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    font-size: 1em;
+    cursor: pointer; /* Cursor changes to pointer to indicate clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-/* these input boxes are used for these paages: create new account, forgot password, & temporary password login */
-input[class="rectangleinput"]
-{
-	display: block;
-	width: 91%;
-	padding: 1em;
-	background-color: white; 
-	text-align: center;
-	font-style: italic;
-	font-size: 0.9em;
-	/* border section */
-	border: thin solid black;
-	/* margin section */
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1em;
-	margin-bottom: 1em;
+input[type="submit"]:hover {
+    background-color: #45a049; /* Slightly darker green on hover for interactive feedback */
 }
 
-input[type="submit"]
-{
-	display: block;
-	width: 7.5em;
-	background-color: rgb(50, 198, 50); /* green */
-	text-align: center;
-	/* padding section */
-	padding-top: 1em;
-	padding-bottom: 1em;
-	padding-left: auto;
-	padding-right: auto;
-	/* border section */
-	border: thin solid black;
-	border-radius: 20px;
-	/* margin section */
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1em;
-	margin-bottom: 1em;
+/* Forgot password link style */
+#forgotpassword {
+    background-color: transparent; /* No background for a hyperlink look */
+    color: #0000FF; /* Standard blue for hyperlinks */
+    text-decoration: underline; /* Underline to indicate it's clickable */
+    font-size: 0.8em; /* Smaller font size for subtlety */
+    border: none; /* No border for a text-like appearance */
+    margin-top: -10px; /* Positioning closer to the password field */
+    margin-bottom: 20px; /* Spacing before the submit button */
+    padding: 0; /* No padding for a text-like appearance */
+    cursor: pointer; /* Cursor changes to pointer to indicate clickable */
 }
 
+/* Adjusting the form input fields to be less bulky */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="submit"] {
+    height: 40px; /* Fixed height for a more uniform and less bulky appearance */
+    border-radius: 4px; /* Slightly rounded corners for a modern, yet business-like look */
+}
 
-
-/* end of input buttons section */
-/* end of form section */
+/* Additional styles for other elements can be added as needed */
