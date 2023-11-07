@@ -1971,12 +1971,10 @@
 			}
 
 				#header > a[href="#menu"]:before {
-					content: "";
-					-moz-osx-font-smoothing: grayscale;
-					-webkit-font-smoothing: antialiased;
-					font-family: FontAwesome;
-					font-style: normal;
-					font-weight: normal;
+					content: "≡";
+					font-size: 1.19em;
+					font-family: 'Times New Roman', Times, serif;
+					font-weight: bolder;
 					text-transform: none !important;
 				}
 
@@ -2151,10 +2149,9 @@
 		}
 
 			#menu .close:before {
-				content: "";
-				-moz-osx-font-smoothing: grayscale;
-				-webkit-font-smoothing: antialiased;
-				font-family: FontAwesome;
+				content: "x";
+				font-size: 2.85em;
+				font-family: Arial, Helvetica, sans-serif;
 				font-style: normal;
 				font-weight: normal;
 				text-transform: none !important;
