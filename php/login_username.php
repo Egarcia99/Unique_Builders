@@ -1,6 +1,10 @@
 <?php
     session_start();
 
+    /*
+    we are no longer using this,
+    instead of emailing admin, we just put their info directly into the database
+
     // user's first time to this, so just initialize these variables
     if($_SERVER['REQUEST_METHOD'] == 'GET')
     {
@@ -52,6 +56,7 @@
             }   // end if of sending email
         }   // end if of checking of user is a new user
     }
+    */
 
 ?>
 
@@ -64,7 +69,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 4, 2023
+    last modified: November 6, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php
     CS 458 Software Engineering

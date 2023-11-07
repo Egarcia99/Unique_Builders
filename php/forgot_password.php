@@ -1,7 +1,7 @@
 <?php
     session_start();
             
-    // first, get contact info so the js can check if the user enters the correct info
+    // first, get contact info so the js can check if the user enters the correct contact info
     // get username from session variable
     $username = $_SESSION["username"];
         
@@ -54,7 +54,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 4, 2023
+    last modified: November 6, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php
     CS 458 Software Engineering
@@ -137,7 +137,7 @@
                 <input type="test" name="phoneNumForgotPassword" class="rectangleinput" placeholder="Confirm Phone Number" />
 
                 <input type="submit" id="submit" value="Submit" />
-            </form> mnn     
+            </form>     
 
 </body>
 </html>

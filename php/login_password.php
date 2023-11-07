@@ -124,7 +124,7 @@
             }
         }
 
-        // they are a new user, so ask them for info toput into the database
+        // they are a new user, so ask them for info to put into the database
         if($currentUser == true && $newUser == true)
         {
             // return to regular login page after this

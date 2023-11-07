@@ -10,7 +10,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 4, 2023
+    last modified: November 6, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
     CS 458 Software Engineering
@@ -68,7 +68,8 @@
         // get username from session variable
         $username = strip_tags($_SESSION["username"]);
         // password from form, but first check whether regular or temp password
-        if(null !== trim($_POST["tempPassword"]))
+        $tempPass = trim($_POST["tempPassword"]);
+        if(isset($tempPass))
         {
             $password = $_POST["tempPassword"];
         }

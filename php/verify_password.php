@@ -2,9 +2,9 @@
     /*=====
 
         file: verify_password.php
-        // 
+        
         by: Colton Boyd
-        last modified: 2023-04-21
+        last modified: 2023-11-6
     =====*/
 
 ?>
@@ -35,7 +35,7 @@
         }
         else
         {
-            // this means the user currently has an account.
+            // this means the user does not currently have an account set up with a password.
             return false;
         }
         

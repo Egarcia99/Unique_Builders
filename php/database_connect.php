@@ -3,7 +3,7 @@
         function: db_conn_sess: string string -> connection
         purpose: expects an Oracle username and password,
             and has the side-effect of trying to connect to
-            Oracle s database with the given
+            Oracle's database with the given
             username and password;
             returns the resulting connection object if
             successful, 
@@ -13,7 +13,7 @@
             *   ends the document,
             *   destroys the current session, and
             *   exits the calling PHP
-        last modified: 2023-11-04
+        last modified: 2023-11-06
     -----*/
 
         function db_conn_sess()

@@ -60,7 +60,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 4, 2023
+    last modified: November 6, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/inform_user.php
     CS 458 Software Engineering
@@ -141,7 +141,7 @@
                 <!-- Personalized header because they entered their username -->
                 <h1 id="welcomeheader">Thank You <?= $username ?></h1>
     
-                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="goToLogin">
+                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="goToForgotPassword">
                     <table class="infoTable">
                         <tr> <td>Hello <?= $username ?></td> </tr>
                         <tr> <td>Please be patient as we could not send the admin an email 
