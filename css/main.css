@@ -2401,6 +2401,12 @@
 	text-align: center;
 	width: 3em;
 }
+
+ion-icon {
+	text-align: center;
+	font-size: 2em;
+	padding-top: 0.25em;
+}
 		#footer .copyright {
 			color: #bfbfbf;
 			font-size: 0.9em;
