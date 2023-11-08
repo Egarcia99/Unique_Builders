@@ -97,7 +97,7 @@
 
         // execute statement & get info from it
         oci_execute($usernameStmt, OCI_DEFAULT);
-        echo $username;
+        //echo $username;
         // loop through usernames until username is found or all usernames have been checked
         $newUser = false;
         $currentUser = false;

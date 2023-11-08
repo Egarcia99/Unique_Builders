@@ -23,6 +23,7 @@
                 $_SESSION["badPasswordAttempts"] = 0;
                 $_SESSION["locked_out"] = false;
                 $username = $_SESSION["username"];
+                require_once("password_form.php");
                 passwordForm($username);
                 
                
