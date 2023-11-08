@@ -138,17 +138,26 @@
             </form>
 
             <script>
-                function validateForm() {
-                    var password = document.getElementById("password").value;
-                    var confirmPassword = document.getElementById("confirmPassword").value;
+                    function validateForm() {
+                        var password = document.getElementById("password").value;
+                        var confirmPassword = document.getElementById("confirmPassword").value;
 
-                    if (password != confirmPassword) {
-                        alert("Confirmed Password does not match Password");
-                        return false;
+                        if (password != confirmPassword) {
+                            alert("Confirmed Password do not match Password");
+                            return false;
+                        }
+                        
+                        if (!password.match(/^(?=.*[!@#$%^&*])/)) {
+                                        alert("Password must contain at least one special character");
+                                        return false;
+                                    }
+                        if(password.length < 12){
+                            alert("Password must be at least 12 characters long");
+                            return false;
+                        }
+                        return true;
                     }
-                    return true;
-                }
-            </script>
+                </script>
 
         <?php
         }   // end of if for the create new account page (webpage 2.1)
