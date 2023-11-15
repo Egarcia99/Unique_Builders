@@ -31,7 +31,6 @@
         mail("glc47@humboldt.edu", "Customer Contact request from: " . $custName,
         $message, "From: customerContactForm@UniqueBuilders.net");
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +43,7 @@
     by: Gracie Ceja
     last modified: November 15, 2023
 
-    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/php/cust_contact.php
+    you can run this using the URL: https://uniquebuilders.co/cs458/php/cust_contact.php
     CS 458 Software Engineering
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
