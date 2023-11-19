@@ -18,7 +18,7 @@
     // set up query string & statement
     $contactInfoQueryString = "SELECT empl_id, email, phone_number
                                 FROM Employee
-                                where EMPL_ID = :username";
+                                where empl_id = :username";
     $contactInfoStmt = oci_parse($connObj, $contactInfoQueryString);
     oci_bind_by_name($contactInfoStmt, ":username", $username);
 
@@ -49,9 +49,9 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 7, 2023
+    last modified: November 8, 2023
 
-    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php
+    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/php/forgot_password.php
     CS 458 Software Engineering
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
@@ -123,7 +123,7 @@
             <!-- Personalized header because they entered their username -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
-            <form method="post" id="contactInfoForm" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/inform_user.php">
+            <form method="post" id="contactInfoForm" action="https://nrs-projects.humboldt.edu/~glc47/cs458/php/inform_user.php">
                 <h2 id="instructionheader">Please Provide Needed Information Below</h2>
 
                 <input type="email" name="emailForgotPassword" class="rectangleinput" placeholder="Confirm Email Address" />
