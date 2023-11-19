@@ -23,17 +23,24 @@
         {
             // set up db connection string
             // first, declare variables for the connection (must use an actual username and password for it to work)
-            $host = "https://www.uniquebuilders.co"; // The host where MySQL database is running
-            $port = 21098; // The port for MySQL database
-            $db_name = "uniqijnw_uniquebuilders"; // Your MySQL database name
-            $db_username = "your_username"; // Your MySQL username
-            $db_password = "your_password"; // Your MySQL password
+            $host = "cedar.humboldt.edu"; // The host where Oracle database is running
+            $port = 1521; // The port for Oracle database
+            $sid = "STUDENT"; // The Oracle service name
+            $db_username = "your_username"; // Your Oracle username
+            $db_password = "your_password"; // Your Oracle password
 
-            // Establish the MySQL database connection
-            $connection = mysqli_connect($host, $db_username, $db_password, $db_name, $port);
+            $db_conn_str = 
+            "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
+                                        (HOST = " . $host . ")
+                                        (PORT = " . $port . "))
+                            (CONNECT_DATA = (SID = " . $sid . ")))";
+
+            // Establish the Oracle database connection
+            $connection = oci_connect($db_username, $db_password, $db_conn_str);
 
             if (!$connection) {
-                die("MySQL Connection failed: " . mysqli_connect_error());
+                $error = oci_error();
+                die("Oracle Connection failed: " . $error['message']);
             }
             return $connection;
         }   // end of function db_conn_sess
