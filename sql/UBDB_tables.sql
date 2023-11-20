@@ -11,6 +11,8 @@ create table Employee (
     phone_number CHAR(12),
     empl_role VARCHAR2(35),
     empl_status VARCHAR2(1) CHECK (empl_status IN ('T', 'F')),
+    first_login VARCHAR2(1) DEFAULT 'Y' CHECK (first_login IN ('Y', 'N')),
+    is_temporary VARCHAR2(1) DEFAULT 'N' CHECK (is_temporary IN ('Y', 'N')),
     PRIMARY KEY (EMPL_ID)
 );
 
@@ -73,4 +75,16 @@ create table Customer (
     phone_number CHAR(12),
     job_inquiry CLOB,
     PRIMARY KEY (CUST_ID)
+);
+-- UserLockout Table Creation
+prompt ===== UserLockout Table Creation =====
+
+drop table UserLockout cascade constraints;
+create table UserLockout (
+    lockout_id INT PRIMARY KEY AUTO_INCREMENT,
+    username CHAR(6) NOT NULL,
+    lockout_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    unlock_time TIMESTAMP,
+    failed_attempts INT NOT NULL,
+    FOREIGN KEY (username) REFERENCES Employee(EMPL_ID)
 );
