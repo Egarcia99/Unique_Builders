@@ -68,11 +68,14 @@
     <h1 id="welcomeheader">Welcome</h1>
 
     <!-- log in form adapted from hw4 of cs328 -->
-    <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_password.php">
-        <h2 id="instructionheader">Please Enter Your Username Below</h2>
-
+    <form method="post" action="https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_password.php">
+        <h2 id="instructionheader">Please Enter Infomation</h2>
+        <label for="username">Username:</label>
         <input type="text" name="username" class="roundedinput" required="required" />
-
+        <label for="password">Password:</label>
+        <input type="password" name="password" class="roundedinput" required="required" />
+        
+        <p><a href="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
         <input type="submit" value="Submit" />
     </form>
 

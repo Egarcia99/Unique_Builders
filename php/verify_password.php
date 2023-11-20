@@ -14,33 +14,32 @@
         require_once("../../../private/database_connect.php");
         $connObj = db_conn_sess();
         
-        $passwordQueryString = "SELECT empl_password
+        $passwordQueryString = "SELECT empl_password, is_temporary
                                 FROM Employee
                                 WHERE empl_id = :username";
         $passwordStmt = oci_parse($connObj, $passwordQueryString);
         oci_bind_by_name($passwordStmt, ":username", $username);
         oci_execute($passwordStmt, OCI_DEFAULT);
-
+        $verified = false;
         if(oci_fetch($passwordStmt))
         {
-            $storedPass = oci_result($passwordStmt, 1);
+            $storedPass = oci_result($passwordStmt, 'empl_password');
             if(password_verify($password, $storedPass))
             {
-                return true;
+                $verified = true;
             }
             else
-            {
-                return false;
+            {   
+                $verified = false;
             }
         }
         else
-        {
-            // this means the user does not currently have an account set up with a password.
-            return false;
+        {   
+            $verified = false;
         }
-        
         oci_free_statement($passwordStmt);
         oci_close($connObj);
+        return $verified;
         
     }
 ?>

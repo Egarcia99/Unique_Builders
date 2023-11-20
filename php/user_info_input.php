@@ -18,39 +18,39 @@
     require_once("empl_handling.php");
 ?>
 <?php
-   
-    {
-        $email = strip_tags($_POST["email"]);
-        $phoneNum = strip_tags($_POST["phoneNum"]);
-        $empl_id = $_SESSION["username"];
-        $passWord = password_hash($_POST["password"], PASSWORD_BCRYPT);
-        
-        // connection object
-        //$connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
-        require_once("../../../private/database_connect.php");
-        $connObj = db_conn_sess();
-        /*==============
-            db connection for when we have it setup
-        ==================*/
-        $emplUpdateString = "UPDATE Employee 
-            SET empl_password = :emplpass,
-                email = :email,
-                phone_number = :phone
-            WHERE empl_id = :username";
+if ($_SERVER["REQUEST_METHOD"] === "POST") 
+{
+    $email = strip_tags($_POST["email"]);
+    $phoneNum = strip_tags($_POST["phoneNum"]);
+    $empl_id = $_SESSION["username"];
+    $passWord = password_hash($_POST["password"], PASSWORD_BCRYPT);
 
-        $emplUpdateStmt = oci_parse($connObj, $emplUpdateString);
-       
-        oci_bind_by_name($emplUpdateStmt, ":emplpass", $passWord);
-        oci_bind_by_name($emplUpdateStmt, ":email", $email);
-        oci_bind_by_name($emplUpdateStmt, ":phone", $phoneNum);
-        oci_bind_by_name($emplUpdateStmt, ":username", $empl_id);
+    // connection object
+    //$connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
+    require_once("../../../private/database_connect.php");
+    $connObj = db_conn_sess();
+    /*==============
+        db connection for when we have it setup
+    ==================*/
+    $emplUpdateString = "UPDATE Employee 
+        SET empl_password = :emplpass,
+            email = :email,
+            phone_number = :phone,
+            first_login = 'N'
+        WHERE empl_id = :username";
 
-        oci_execute($emplUpdateStmt, OCI_DEFAULT);
-        //oci_commit($connObj); testing purposes don't want on 
-        oci_free_statement($emplUpdateStmt);
+    $emplUpdateStmt = oci_parse($connObj, $emplUpdateString);
 
-        oci_close($connObj);
-        emplHandling();
+    oci_bind_by_name($emplUpdateStmt, ":emplpass", $passWord);
+    oci_bind_by_name($emplUpdateStmt, ":email", $email);
+    oci_bind_by_name($emplUpdateStmt, ":phone", $phoneNum);
+    oci_bind_by_name($emplUpdateStmt, ":username", $empl_id);
 
-        // ... remaining code ...
-    }
+    oci_execute($emplUpdateStmt, OCI_DEFAULT);
+    //oci_commit($connObj); testing purposes don't want on 
+    oci_free_statement($emplUpdateStmt);
+
+    oci_close($connObj);
+    emplHandling();
+
+}
