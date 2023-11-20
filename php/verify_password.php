@@ -14,7 +14,7 @@
         require_once("../../../private/database_connect.php");
         $connObj = db_conn_sess();
         
-        $passwordQueryString = "SELECT empl_password, is_temporary
+        $passwordQueryString = "SELECT empl_password
                                 FROM Employee
                                 WHERE empl_id = :username";
         $passwordStmt = oci_parse($connObj, $passwordQueryString);
