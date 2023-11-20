@@ -104,7 +104,7 @@
             //echo $username;
             // loop through usernames until username is found or all usernames have been checked
             
-            $currentUser = false;
+            $usr = NULL;
             while(oci_fetch($usernameStmt)) {
                 $usr = oci_result($usernameStmt, 'empl_id'); // get next username from database
                 $StoredpassWord = oci_result($usernameStmt, 'empl_password');
