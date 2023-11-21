@@ -42,6 +42,7 @@ create table Work_Order (
     job_type VARCHAR2(30),
     call_date DATE,
     ext_company_name VARCHAR2(50),
+    work_location VARCHAR2(50),
     status VARCHAR2(1) CHECK (status IN ('T', 'F')),
     PRIMARY KEY (WORKORDER_ID, ADDRESS_ID, EMPL_ID),
     FOREIGN KEY (ADDRESS_ID) REFERENCES Address(ADDRESS_ID),
