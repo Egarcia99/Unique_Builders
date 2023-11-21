@@ -103,3 +103,4 @@ begin
     :new.lockout_id := lockout_id_seq.nextval;
 end;
 /
+commit;

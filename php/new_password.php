@@ -39,7 +39,7 @@
                             return false;
                         }
                         
-                        if (!password.match(/^(?=.*[!@#$%^&*])/)) {
+                        if (!password.match(/^(?=.*[!@#$%^&*()_-+=<>?])/)) {
                                         alert("Password must contain at least one special character");
                                         return false;
                                     }
@@ -49,7 +49,7 @@
                         }
                         return true;
                     }
-                </script>
+            </script>
         <?php
         }
         else

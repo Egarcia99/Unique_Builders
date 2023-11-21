@@ -4,7 +4,7 @@
     // time to contact admin for help! but first:
     // get info from previous page:
     // get username & infoSent from session variables
-    $username = $_SESSION["username"];
+    $username = $_SESSION["username"];`
     $infoSent = $_SESSION["infoSent"];
     // get contact info from form, but first determine which was entered
     if(null != trim($_POST["emailForgotPassword"]))
@@ -12,7 +12,7 @@
         $contactInfo = $_POST["emailForgotPassword"];
         $contactType = "email address";
     }
-    else
+    else`
     {
         $contactInfo = $_POST["phoneNumForgotPassword"];
         $contactType = "phone number";
@@ -22,19 +22,8 @@
     // this should send to admin's email, but I'll use mine for now
     if($_SERVER['REQUEST_METHOD'] === 'POST' && $infoSent == "False") 
     {
-        // prepare the message
-        $message = "Dear Admin,
-
-        The user " . $username . " has requested a password reset because they forgot their password.
-        Please send them a temporary password at their " . $contactType . ": " . $contactInfo . ".
-
-        Sincerely,
-        inform_user.php in UniqueBuilders.net
-        [This email was sent automatically; I cannot read any replies to it.]";
-
-        // send the email
-        mail("glc47@humboldt.edu", "Password Reset request from user: " . $username,
-        $message, "From: employeeLogin@UniqueBuilders.net");
+        require_once("../../../private/assign_temp_pass.php");
+        generateTempPassword($username, $contactType, $contactInfo);
         $infoSent = "True";
         $_SESSION["infoSent"] = "True";
     }
