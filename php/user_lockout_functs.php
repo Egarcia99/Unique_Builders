@@ -9,6 +9,9 @@ function incrementFailedAttempts($connObj, $username) {
     oci_bind_by_name($updateLockoutStmt, ":username", $username);
     oci_execute($updateLockoutStmt);
 
+     // Commit the changes
+    //oci_commit($connObj);
+
     // Check if the user has reached the maximum number of failed attempts, and lock the account if necessary
     $maxAttempts = 5; // Adjust this value based on your security policy
     if (getFailedAttempts($connObj, $username) >= $maxAttempts) {
@@ -57,6 +60,9 @@ function lockoutAccount($connObj, $username) {
     oci_bind_by_name($lockoutStmt, ":username", $username);
     oci_bind_by_name($lockoutStmt, ":unlockTime", $unlockTime);
     oci_execute($lockoutStmt);
+    // Commit the changes
+    //oci_commit($connObj);
+
     ?>
     <h1 id="actlocked">Account Locked</h1>
     <p id="actlockedmessage">This account is temporarily locked. Please try again after <?php echo $unlockTime; ?>.</p>
@@ -69,7 +75,7 @@ function lockoutAccount($connObj, $username) {
 function checkLockoutStatus($connObj, $username) {
     $checkLockoutQuery = "SELECT * 
                           FROM UserLockout 
-                          WHERE username = :username AND unlock_time > NOW()";
+                          WHERE username = :username AND unlock_time > SYSDATE";
     $checkLockoutStmt = oci_parse($connObj, $checkLockoutQuery);
     oci_bind_by_name($checkLockoutStmt, ":username", $username);
     oci_execute($checkLockoutStmt);
