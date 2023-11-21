@@ -81,10 +81,25 @@ prompt ===== UserLockout Table Creation =====
 
 drop table UserLockout cascade constraints;
 create table UserLockout (
-    lockout_id INT PRIMARY KEY AUTO_INCREMENT,
+    lockout_id NUMBER,
     username CHAR(6) NOT NULL,
     lockout_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     unlock_time TIMESTAMP,
-    failed_attempts INT NOT NULL,
+    failed_attempts NUMBER NOT NULL,
+    PRIMARY KEY (lockout_id),
     FOREIGN KEY (username) REFERENCES Employee(EMPL_ID)
 );
+
+-- Create sequence for lockout_id
+DROP SEQUENCE lockout_id_seq;
+create sequence lockout_id_seq start with 1 increment by 1;
+
+-- Trigger to populate lockout_id using the sequence
+
+create or replace trigger userlockout_trigger
+before insert on UserLockout
+for each row
+begin
+    :new.lockout_id := lockout_id_seq.nextval;
+end;
+/
