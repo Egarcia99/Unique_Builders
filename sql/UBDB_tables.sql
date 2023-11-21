@@ -11,6 +11,7 @@ create table Employee (
     phone_number CHAR(12),
     empl_role VARCHAR2(35),
     empl_status VARCHAR2(1) CHECK (empl_status IN ('T', 'F')),
+    empl_hourly_pay_rate INTEGER DEFAULT 1 NOT NULL,
     first_login VARCHAR2(1) DEFAULT 'Y' CHECK (first_login IN ('Y', 'N')),
     is_temporary VARCHAR2(1) DEFAULT 'N' CHECK (is_temporary IN ('Y', 'N')),
     PRIMARY KEY (EMPL_ID)
@@ -56,7 +57,7 @@ create table Payroll (
     EMPL_ID CHAR(6),
     pay_week DATE,
     hours_worked INTEGER,
-    hourly_pay_rate INTEGER DEFAULT 1 NOT NULL,
+    empl_hourly_pay_rate INTEGER DEFAULT 1 NOT NULL,
     total_weekly_amount INTEGER DEFAULT 1 NOT NULL,
     payment_type VARCHAR2(1) CHECK (payment_type IN ('T', 'F')),
     PRIMARY KEY (PAYROLL_ID, EMPL_ID),
