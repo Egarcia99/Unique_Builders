@@ -59,6 +59,7 @@ create table Payroll (
     pay_week DATE,
     hours_worked INTEGER,
     deductions REAL,
+    extra_amount REAL,
     total_weekly_amount REAL DEFAULT 1 NOT NULL,
     payment_type VARCHAR2(1) CHECK (payment_type IN ('T', 'F')),
     PRIMARY KEY (PAYROLL_ID, EMPL_ID),
