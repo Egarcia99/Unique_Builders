@@ -42,7 +42,7 @@ create table Work_Order (
     job_type VARCHAR2(30),
     call_date DATE,
     ext_company_name VARCHAR2(50),
-    Liberty_property VARCHAR2(50),
+    property_name VARCHAR2(50),
     PO_number char(7),
     invoice_estimate REAL,
     invoice_amount REAL,
