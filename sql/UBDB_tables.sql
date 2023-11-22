@@ -103,11 +103,14 @@ create sequence lockout_id_seq start with 1 increment by 1;
 
 -- Trigger to populate lockout_id using the sequence
 
-create or replace trigger userlockout_trigger
-before insert on UserLockout
-for each row
-begin
-    :new.lockout_id := lockout_id_seq.nextval;
-end;
+CREATE OR REPLACE TRIGGER userlockout_trigger
+BEFORE INSERT ON UserLockout
+FOR EACH ROW
+BEGIN
+    :NEW.lockout_id := lockout_id_seq.NEXTVAL;
+
+    -- Set unlock_time to be 24 hours after lockout_time
+    :NEW.unlock_time := :NEW.lockout_time + INTERVAL '24' HOUR;
+END;
 /
-commit;
+COMMIT;

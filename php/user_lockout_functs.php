@@ -81,13 +81,11 @@ function getFailedAttempts($connObj, $username) {
 }
 
 function lockoutAccount($connObj, $username) {
-    // Lock the account by setting unlock_time to current time + lockout duration
-    $lockoutDurationMinutes = 24 * 60; // 24 hours in minutes
-    $unlockTime = date('Y-m-d H:i:s', strtotime("+{$lockoutDurationMinutes} minutes"));
+    // Lock the account by setting unlock_time to lockout_time + 24 hours in database
     
     // Update the UserLockout table
     $lockoutQuery = "UPDATE UserLockout 
-                     SET unlock_time = TO_TIMESTAMP(:unlockTime, 'YYYY-MM-DD HH24:MI:SS') 
+                     SET lockout_time = CURRENT_TIMESTAMP
                      WHERE username = :username";
     
     $lockoutStmt = oci_parse($connObj, $lockoutQuery);
@@ -99,7 +97,7 @@ function lockoutAccount($connObj, $username) {
 
     ?>
     <h1 id="actlocked">Account Locked</h1>
-    <p id="actlockedmessage">This account is temporarily locked. Please try again after <?php echo $unlockTime; ?>.</p>
+    <p id="actlockedmessage">This account is temporarily locked. Please try again after 24 hours.</p>
     <?php
 
     // Free the statement
@@ -108,21 +106,23 @@ function lockoutAccount($connObj, $username) {
 
 
 function checkLockoutStatus($connObj, $username) {
-    $checkLockoutQuery = "SELECT unlock_time
+    $checkLockoutQuery = "SELECT TO_CHAR(unlock_time, 'Mon-DD-RR HH:MI') AS formatted_time,
+                                  TO_CHAR(unlock_time, 'AM') AS am_pm
                           FROM UserLockout 
                           WHERE username = :username AND unlock_time > SYSDATE";
     $checkLockoutStmt = oci_parse($connObj, $checkLockoutQuery);
     oci_bind_by_name($checkLockoutStmt, ":username", $username);
     oci_execute($checkLockoutStmt);
 
-    if(oci_fetch($checkLockoutStmt)) {
+    if (oci_fetch($checkLockoutStmt)) {
         // Account is locked out
-        $unlockTime = oci_result($checkLockoutStmt, 1);
+        $formattedTime = oci_result($checkLockoutStmt, 'FORMATTED_TIME');
+        $amPm = oci_result($checkLockoutStmt, 'AM_PM');
         ?>
         <h1 id="notfoundheader">Account Locked</h1>
-        <p id="notfoundmessage">This account is temporarily locked. Please try again after <?php echo $unlockTime; ?>.</p>
+        <p id="notfoundmessage">This account is temporarily locked. Please try again after <?php echo $formattedTime; echo ' ' . $amPm; ?>.</p>
         <?php
-        return $unlockTime;
+        return $formattedTime;
     }
 
     return null; // Account is not locked out
