@@ -1,7 +1,7 @@
 <?php
     /*
     by: Colton Boyd
-    last modified: November 6, 2023
+    last modified: November 19, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
     CS 458 Software Engineering

@@ -49,7 +49,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 8, 2023
+    last modified: November 21, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/php/forgot_password.php
     CS 458 Software Engineering
@@ -77,7 +77,7 @@
         webpage 4.3 they got locked out from too many invalid password login attempts 
 
     also, database_connect.php (used by many files)
-    total: 12 files (11 php, 1 js)
+    total: 17 files (16 php, 1 js)
         
     This file is for: webpage 3.0 forgot password
 -->
@@ -117,23 +117,22 @@
         // webpage 3.1: enter contact info
         // initialize this to prepare for next page
         $_SESSION["infoSent"] = "False";
-
-
         ?>
-            <!-- Personalized header because they entered their username -->
-            <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
-            <form method="post" id="contactInfoForm" action="https://nrs-projects.humboldt.edu/~glc47/cs458/php/inform_user.php">
-                <h2 id="instructionheader">Please Provide Needed Information Below</h2>
+        <!-- Personalized header because they entered their username -->
+        <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
-                <input type="email" name="emailForgotPassword" class="rectangleinput" placeholder="Confirm Email Address" />
+        <form method="post" id="contactInfoForm" action="https://nrs-projects.humboldt.edu/~glc47/cs458/php/inform_user.php">
+            <h2 id="instructionheader">Please Provide Needed Information Below</h2>
 
-                <p id="or">Or</p>
+            <input type="email" name="emailForgotPassword" class="rectangleinput" placeholder="Confirm Email Address" />
 
-                <input type="test" name="phoneNumForgotPassword" class="rectangleinput" placeholder="Confirm Phone Number" />
+            <p id="or">Or</p>
 
-                <input type="submit" id="submit" value="Submit" />
-            </form>     
+            <input type="test" name="phoneNumForgotPassword" class="rectangleinput" placeholder="Confirm Phone Number" />
+
+            <input type="submit" id="submit" value="Submit" />
+        </form>     
 
 </body>
 </html>

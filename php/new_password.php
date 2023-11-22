@@ -3,22 +3,21 @@
    /*=====
    
        file: newpassword_form.php
-       // 
+       
        by: Colton Boyd, Gracie Ceja
-       last modified: 2023-11-19
+       last modified: 2023-11-21
    =====*/
    
    
 
 ?>
 <?php
-    function  newPasswordForm($username)
+    function newPasswordForm($username)
     {
         if ($_SERVER["REQUEST_METHOD"] === "GET")
         {
         ?>
             <!-- login form adapted from hw4 of cs328 -->
-
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
             <form method="post" action="">
@@ -29,26 +28,35 @@
 
                 <input type="submit" value="Submit" />
             </form>
-            <script>
-                    function validateForm() {
-                        var password = document.getElementById("newPassword").value;
-                        var confirmPassword = document.getElementById("confirmPassword").value;
 
-                        if (password != confirmPassword) {
-                            alert("Confirmed Password do not match Password");
-                            return false;
-                        }
-                        
-                        if (!password.match(/^(?=.*[!@#$%^&*()_-+=<>?])/)) {
-                                        alert("Password must contain at least one special character");
-                                        return false;
-                                    }
-                        if(password.length < 12){
-                            alert("Password must be at least 12 characters long");
-                            return false;
-                        }
-                        return true;
+            <script>
+                function validateForm() 
+                {
+                    var password = document.getElementById("newPassword").value;
+                    var confirmPassword = document.getElementById("confirmPassword").value;
+
+                    // checking if the 2 user-entered passwords match
+                    if (password != confirmPassword) 
+                    {
+                        alert("Confirmed Password do not match Password");
+                        return false;
                     }
+                    
+                    // checking if the password meets the requirements
+                    if (!password.match(/^(?=.*[!@#$%^&*()_-+=<>?])/)) 
+                    {
+                        alert("Password must contain at least one special character");
+                        return false;
+                    }
+                    if(password.length < 12)
+                    {
+                        alert("Password must be at least 12 characters long");
+                        return false;
+                    }
+                    
+                    // the new password meets the requirements
+                    return true;
+                }   // end of function validateForm()
             </script>
         <?php
         }
@@ -58,7 +66,8 @@
             updatePassword($username, $newPassword);
         }
         
-    }
+    } // end of function newPasswordForm()
+
     function updatePassword($username, $newPassword)
     {
         // connection object
@@ -81,6 +90,5 @@
         oci_free_statement($passwordUpdateStmt);
 
         oci_close($connObj);
-        
     }
 ?>

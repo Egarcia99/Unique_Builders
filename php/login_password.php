@@ -13,7 +13,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja and Colton Boyd
-    last modified: November 7, 2023
+    last modified: November 21, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~crb119/public_html/CS_458/php/login_password.php
     CS 458 Software Engineering
@@ -31,6 +31,7 @@
     webpages 2.0 for entering password:                                                (login_password.php)
         webpage 2.1 for new users to also enter more info                              (user_info_input.php)
         webpage 2.2 for returning users to just enter password or pick forgot password (empl_handling.php & password_form.php)
+        webpage 2.3 user doesn't exist, show error message and send back to username login
     webpages 3.0 for forgot password                                                    
         webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php & valid_contact_info.js)
         webpage 3.2 to inform the user that their info was sent to an admin             (inform_user.php)
@@ -41,7 +42,7 @@
         webpage 4.3 they got locked out from too many invalid password login attempts 
 
     also, database_connect.php (used by many files)
-    total: 12 files (11 php, 1 js)
+    total: 17 files (16 php, 1 js)
         
     This file is for: webpage 2.0 enter password
 -->

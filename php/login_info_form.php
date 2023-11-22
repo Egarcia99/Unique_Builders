@@ -2,14 +2,14 @@
     /*=====
 
         file: password_form.php
-        // 
+        
         by: Colton Boyd, Gracie Ceja
-        last modified: 2023-11-19
+        last modified: 2023-11-21
     =====*/
 
 ?>
 <?php
-    function  emplInfoForm($username)
+    function emplInfoForm($username)
     {
         ?>
              
@@ -17,8 +17,7 @@
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
 
             <!-- login form adapted from hw4 of cs328 -->
-
-<form method="post" action="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/user_info_input.php" id="myForm" onsubmit="return validateForm()">
+            <form method="post" action="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/user_info_input.php" id="myForm" onsubmit="return validateForm()">
                 <h2 id="instructionheader">Please Provide Further Information Below</h2>
 
                 <input type="email" id="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />
@@ -30,27 +29,34 @@
             </form>
 
             <script>
-                    function validateForm() {
+                    function validateForm() 
+                    {
                         var password = document.getElementById("password").value;
                         var confirmPassword = document.getElementById("confirmPassword").value;
 
-                        if (password != confirmPassword) {
+                        // checking if the 2 user-entered passwords match
+                        if (password != confirmPassword) 
+                        {
                             alert("Confirmed Password do not match Password");
                             return false;
                         }
                         
-                        if (!password.match(/^(?=.*[!@#$%^&*()_-+=<>?])/)) {
-                                        alert("Password must contain at least one special character");
-                                        return false;
-                                    }
-                        if(password.length < 12){
+                        // checking if the password meets the requirements
+                        if (!password.match(/^(?=.*[!@#$%^&*()_-+=<>?])/)) 
+                        {
+                            alert("Password must contain at least one special character");
+                            return false;
+                        }
+                        if(password.length < 12)
+                        {
                             alert("Password must be at least 12 characters long");
                             return false;
                         }
-                        return true;
-                    }
-                </script>
 
+                        // the new password meets the requirements
+                        return true;
+                    }   // end of function validateForm()
+                </script>
         <?php
-    }
+    }   // end of function emplInfoForm()
 ?>

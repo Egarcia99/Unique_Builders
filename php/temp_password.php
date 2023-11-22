@@ -10,7 +10,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 7, 2023
+    last modified: November 21, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/temp_password.php
     CS 458 Software Engineering
@@ -38,7 +38,7 @@
         webpage 4.3 they got locked out from too many invalid password login attempts 
 
     also, database_connect.php (used by many files)
-    total: 12 files (11 php, 1 js)
+    total: 17 files (16 php, 1 js)
         
     This file is for: webpage 3.3 the user logs in with a temporary password & makes a new password 
 -->
@@ -63,16 +63,15 @@
 </head>
 <body>
 
-<!-- stage 3.3: login with temporary password & make new password-->
-
+    <!-- stage 3.3: login with temporary password & make new password-->
     <?php
-    // next stage: 4.0 (logging in to database)
-    // initialize these to prepare for next stage
-    $_SESSION["badPasswordAttempts"] = 0;
-    $_SESSION["locked_out"] = false;
+        // next stage: 4.0 (logging in to database)
+        // initialize these to prepare for next stage
+        $_SESSION["badPasswordAttempts"] = 0;
+        $_SESSION["locked_out"] = false;
 
-    // get username from session variable
-    $username = $_SESSION["username"];
+        // get username from session variable
+        $username = $_SESSION["username"];
     ?>
 
     <!-- Personalized header because they entered their username -->

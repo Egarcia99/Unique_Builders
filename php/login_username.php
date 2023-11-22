@@ -10,8 +10,8 @@
 
 <!--
     adapted from: CS 328 hw7 problem2
-    by: Gracie Ceja
-    last modified: November 7, 2023
+    by: Gracie Ceja, Colton Boyd
+    last modified: November 21, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php
     CS 458 Software Engineering
@@ -39,7 +39,7 @@
         webpage 4.3 they got locked out from too many invalid password login attempts 
 
     also, database_connect.php (used by many files)
-    total: 12 files (11 php, 1 js)
+    total: 16 files (15 php, 1 js)
         
     This file is for: webpage 1.0 enter username.
 -->
@@ -70,8 +70,10 @@
     <!-- log in form adapted from hw4 of cs328 -->
     <form method="post" action="https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_password.php">
         <h2 id="instructionheader">Please Enter Infomation</h2>
+
         <label for="username">Username:</label>
         <input type="text" name="username" class="roundedinput" required="required" />
+        
         <label for="password">Password:</label>
         <input type="password" name="password" class="roundedinput" required="required" />
         

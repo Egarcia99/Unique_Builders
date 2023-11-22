@@ -1,6 +1,14 @@
-
 <?php
-function incrementFailedAttempts($connObj, $username) {
+/*
+    file: user_lockout_functs.php
+    by: Colton Boyd
+    last modified: November 21, 2023
+
+    This file contains some php functions for locking out users from logging in.
+*/
+
+function incrementFailedAttempts($connObj, $username) 
+{
     // Update the UserLockout table to increment failed login attempts
     $updateLockoutQuery = "UPDATE UserLockout 
                            SET failed_attempts = failed_attempts + 1 
@@ -9,7 +17,7 @@ function incrementFailedAttempts($connObj, $username) {
     oci_bind_by_name($updateLockoutStmt, ":username", $username);
     oci_execute($updateLockoutStmt);
 
-     // Commit the changes
+    // Commit the changes
     //oci_commit($connObj);
 
     // Check if the user has reached the maximum number of failed attempts, and lock the account if necessary
@@ -25,11 +33,13 @@ function incrementFailedAttempts($connObj, $username) {
     <a href="https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_username.php">Try again </a></p>
     
     <?php
-
     // Free the statement
     oci_free_statement($updateLockoutStmt);
-}
-function getFailedAttempts($connObj, $username) {
+} // end of function incrementFailedAttempts()
+
+
+function getFailedAttempts($connObj, $username) 
+{
     // Get the current number of failed attempts from the UserLockout table
     $getAttemptsQuery = "SELECT failed_attempts 
                          FROM UserLockout 
@@ -44,9 +54,11 @@ function getFailedAttempts($connObj, $username) {
     oci_free_statement($getAttemptsStmt);
 
     return $failedAttempts;
-}
+} // end of function getFailedAttempts()
 
-function lockoutAccount($connObj, $username) {
+
+function lockoutAccount($connObj, $username) 
+{
     // Lock the account by setting unlock_time to current time + lockout duration
     $lockoutDurationMinutes = 24 * 60; // 24 hours in minutes
     $unlockTime = date('Y-m-d H:i:s', strtotime("+{$lockoutDurationMinutes} minutes"));
@@ -70,9 +82,11 @@ function lockoutAccount($connObj, $username) {
 
     // Free the statement
     oci_free_statement($lockoutStmt);
-}
+}   // end of function lockoutAccount()
 
-function checkLockoutStatus($connObj, $username) {
+
+function checkLockoutStatus($connObj, $username) 
+{
     $checkLockoutQuery = "SELECT * 
                           FROM UserLockout 
                           WHERE username = :username AND unlock_time > SYSDATE";
@@ -80,18 +94,17 @@ function checkLockoutStatus($connObj, $username) {
     oci_bind_by_name($checkLockoutStmt, ":username", $username);
     oci_execute($checkLockoutStmt);
 
-    if ($lockoutRow = oci_fetch_assoc($checkLockoutStmt)) {
+    if ($lockoutRow = oci_fetch_assoc($checkLockoutStmt)) 
+    {
         // Account is locked out
         $unlockTime = $lockoutRow['unlock_time'];
-            ?>
-            <h1 id="notfoundheader">Account Locked</h1>
-            <p id="notfoundmessage">This account is temporarily locked. Please try again after <?php echo $unlockTime; ?>.</p>
-            <?php
-            return $unlockTime;
-        }
-    
+        ?>
+        <h1 id="notfoundheader">Account Locked</h1>
+        <p id="notfoundmessage">This account is temporarily locked. Please try again after <?php echo $unlockTime; ?>.</p>
+        <?php
+        return $unlockTime;
+    }
 
     return null; // Account is not locked out
-}
-
+}   // end of function checkLockoutStatus()
 ?>

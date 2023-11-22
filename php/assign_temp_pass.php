@@ -3,7 +3,7 @@
     file: assign_temp_pass.php
     
     by: Colton Boyd
-    last modified: 2023-11-6
+    last modified: 2023-11-21
 */
 
 function generateTempPassword($username, $contactType, $contactInfo) {
