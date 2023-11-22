@@ -4,15 +4,15 @@
     // time to contact admin for help! but first:
     // get info from previous page:
     // get username & infoSent from session variables
-    $username = $_SESSION["username"];`
-    $infoSent = $_SESSION["infoSent"];
+    $username = $_SESSION["username"];
+    $infoSent = $_SESSION["infoSent"]; 
     // get contact info from form, but first determine which was entered
     if(null != trim($_POST["emailForgotPassword"]))
     {
         $contactInfo = $_POST["emailForgotPassword"];
         $contactType = "email address";
     }
-    else`
+    else
     {
         $contactInfo = $_POST["phoneNumForgotPassword"];
         $contactType = "phone number";
@@ -23,7 +23,7 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST' && $infoSent == "False") 
     {
         require_once("../../../private/assign_temp_pass.php");
-        generateTempPassword($username, $contactType, $contactInfo);
+        // generateTempPassword($username, $contactType, $contactInfo);
         $infoSent = "True";
         $_SESSION["infoSent"] = "True";
     }
@@ -49,7 +49,7 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 7, 2023
+    last modified: November 22, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/inform_user.php
     CS 458 Software Engineering
@@ -102,49 +102,49 @@
 
 </head>
 <body>
-        <?php
-            // stage 3.2: inform user that info was sent to admin to make new account
-            if($infoSent === "True")
-            {
-                $_SESSION["infoSent"] = "True";
-            ?>
-                <!-- Personalized header because they entered their username -->
-                <h1 id="welcomeheader">Thank You <?= $username ?></h1>
-
-                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/temp_password.php" id="goToLogin">
-                    <table class="infoTable">
-                        <tr> <td>Hello <?= $username ?></td> </tr>
-                        <tr> <td>Please be patient as we send you an email or text message 
-                            with a temporary password for the next time you want to login.</td> </tr>
-                        <tr> <td>Information will be sent to:
-                            <?= $contactInfo ?></td> </tr>
-                    </table>
-                    
-                    <!-- button to go back to login -->
-                    <input type="submit" name="submit" value="Go back to Login" />
-                </form>
-            <?php
-            }   // end of if for when info was sent
-            else
-            {
-                ?>
-                <!-- Personalized header because they entered their username -->
-                <h1 id="welcomeheader">Thank You <?= $username ?></h1>
-    
-                <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="goToForgotPassword">
-                    <table class="infoTable">
-                        <tr> <td>Hello <?= $username ?></td> </tr>
-                        <tr> <td>Please be patient as we could not send the admin an email 
-                            to help you get a temporary password at this time.</td> </tr>
-                        <tr> <td>Please go back and try again.</td> </tr>
-                    </table>
-                    
-                    <!-- button to go back to login -->
-                    <input type="submit" name="submit" value="Go back to Forgot Password form" />
-                </form>
-            <?php     
-            }
+    <?php
+        // stage 3.2: inform user that info was sent to admin to make new account
+        if($infoSent === "True")
+        {
+            $_SESSION["infoSent"] = "True";
         ?>
+            <!-- Personalized header because they entered their username -->
+            <h1 id="welcomeheader">Thank You <?= $username ?></h1>
+
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/temp_password.php" id="goToLogin">
+                <table class="infoTable">
+                    <tr> <td>Hello <?= $username ?></td> </tr>
+                    <tr> <td>Please be patient as we send you an email or text message 
+                        with a temporary password for the next time you want to login.</td> </tr>
+                    <tr> <td>Information will be sent to:
+                        <?= $contactInfo ?></td> </tr>
+                </table>
+                
+                <!-- button to go back to login -->
+                <input type="submit" name="submit" value="Go back to Login" />
+            </form>
+        <?php
+        }   // end of if for when info was sent
+        else
+        {
+            ?>
+            <!-- Personalized header because they entered their username -->
+            <h1 id="welcomeheader">Thank You <?= $username ?></h1>
+
+            <form method="post" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/forgot_password.php" id="goToForgotPassword">
+                <table class="infoTable">
+                    <tr> <td>Hello <?= $username ?></td> </tr>
+                    <tr> <td>Please be patient as we could not send the admin an email 
+                        to help you get a temporary password at this time.</td> </tr>
+                    <tr> <td>Please go back and try again.</td> </tr>
+                </table>
+                
+                <!-- button to go back to login -->
+                <input type="submit" name="submit" value="Go back to Forgot Password form" />
+            </form>
+        <?php     
+        }
+    ?>
 
 
 </body>
