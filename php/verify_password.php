@@ -9,23 +9,27 @@
 
 ?>
 <?php
-    function verifyPassword($username, $password)
+    function  verifyPassword($username, $password)
     {
         require_once("../../../private/database_connect.php");
         $connObj = db_conn_sess();
         
-        $passwordQueryString = "SELECT empl_password
+        $passwordQueryString = "SELECT empl_password, first_login
                                 FROM Employee
                                 WHERE empl_id = :username";
         $passwordStmt = oci_parse($connObj, $passwordQueryString);
         oci_bind_by_name($passwordStmt, ":username", $username);
         oci_execute($passwordStmt, OCI_DEFAULT);
-        
         $verified = false;
         if(oci_fetch($passwordStmt))
-        {
-            $storedPass = oci_result($passwordStmt, 'empl_password');
-            if(password_verify($password, $storedPass))
+        {   
+            $storedPass = oci_result($passwordStmt, 1);
+            $firstLogin = oci_result($passwordStmt, 2);
+            if($firstLogin == "Y" && $password == $storedPass)
+            {
+                $verified = true;
+            }
+            elseif(password_verify($password, $storedPass))
             {
                 $verified = true;
             }
@@ -38,9 +42,9 @@
         {   
             $verified = false;
         }
-
         oci_free_statement($passwordStmt);
         oci_close($connObj);
         return $verified;
-    } // end of function verifyPassword()
+        
+    }
 ?>

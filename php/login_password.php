@@ -78,7 +78,7 @@
             // connection section adapted from cs328 hw7 problem1
             // get username from form
             $username = strip_tags($_POST["username"]);
-            $passWord = strip_tags($_POST["password"]);
+            $password = strip_tags($_POST["password"]);
             // put username into session variable to use again later to recconnect
             $_SESSION["username"] = $username;
 
@@ -94,7 +94,7 @@
 
             // check if the entered username exists in the database already or no.
             // set up query string & statement
-            $usernameQueryString = "SELECT empl_id, empl_password , first_login, is_temporary
+            $usernameQueryString = "SELECT empl_id,first_login, is_temporary
                                     FROM Employee
                                     WHERE empl_id = :username";
             $usernameStmt = oci_parse($connObj, $usernameQueryString);
@@ -108,12 +108,12 @@
             $usr = NULL;
             while(oci_fetch($usernameStmt)) {
                 $usr = oci_result($usernameStmt, 'empl_id'); // get next username from database
-                $StoredpassWord = oci_result($usernameStmt, 'empl_password');
                 $newUser = oci_result($usernameStmt, 'first_login');
                 $isTemporary = oci_result($usernameStmt, 'is_temporary');
             }
             oci_free_statement($usernameStmt);
             if(checkLockoutStatus($connObj, $username) !== NULL) {
+                oci_close($connObj);
                 exit;
             }
 
@@ -130,7 +130,7 @@
                     }
                     // user is a current user and not a new user, so give them form to enter password to log in
                     else {
-                        emplHandling();
+                        //homepage
                     }
                 }   // end of if for the returning user login page (webpage 2.2)
                 else {
