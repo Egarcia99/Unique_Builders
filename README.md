@@ -1,0 +1,2 @@
+The creation of software for the construction company Unique Builders aims to streamline its internal operations and improve its online presence through a comprehensive website. This web portal will serve as a hub for both employees and customers to interact with the company, access necessary resources, and carry out various tasks related to their roles in the company.
+[This is copied from the introduction of Sprint 1 - Software Requirements Specification.]
