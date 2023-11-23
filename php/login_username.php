@@ -13,7 +13,7 @@
     by: Gracie Ceja, Colton Boyd
     last modified: November 23, 2023
 
-    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_username.php
+    you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/login_username.php
     CS 458 Software Engineering
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
