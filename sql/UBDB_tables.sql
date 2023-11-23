@@ -10,7 +10,7 @@ create table Employee (
     email VARCHAR2(50),
     phone_number CHAR(12),
     empl_role VARCHAR2(35),
-    empl_status VARCHAR2(1) CHECK (empl_status IN ('T', 'F')),
+    empl_status VARCHAR2(1) DEFAULT 'T' CHECK (empl_status IN ('T', 'F')),
     empl_hourly_pay_rate REAL DEFAULT 1 NOT NULL,
     first_login VARCHAR2(1) DEFAULT 'Y' CHECK (first_login IN ('Y', 'N')),
     is_temporary VARCHAR2(1) DEFAULT 'N' CHECK (is_temporary IN ('Y', 'N')),
