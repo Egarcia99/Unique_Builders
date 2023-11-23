@@ -41,9 +41,10 @@
 <!--
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja
-    last modified: November 15, 2023
+    last modified: November 23, 2023
 
     you can run this using the URL: https://uniquebuilders.co/cs458/php/cust_contact.php
+    (or, for testing purposes: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/cust_contact.php)
     CS 458 Software Engineering
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
@@ -65,20 +66,17 @@
 </head>
 <body>
 
-  <h1 id="welcomeheader"> Contact Us <?= $username ?></h1>
+  <h1 id="welcomeheader"> Contact Us</h1>
   <form action="#" method="post">
 
     <div class="header">
       <h2 id="instructionheader">Please provide further information to ensure you get contacted accurately and as soon as possible </h2>
     </div>
 
-    <input type="text" name="name" placeholder="Please enter your first and last name">
-
-    <input type="email" name="email" placeholder="Email Address">
-
-    <input type="tel" name="phone" placeholder="Phone Number">
-
-    <input type="text" name="job_description" placeholder="Job Description"  rows="4" cols="50">
+    <input type="text" name="name" placeholder="Please enter your first and last name" required="required">
+    <input type="email" name="email" placeholder="Email Address" required="required">
+    <input type="tel" name="phone" placeholder="Phone Number" required="required">
+    <input type="text" name="job_description" placeholder="Job Description"  rows="4" cols="50" required="required"> 
 
     <input type="submit" value="Submit">
   </form>
