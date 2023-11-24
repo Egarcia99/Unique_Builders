@@ -9,7 +9,7 @@
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
     Fall 2023
-    Employeee Login: Enter Username
+    Employeee Login part 1: Enter Username & Password
     Requirements: 2.1 & 2.2
 */
     session_start();

@@ -1,13 +1,13 @@
 /* 
 adapted from: CS 328 hw4 problem9 & hw7 problem2
 by Gracie Ceja and Emilyo Garcia
-last modified: November 7, 2023
+last modified: November 23, 2023
 
 CS 458 Software Engineering
 Semester Project: Unique Builders Company Website & Database
 Team: Tech Titans
 Fall 2023
-Prototype/Demo of Employeee Login
+CSS for Employeee Login
 Requirements: 2.1 & 2.2
 */
 
@@ -31,7 +31,8 @@ body {
     background-image: url("../images/UB_logo.jpg"); /* Business logo */
     background-repeat: no-repeat;
     background-position: left 10px center; /* Logo on the left side */
-    background-size: 80px; /* Adjust size as needed */
+    background-size: 80px; /* Adjust size as needed */      
+    margin-bottom: 0.1em;
 }
 
 #instructionheader {
@@ -109,3 +110,11 @@ input[type="submit"] {
 }
 
 /* Additional styles for other elements can be added as needed */
+.nav
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    margin-top: 0.1em; 
+}
