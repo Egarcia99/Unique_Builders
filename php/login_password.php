@@ -27,7 +27,7 @@
 <!-- 
     This website displays all the various pages of login (such as enter username & forgot password)
     as different webpages:
-    webpage 1.0 for entering username                                                  (login_username.php)
+    webpage 1.0 for entering username                                                  (login_start.php)
     webpages 2.0 for entering password:                                                (login_password.php)
         webpage 2.1 for new users to also enter more info                              (user_info_input.php)
         webpage 2.2 for returning users to just enter password or pick forgot password (empl_handling.php & password_form.php)
@@ -150,13 +150,13 @@
                 <h1 id="notfoundheader">Incorrect information</h1>
                 <p id="notfoundmessage">If you need assistance, please contact the IT admin.</p>
                 
-                <a href="https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_username.php">Try again </a>
+                <a href="https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_start.php">Try again </a>
                 
                 <?php
             }
         } else {
             // Redirect back to the login page
-            header("Location: https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_username.php");
+            header("Location: https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_start.php");
             exit;
         }
 

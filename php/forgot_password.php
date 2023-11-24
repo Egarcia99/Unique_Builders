@@ -63,7 +63,7 @@
 <!-- 
     This website displays all the various pages of login (such as enter username & forgot password)
     as different webpages:
-    webpage 1.0 for entering username                                                  (login_username.php)
+    webpage 1.0 for entering username                                                  (login_start.php)
     webpages 2.0 for entering password:                                                (login_password.php)
         webpage 2.1 for new users to also enter more info                              (user_info_input.php)
         webpage 2.2 for returning users to just enter password or pick forgot password (empl_handling.php & password_form.php)

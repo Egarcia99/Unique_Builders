@@ -49,7 +49,7 @@ function incrementFailedAttempts($connObj, $username) {
     ?>
     <h1 id="notpassword">Login Failed</h1>
     <p id="notpasswordmessage">Incorrect Password. Attempts left: <?php echo 5-$attempts; ?>.
-    <a href="https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_username.php">Try again</a></p>
+    <a href="https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_start.php">Try again</a></p>
     
     <?php
 
