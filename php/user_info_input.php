@@ -1,7 +1,7 @@
 <?php
     /*
     by: Colton Boyd
-    last modified: November 19, 2023
+    last modified: November 24, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
     CS 458 Software Engineering
@@ -15,7 +15,7 @@
     Then, it redirects them to the employee login page so they can login with their password.
     */
     session_start();
-    require_once("empl_handling.php");
+    require_once("empl_homepage.php");
 ?>
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") 
@@ -51,6 +51,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     oci_free_statement($emplUpdateStmt);
 
     oci_close($connObj);
-    emplHandling();
-
+    emplHomepage();
 }
