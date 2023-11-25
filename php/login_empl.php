@@ -92,6 +92,8 @@
     // their password is correct & they have logged in succesfully.
     else
     {
+        // the user is logged in
+        $_SESSION["logged_in"] = "T";
         // take them to the employee homepage
         emplHomepage();
     }

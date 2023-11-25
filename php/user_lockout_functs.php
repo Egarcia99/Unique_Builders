@@ -2,7 +2,7 @@
 /*
     file: user_lockout_functs.php
     by: Colton Boyd, Emilyo Garcia, & Gracie Ceja
-    last modified: November 24, 2023
+    last modified: November 25, 2023
 
     This file contains some php functions for locking out users from logging in.
 */
@@ -48,6 +48,9 @@ function incrementFailedAttempts($connObj, $username) {
     }
 
     $attempts = getFailedAttempts($connObj, $username);
+    
+    // the user is not logged in
+    $_SESSION["logged_in"] = "F";
     
     ?>
     <h1 id="notpassword">Login Failed</h1>
@@ -106,6 +109,8 @@ function lockoutAccount($connObj, $username) {
     // Commit the changes
     //oci_commit($connObj);
 
+    // the user is not logged in
+    $_SESSION["logged_in"] = "F";
     ?>
     <h1 id="actlocked">Account Locked</h1>
     <!-- Nav bar adapted from homepage -->
@@ -138,6 +143,10 @@ function checkLockoutStatus($connObj, $username) {
         // Account is locked out
         $formattedTime = oci_result($checkLockoutStmt, 'FORMATTED_TIME');
         $amPm = oci_result($checkLockoutStmt, 'AM_PM');
+            
+        // the user is not logged in
+        $_SESSION["logged_in"] = "F";
+
         ?>
         <h1 id="notfoundheader">Account Locked</h1>
         <!-- Nav bar adapted from homepage -->

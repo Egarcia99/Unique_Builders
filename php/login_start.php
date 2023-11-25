@@ -13,6 +13,7 @@
     Requirements: 2.1 & 2.2
 */
     session_start();
+    require_once("empl_homepage.php");
 ?>
 
 <!DOCTYPE html>
@@ -36,30 +37,46 @@
 
 </head>
 <body>
-    <!-- Generic header because they didn't yet enter their username -->
-    <h1 id="welcomeheader">Welcome</h1>
-    <!-- Nav bar adapted from homepage -->
-    <nav>
-        <ul class="nav">
-            <li><a href="../html/homepage.html">Home</a></li>
-            <li><a href="../php/login_start.php">Employee Login</a></li>
-            <li><a href="../php/cust_contact.php">Contact Us</a></li>
-        </ul>
-    </nav>
+    <?php
+    // the user is already logged in
+    if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == "T")
+    {
+        emplHomepage();
+    }
+    // the user isn't logged in, give them the login form
+    else
+    {
+        $_SESSION["logged_in"] = "F";
+        ?>
 
-    <!-- log in form adapted from hw4 of cs328 -->
-    <form method="post" action="../php/login_password.php">
-        <h2 id="instructionheader">Please Enter Infomation</h2>
+        <!-- Generic header because they didn't yet enter their username -->
+        <h1 id="welcomeheader">Welcome</h1>
+        <!-- Nav bar adapted from homepage -->
+        <nav>
+            <ul class="nav">
+                <li><a href="../html/homepage.html">Home</a></li>
+                <li><a href="../php/login_start.php">Employee Login</a></li>
+                <li><a href="../php/cust_contact.php">Contact Us</a></li>
+            </ul>
+        </nav>
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" class="roundedinput" required="required" />
+        <!-- log in form adapted from hw4 of cs328 -->
+        <form method="post" action="../php/login_password.php">
+            <h2 id="instructionheader">Please Enter Infomation</h2>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="roundedinput" required="required" />
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="roundedinput" required="required" />
+            
+            <p><a href="../php/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
+            <input type="submit" value="Submit" />
+        </form>
         
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" class="roundedinput" required="required" />
-        
-        <p><a href="../php/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
-        <input type="submit" value="Submit" />
-    </form>
+        <?php
+    }
+    ?>
 
 </body>
 </html>

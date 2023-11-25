@@ -112,6 +112,9 @@
                     }
                     else {
                         // user is a current user and not a new user, so take them to the employee homepage
+                        // the user is logged in
+                        $_SESSION["logged_in"] = "T";
+                        // take them to the employee homepage
                         emplHomepage();
                     }
                 }

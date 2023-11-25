@@ -100,6 +100,13 @@
         //oci_commit($connObj); testing purposes don't want on 
         oci_free_statement($passwordUpdateStmt);
 
+        // close the connection to the database
         oci_close($connObj);
+
+        // the user is logged in
+        $_SESSION["logged_in"] = "T";
+        // take them to the employee homepage, via a redirect back to the login page
+        header("Location: ../php/login_start.php");
+        exit;
     }
 ?>
