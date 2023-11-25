@@ -62,24 +62,25 @@
     <link href="https://nrs-projects.humboldt.edu/~st10/styles/normalize.css"
     type="text/css" rel="stylesheet" />
     
-    <link href="../css/main.css" type="text/css" rel="stylesheet" />
+    <link href="../css/login.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
   <h1 id="welcomeheader"> Contact Us</h1>
-  <form action="#" method="post">
+  <!-- Nav bar adapted from homepage -->
+  <nav>
+      <ul class="nav">
+          <li><a href="../html/homepage.html">Home</a></li>
+          <li><a href="../php/login_start.php">Employee Login</a></li>
+          <li><a href="../php/cust_contact.php">Contact Us</a></li>
+      </ul>
+  </nav>
 
+
+  <form action="#" method="post">
     <div class="header">
       <h2 id="instructionheader">Please provide further information to ensure you get contacted accurately and as soon as possible </h2>
     </div>
-    <!-- Nav bar adapted from homepage -->
-    <nav>
-        <ul class="navbar">
-            <li><a href="../html/homepage.html">Home</a></li>
-            <li><a href="../php/login_start.php">Employee Login</a></li>
-            <li><a href="../php/cust_contact.php">Contact Us</a></li>
-        </ul>
-    </nav>
 
     <input type="text" name="name" placeholder="Please enter your first and last name" required="required">
     <input type="email" name="email" placeholder="Email Address" required="required">
