@@ -1,8 +1,8 @@
 <?php
 /*
     adapted from: CS 328 hw7 problem2
-    by: Gracie Ceja & Emilyo Garcia
-    last modified: November 24, 2023
+    by: Gracie Ceja, Colton Boyd, & Emilyo Garcia
+    last modified: November 25, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
     CS 458 Software Engineering

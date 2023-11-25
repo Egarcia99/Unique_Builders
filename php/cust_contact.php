@@ -1,4 +1,21 @@
 <?php
+/*
+    adapted from: CS 328 hw7 problem2
+    by: Gracie Ceja & Emilyo Garcia
+    last modified: November 25, 2023
+
+    you can run this using the URL: https://uniquebuilders.co/cs458/php/cust_contact.php
+    (or, for testing purposes: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/cust_contact.php)
+    CS 458 Software Engineering
+    Semester Project: Unique Builders Company Website & Database
+    Team: Tech Titans
+    Fall 2023
+    Customer Contact Form
+    Requirement: 2.6
+
+    This webpage allows the customer to contact the company to talk about a potential job for them.
+*/
+
     session_start();
 
     // time to contact the company with a potential job. but first:    
@@ -38,23 +55,6 @@
 
 <!-- cs328 class HTML template: last modified 2023-02-22 -->
 
-<!--
-    adapted from: CS 328 hw7 problem2
-    by: Gracie Ceja
-    last modified: November 23, 2023
-
-    you can run this using the URL: https://uniquebuilders.co/cs458/php/cust_contact.php
-    (or, for testing purposes: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/cust_contact.php)
-    CS 458 Software Engineering
-    Semester Project: Unique Builders Company Website & Database
-    Team: Tech Titans
-    Fall 2023
-    Customer Contact Form
-    Requirement: 2.6
-
-    This webpage allows the customer to contact the company to talk about a potential job for them.
--->
-
 <head>
     <title>Customer Contact Page</title>
     <meta charset="utf-8" />
@@ -72,6 +72,14 @@
     <div class="header">
       <h2 id="instructionheader">Please provide further information to ensure you get contacted accurately and as soon as possible </h2>
     </div>
+    <!-- Nav bar adapted from homepage -->
+    <nav>
+        <ul class="navbar">
+            <li><a href="../html/homepage.html">Home</a></li>
+            <li><a href="../php/login_start.php">Employee Login</a></li>
+            <li><a href="../php/cust_contact.php">Contact Us</a></li>
+        </ul>
+    </nav>
 
     <input type="text" name="name" placeholder="Please enter your first and last name" required="required">
     <input type="email" name="email" placeholder="Email Address" required="required">
