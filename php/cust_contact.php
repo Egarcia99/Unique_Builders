@@ -82,10 +82,17 @@
       <h2 id="instructionheader">Please provide further information to ensure you get contacted accurately and as soon as possible </h2>
     </div>
 
-    <input type="text" name="name" placeholder="Please enter your first and last name" required="required">
-    <input type="email" name="email" placeholder="Email Address" required="required">
-    <input type="tel" name="phone" placeholder="Phone Number" required="required">
-    <input type="text" name="job_description" placeholder="Job Description"  rows="4" cols="50" required="required"> 
+    <label for="name">First and Last Name:</label>
+    <input type="text" id="name" name="name" placeholder="Please enter your first and last name" required="required">
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Email Address" required="required">
+
+    <label for="phoneNum">Phone Number:</label>
+    <input type="tel" id="phoneNum" name="phone" placeholder="Phone Number" required="required">
+
+    <label for="jobDesc">Job Description:</label>
+    <input type="text" id="jobDesc" name="job_description" placeholder="Job Description"  rows="4" cols="50" required="required"> 
 
     <input type="submit" value="Submit">
   </form>

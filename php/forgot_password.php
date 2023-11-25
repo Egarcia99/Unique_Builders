@@ -1,7 +1,7 @@
 <?php
 /*
     by: Gracie Ceja & Emilyo Garcia
-    last modified: November 24, 2023
+    last modified: November 25, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/public_html/Unique_Builders-main/php/forgot_password.php
     CS 458 Software Engineering
@@ -88,8 +88,7 @@
 </head>
 <body>
         <?php
-        // stage 3.0: forgot password  
-        // webpage 3.1: enter contact info
+        // forgot password: enter contact info to receive temp password later
         // initialize this to prepare for next page
         $_SESSION["infoSent"] = "False";
         ?>
@@ -105,14 +104,17 @@
             </ul>
         </nav>
 
-        <form method="post" id="contactInfoForm" action="https://nrs-projects.humboldt.edu/~glc47/cs458/php/inform_user.php">
+
+        <form method="post" id="contactInfoForm" action="../php/inform_user.php">
             <h2 id="instructionheader">Please Provide Needed Information Below</h2>
 
-            <input type="email" name="emailForgotPassword" class="rectangleinput" placeholder="Confirm Email Address" />
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="emailForgotPassword" class="rectangleinput" placeholder="Confirm Email Address" />
 
             <p id="or">Or</p>
 
-            <input type="test" name="phoneNumForgotPassword" class="rectangleinput" placeholder="Confirm Phone Number" />
+            <label for="phoneNum">Phone Number:</label>
+            <input type="test" id="phoneNum" name="phoneNumForgotPassword" class="rectangleinput" placeholder="Confirm Phone Number" />
 
             <input type="submit" id="submit" value="Submit" />
         </form>     

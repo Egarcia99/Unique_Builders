@@ -39,11 +39,6 @@
 <body>
     <!-- login with temporary password & make new password-->
 
-    <?php
-        // get username from session variable to prepare for next page
-        $username = $_SESSION["username"];
-    ?>
-
     <!-- Personalized header because they entered their username -->
     <h1 id="welcomeheader">Welcome <?= $username ?></h1>
     <!-- Nav bar adapted from homepage -->
@@ -58,11 +53,14 @@
     <form method="post" action="../php/login_empl.php">
         <h2 id="instructionheader">Please Provide Needed Information Below</h2>
 
-        <input type="password" name="tempPassword" class="rectangleinput" placeholder="Temporary Password" />
+        <label for="tempPass">Temporary Password:</label>
+        <input type="password" id="tempPass" name="tempPassword" class="rectangleinput" placeholder="Temporary Password" />
         </br>
 
-        <input type="password" name="newPassword" class="rectangleinput" placeholder="New Password" />
-        <input type="password" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" />
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword" class="rectangleinput" placeholder="New Password" />
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" />
 
         <input type="submit" value="Submit" />
     </form>

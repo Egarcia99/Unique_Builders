@@ -2,7 +2,7 @@
 /*
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja, Colton Boyd, & Emilyo Garcia
-    last modified: November 24, 2023
+    last modified: November 25, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/login_start.php
     CS 458 Software Engineering
@@ -52,10 +52,10 @@
         <h2 id="instructionheader">Please Enter Infomation</h2>
 
         <label for="username">Username:</label>
-        <input type="text" name="username" class="roundedinput" required="required" />
+        <input type="text" id="username" name="username" class="roundedinput" required="required" />
         
         <label for="password">Password:</label>
-        <input type="password" name="password" class="roundedinput" required="required" />
+        <input type="password" id="password" name="password" class="roundedinput" required="required" />
         
         <p><a href="../php/forgot_password.php" id="forgotpasswordlink">Forgot Password?</a></p>
         <input type="submit" value="Submit" />

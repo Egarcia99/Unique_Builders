@@ -5,7 +5,7 @@
        file: new_password.php
        
        by: Colton Boyd, Gracie Ceja, & Emilyo Garcia
-       last modified: 2023-11-24
+       last modified: 2023-11-25
    =====*/
    
    
@@ -31,7 +31,10 @@
             <form method="post" action="">
                 <h2 id="instructionheader">Please Provide Needed Information Below</h2>
 
+                <label for="newPassword">Password:</label>
                 <input type="password" id ="newPassword" name="newPassword" class="rectangleinput" placeholder="New Password" />
+                
+                <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" id ="confirmPassword" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" />
 
                 <input type="submit" value="Submit" />
