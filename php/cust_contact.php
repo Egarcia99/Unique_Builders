@@ -46,7 +46,7 @@
 
         // send the email
         mail("glc47@humboldt.edu", "Customer Contact request from: " . $custName,
-        $message, "From: customerContactForm@UniqueBuilders.net");
+        $message, "From: customerContactForm@UniqueBuilders.co");
     }
 ?>
 

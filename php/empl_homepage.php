@@ -1,7 +1,7 @@
 <?php
 /*
     by: Gracie Ceja & Emilyo Garcia
-    last modified: November 24, 2023
+    last modified: November 25, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/login_username.php
     CS 458 Software Engineering
@@ -31,12 +31,12 @@
 
         <table>
             <tr>
-                <td><a href="work_orders.php">Work Orders</a></td>
-                <td><a href="payroll.php">Payroll</a></td>
+                <td><a href="../php/work_orders.php">Work Orders</a></td>
+                <td><a href="../php/payroll.php">Payroll</a></td>
             </tr>
             <tr>
-                <td><a href="empl_info.php">Employee Information</a></td>
-                <td><a href="logout.php">Log Out</a></td>
+                <td><a href="../php/empl_info.php">Employee Information</a></td>
+                <td><a href="../php/logout.php">Log Out</a></td>
             </tr>
         </table>
 

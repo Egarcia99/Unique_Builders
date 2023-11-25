@@ -3,7 +3,7 @@
     file: assign_temp_pass.php
     
     by: Colton Boyd
-    last modified: 2023-11-21
+    last modified: 2023-11-25
 */
 
 function generateTempPassword($username, $contactType, $contactInfo) {
@@ -60,7 +60,7 @@ function generateTempPassword($username, $contactType, $contactInfo) {
         . "Sincerely,\ninform_user.php in UniqueBuilders.net\n[This email was sent automatically; I cannot read any replies to it.]";
 
     // Send the email and check for errors
-    if (mail("glc47@humboldt.edu", $subject, $message, "From: employeeLogin@UniqueBuilders.net")) {
+    if (mail("glc47@humboldt.edu", $subject, $message, "From: employeeLogin@UniqueBuilders.co")) {
         echo "Email sent successfully.";
     } else {
         echo "Error sending email.";
