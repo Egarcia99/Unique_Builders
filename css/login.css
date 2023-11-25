@@ -1,14 +1,14 @@
 /* 
 adapted from: CS 328 hw4 problem9 & hw7 problem2
 by Gracie Ceja and Emilyo Garcia
-last modified: November 23, 2023
+last modified: November 25, 2023
 
 CS 458 Software Engineering
 Semester Project: Unique Builders Company Website & Database
 Team: Tech Titans
 Fall 2023
-CSS for Employeee Login
-Requirements: 2.1 & 2.2
+CSS for Employeee Login, Employee Homepage, and Customer Contact
+Requirements: 2.1, 2.2, & 2.6
 */
 
 body {
@@ -118,3 +118,42 @@ input[type="submit"] {
     list-style: none;
     margin-top: 0.1em; 
 }
+
+/* Employe Homepage formatting */
+.homepage
+{
+    text-align: center;
+    border: 1px solid #ffffff; /* White border for visibility */
+}
+table.homepage
+{
+    width: 70%;    
+    height: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    border-collapse: collapse;
+    /* below section copied from form section */
+    background-color: #000000; /* Black background for the form */
+    color: #ffffff; /* White text for contrast */
+    padding: 1em;
+    margin: 1em auto;
+}
+td.homepage
+{
+    padding: 11%;
+    font-size: 1.4em;
+    width: 50%;
+}
+
+/* make the links have a lighter color because they have a black background */
+td.homepage a {
+  color: cyan; 
+}
+td.homepage a:hover {
+  color: rgb(0, 169, 169); /* Darker blue on hover */
+}
+td.homepage a:visited {
+  color: #c7aaff; /* Light purple for already clicked links */
+}
+
