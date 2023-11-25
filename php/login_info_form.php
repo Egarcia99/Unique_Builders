@@ -3,8 +3,8 @@
 
         file: password_form.php
         
-        by: Colton Boyd, Gracie Ceja
-        last modified: 2023-11-21
+        by: Colton Boyd, Gracie Ceja, & Emilyo Garcia
+        last modified: 2023-11-24
     =====*/
 
 ?>
@@ -15,9 +15,17 @@
              
             <!-- Personalized header because they entered their username -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
+            <!-- Nav bar adapted from homepage -->
+            <nav>
+                <ul class="nav">
+                    <li><a href="../html/homepage.html">Home</a></li>
+                    <li><a href="../php/login_start.php">Employee Login</a></li>
+                    <li><a href="../php/cust_contact.php">Contact Us</a></li>
+                </ul>
+            </nav>
 
             <!-- login form adapted from hw4 of cs328 -->
-            <form method="post" action="https://nrs-projects.humboldt.edu/~crb119/CS_458/php/user_info_input.php" id="myForm" onsubmit="return validateForm()">
+            <form method="post" action="../php/user_info_input.php" id="myForm" onsubmit="return validateForm()">
                 <h2 id="instructionheader">Please Provide Further Information Below</h2>
 
                 <input type="email" id="email" name="email" class="rectangleinput" placeholder="Email Address" required="required" />

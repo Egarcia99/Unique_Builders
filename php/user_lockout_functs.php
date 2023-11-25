@@ -1,8 +1,8 @@
 <?php
 /*
     file: user_lockout_functs.php
-    by: Colton Boyd
-    last modified: November 21, 2023
+    by: Colton Boyd, Emilyo Garcia, & Gracie Ceja
+    last modified: November 24, 2023
 
     This file contains some php functions for locking out users from logging in.
 */
@@ -19,12 +19,15 @@ function incrementFailedAttempts($connObj, $username) {
     // Free the statement
     oci_free_statement($checkUserStmt);
 
-    if ($userExists) {
+    if ($userExists) 
+    {
         // User exists, update the UserLockout table to increment failed login attempts
         $updateLockoutQuery = "UPDATE UserLockout 
                                SET failed_attempts = failed_attempts + 1 
                                WHERE username = :username";
-    } else {
+    } 
+    else 
+    {
         // User does not exist, insert a new record into the UserLockout table
         $updateLockoutQuery = "INSERT INTO UserLockout (username, lockout_time, failed_attempts) 
                                VALUES (:username, CURRENT_TIMESTAMP, 1)";
@@ -48,9 +51,17 @@ function incrementFailedAttempts($connObj, $username) {
     
     ?>
     <h1 id="notpassword">Login Failed</h1>
+    <!-- Nav bar adapted from homepage -->
+    <nav>
+        <ul class="nav">
+            <li><a href="../html/homepage.html">Home</a></li>
+            <li><a href="../php/login_start.php">Employee Login</a></li>
+            <li><a href="../php/cust_contact.php">Contact Us</a></li>
+        </ul>
+    </nav>
+
     <p id="notpasswordmessage">Incorrect Password. Attempts left: <?php echo 5-$attempts; ?>.
-    <a href="https://nrs-projects.humboldt.edu/~crb119/Unique_Builders/php/login_start.php">Try again</a></p>
-    
+    <a href="../php/login_start.php">Try again</a></p>
     <?php
 
     // Free the statement
@@ -97,6 +108,15 @@ function lockoutAccount($connObj, $username) {
 
     ?>
     <h1 id="actlocked">Account Locked</h1>
+    <!-- Nav bar adapted from homepage -->
+    <nav>
+        <ul class="nav">
+            <li><a href="../html/homepage.html">Home</a></li>
+            <li><a href="../php/login_start.php">Employee Login</a></li>
+            <li><a href="../php/cust_contact.php">Contact Us</a></li>
+        </ul>
+    </nav>
+
     <p id="actlockedmessage">This account is temporarily locked. Please try again after 24 hours.</p>
     <?php
 
@@ -120,6 +140,15 @@ function checkLockoutStatus($connObj, $username) {
         $amPm = oci_result($checkLockoutStmt, 'AM_PM');
         ?>
         <h1 id="notfoundheader">Account Locked</h1>
+        <!-- Nav bar adapted from homepage -->
+        <nav>
+            <ul class="nav">
+                <li><a href="../html/homepage.html">Home</a></li>
+                <li><a href="../php/login_start.php">Employee Login</a></li>
+                <li><a href="../php/cust_contact.php">Contact Us</a></li>
+            </ul>
+        </nav>
+
         <p id="notfoundmessage">This account is temporarily locked. Please try again after <?php echo $formattedTime; echo ' ' . $amPm; ?>.</p>
         <?php
         return $formattedTime;

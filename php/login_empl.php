@@ -1,47 +1,26 @@
 <?php
-    session_start();
-?>
-
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
-<!-- cs328 class HTML template: last modified 2023-02-22 -->
-
-<!--
+/*
     adapted from: CS 328 hw7 problem2
-    by: Gracie Ceja
-    last modified: November 21, 2023
+    by: Gracie Ceja & Emilyo Garcia
+    last modified: November 24, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
     CS 458 Software Engineering
     Semester Project: Unique Builders Company Website & Database
     Team: Tech Titans
     Fall 2023
-    Employeee Login: Enter Password
+    Employeee Login
     Requirements: 2.1 & 2.2
--->
+*/
 
-<!-- 
-    This website displays all the various pages of login (such as enter username & forgot password)
-    as different webpages:
-    webpage 1.0 for entering username                                                  (login_start.php)
-    webpages 2.0 for entering password:                                                (login_password.php)
-        webpage 2.1 for new users to also enter more info                              (user_info_input.php)
-        webpage 2.2 for returning users to just enter password or pick forgot password (empl_handling.php & password_form.php)
-    webpages 3.0 for forgot password                                                    
-        webpage 3.1 for entering contact info to request password reset from admin      (forgot_password.php & valid_contact_info.js)
-        webpage 3.2 to inform the user that their info was sent to an admin             (inform_user.php)
-        webpage 3.3 for them to login with a temporary password & make a new password   (temp_password.php)
-    webpage 4.0 for trying to log them in to the database                               (login_empl.php & verify_password.php)
-        webpage 4.1 correct password, they are logged in & go to employee homepage
-        webpage 4.2 incorrect password, they are sent back to webpage 2.2
-        webpage 4.3 they got locked out from too many invalid password login attempts 
+    session_start();
+    require_once("empl_homepage.php");
+?>
 
-    also, database_connect.php (used by many files)
-    total: 12 files (11 php, 1 js)
-        
-    This file is for: webpage 2.0 enter password
--->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- cs328 class HTML template: last modified 2023-02-22 -->
 
 
 <!-- this file doesn't seem to use Colton's lockout features... -->
@@ -65,7 +44,7 @@
 <body>
 
 <?php
-    // webpage 4.0: try to login actually after enter username & password
+    // try to login actually after enter username & password
 
     // get username from session variable
     $username = strip_tags($_SESSION["username"]);
@@ -127,6 +106,14 @@
 
             <!-- Personalized header because they entered their username -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
+            <!-- Nav bar adapted from homepage -->
+            <nav>
+                <ul class="nav">
+                    <li><a href="../html/homepage.html">Home</a></li>
+                    <li><a href="../php/login_start.php">Employee Login</a></li>
+                    <li><a href="../php/cust_contact.php">Contact Us</a></li>
+                </ul>
+            </nav>
 
             <!-- log in form adapted from hw4 of cs328 -->
             <form method="get" action="https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php">

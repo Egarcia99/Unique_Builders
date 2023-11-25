@@ -93,16 +93,20 @@
             }
 
             // the username is in the database
-            if($usr == $username) {
+            if($usr == $username) 
+            {
                 // the user entered the correct password
-                if(verifyPassword($username,$password)) {
+                if(verifyPassword($username,$password)) 
+                {
                     // close the connection to the database
                     oci_close($connObj);
-                    if($newUser == "Y") {
+                    if($newUser == "Y") 
+                    {
                         // they are a new user, so ask them for info to put into the database (create new account page)
                         emplInfoForm($username);
                     } 
-                    elseif($isTemporary == "Y") {
+                    elseif($isTemporary == "Y") 
+                    {
                         // they logged in with temp password, so give them form to make new password
                         newPasswordForm($username);
                     }
@@ -132,7 +136,9 @@
                 
                 <?php
             }
-        } else {
+        } 
+        else 
+        {
             // Redirect back to the login page
             header("Location: ../php/login_start.php");
             exit;

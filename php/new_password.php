@@ -2,10 +2,10 @@
    
    /*=====
    
-       file: newpassword_form.php
+       file: new_password.php
        
-       by: Colton Boyd, Gracie Ceja
-       last modified: 2023-11-21
+       by: Colton Boyd, Gracie Ceja, & Emilyo Garcia
+       last modified: 2023-11-24
    =====*/
    
    
@@ -19,6 +19,14 @@
         ?>
             <!-- login form adapted from hw4 of cs328 -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
+            <!-- Nav bar adapted from homepage -->
+            <nav>
+                <ul class="nav">
+                    <li><a href="../html/homepage.html">Home</a></li>
+                    <li><a href="../php/login_start.php">Employee Login</a></li>
+                    <li><a href="../php/cust_contact.php">Contact Us</a></li>
+                </ul>
+            </nav>
 
             <form method="post" action="">
                 <h2 id="instructionheader">Please Provide Needed Information Below</h2>

@@ -1,7 +1,7 @@
 <?php
 /*
-    by: Gracie Ceja
-    last modified: November 23, 2023
+    by: Gracie Ceja & Emilyo Garcia
+    last modified: November 24, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/login_username.php
     CS 458 Software Engineering
@@ -20,6 +20,14 @@
         ?>
         <!-- Personalized header because they entered their username -->
         <h1 id="welcomeheader">Welcome <?= $username ?></h1>
+        <!-- Nav bar adapted from homepage -->
+        <nav>
+            <ul class="nav">
+                <li><a href="../html/homepage.html">Home</a></li>
+                <li><a href="../php/login_start.php">Employee Login</a></li>
+                <li><a href="../php/cust_contact.php">Contact Us</a></li>
+            </ul>
+        </nav>
 
         <table>
             <tr>
