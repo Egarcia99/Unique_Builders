@@ -37,15 +37,10 @@
 
 </head>
 <body>
-
     <!-- login with temporary password & make new password-->
-    <?php
-        // next stage: log in to database
-        // initialize these to prepare for next stage
-        $_SESSION["badPasswordAttempts"] = 0;
-        $_SESSION["locked_out"] = false;
 
-        // get username from session variable
+    <?php
+        // get username from session variable to prepare for next page
         $username = $_SESSION["username"];
     ?>
 
