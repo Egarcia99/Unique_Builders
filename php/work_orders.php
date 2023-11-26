@@ -1,8 +1,8 @@
 <?php
 /*
     adapted from: CS 328 hw7 problem2
-    by: Gracie Ceja, & Emilyo Garcia
-    last modified: November 25, 2023
+    by: Gracie Ceja, & Emilyo Garcia & Colton Boyd
+    last modified: November 26, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/work_orders.php
     CS 458 Software Engineering
@@ -16,7 +16,8 @@
 */
     session_start();
     // get username from session variable
-    $username = $_SESSION["username"];
+    //$username = $_SESSION["username"];
+    $username = "Colton";
 ?>
 
 <!DOCTYPE html>
@@ -64,11 +65,13 @@
 
 
         // next, query database for all the info about the work orders
-        $work_orders_query = "Select workorder_id, emp_lname, job_title, salary
-                                from Work_Order
-                                order by emp_lname, emp_fname";
-        $empls_stmt = oci_parse($connobj, $empls_query);
-        oci_execute($empls_stmt, OCI_DEFAULT);  
+        $work_orders_query = "SELECT Work_Order.WORKORDER_ID, Employee.EMPL_FIRST_NAME || ' ' || Employee.EMPL_LAST_NAME, Work_Order.EXT_COMPANY_NAME, 
+                                     Work_Order.CALL_DATE, Work_Order.JOB_TYPE, Work_Order.ADDRESS_ID, Work_Order.CURRENT_STATUS
+                              FROM Work_Order
+                              LEFT JOIN Employee ON Work_Order.EMPL_ID = Employee.EMPL_ID
+                              ORDER BY Work_Order.WORKORDER_ID";
+        $work_order_stmt = oci_parse($connObj, $work_orders_query);
+        oci_execute($work_order_stmt, OCI_DEFAULT);  
 
         /*
         WORKORDER_ID CHAR(6),
@@ -88,43 +91,74 @@
         // next, set up table:
         ?>
         <table>
-        <caption>Current Employees of the company:</caption>
+        <caption>Current Work Orders of the company:</caption>
         <tr> 
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Job Title</th>
-            <th scope="col">Salary</th> 
+            <th scope="col">Work Order ID</th>
+            <th scope="col">Employee/s or Company</th>
+            <th scope="col">Date Assigned</th>
+            <th scope="col">Job Type</th> 
+            <th scope="col">Address</th>
+            <th scope="col">Status</th>  
         </tr>
 
         <?php
+        $company = NULL;
+        $emplName = NULL;
+        $previousWorkOrder = NULL;
         // getting data from the title table in the database:
-        while (oci_fetch($empls_stmt))
+        while (oci_fetch($work_order_stmt))
+{
+    $workOrder = oci_result($work_order_stmt, 1);
+    $emplName = oci_result($work_order_stmt, 2);
+    $company = oci_result($work_order_stmt, 3);
+    $dataAssigned = oci_result($work_order_stmt, 4);
+    $jobType = oci_result($work_order_stmt, 5);
+    $address = oci_result($work_order_stmt, 6);
+    $status = oci_result($work_order_stmt, 7);
+
+    // putting the data into the html table
+    ?>
+    <tr> 
+    <?php 
+        if ($previousWorkOrder != $workOrder)
         {
-            // get data from each cell
-            $first_name = oci_result($empls_stmt, 1);    // 1st column projected
-            $last_name = oci_result($empls_stmt, 2); 
-            $job = oci_result($empls_stmt, 3);
-            $salary = oci_result($empls_stmt, 4); 
-
-
-            // putting the data into the html table
-            ?>
-            <tr> 
-                <td><?= $first_name ?></td>
-                <td><?= $last_name ?></td>
-                <td><?= $job ?></td>
-                <td>$<?= $salary ?></td> 
-            </tr>
-            <?php
+    ?>   
+            <td><?= $workOrder ?></td>
+            <td><?= formatEmplCompanyCol($emplName, $company) ?></td>
+            <td><?= $dataAssigned ?></td>
+            <td><?= $jobType ?></td>
+            <td><?= $address ?></td>
+            <td><?= $status ?></td>
+    <?php
         }
-        ?>
-        </table>
+        else
+        {
+    ?>
+            <td><?= formatEmplCompanyCol($emplName, $company) ?></td>
+    <?php
+        }
+        ?>    
+    </tr>
+    <?php
+    $previousWorkOrder = $workOrder;
+}
 
+function formatEmplCompanyCol($emplName, $company) {
+    if ($company != NULL && $emplName != NULL) {
+        return $emplName . " / " . $company;
+    } elseif ($company != NULL) {
+        return $company;
+    } else {
+        return $emplName;
+    }
+}
+?>
+</table>
         
         <?php
         // free statement & close the connection to the database
-        oci_free_statement($empls_stmt);
-        oci_close($connobj);
+        oci_free_statement($work_order_stmt);
+        oci_close($connObj);
         ?>
         
 </body>
