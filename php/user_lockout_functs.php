@@ -29,8 +29,8 @@ function incrementFailedAttempts($connObj, $username) {
     else 
     {
         // User does not exist, insert a new record into the UserLockout table
-        $updateLockoutQuery = "INSERT INTO UserLockout (username, lockout_time, failed_attempts) 
-                               VALUES (:username, CURRENT_TIMESTAMP, 1)";
+        $updateLockoutQuery = "INSERT INTO UserLockout (username , failed_attempts) 
+                               VALUES (:username, 1)";
     }
 
     $updateLockoutStmt = oci_parse($connObj, $updateLockoutQuery);
