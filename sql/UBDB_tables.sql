@@ -38,7 +38,7 @@ drop table Work_Order cascade constraints;
 create table Work_Order (
     WORKORDER_ID CHAR(6),
     work_address VARCHAR2(255),
-    EMPL_ID CHAR(6),
+    empl_id CHAR(6),
     job_type VARCHAR2(30),
     call_date DATE,
     ext_company_name VARCHAR2(50),
@@ -49,7 +49,7 @@ create table Work_Order (
     job_description CLOB,
     current_status VARCHAR(150) DEFAULT 'In Progress',
     PRIMARY KEY (WORKORDER_ID),
-    FOREIGN KEY (EMPL_ID) REFERENCES Employee(EMPL_ID)
+    FOREIGN KEY (empl_id) REFERENCES Employee(empl_id)
 );
 
 -- Payroll Table Creation

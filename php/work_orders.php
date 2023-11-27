@@ -68,7 +68,7 @@
 
         // next, query database for all the info about the work orders
         $work_orders_query = "SELECT Work_Order.WORKORDER_ID, Employee.EMPL_FIRST_NAME || ' ' || Employee.EMPL_LAST_NAME, 
-                                     Work_Order.EXT_COMPANY_NAME , Work_Order.CALL_DATE,Work_Order.JOB_TYPE, Work_Order.ADDRESS_ID, 
+                                     Work_Order.EXT_COMPANY_NAME , Work_Order.CALL_DATE,Work_Order.JOB_TYPE, Work_Order.work_address, 
                                      Work_Order.property_name, Work_Order.PO_NUMBER, Work_Order.INVOICE_ESTIMATE, Work_Order.INVOICE_AMOUNT,
                                      Work_Order.job_description,Work_Order.CURRENT_STATUS
                               FROM Work_Order

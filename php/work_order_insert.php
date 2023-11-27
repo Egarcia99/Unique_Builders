@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     require_once("../../../private/database_connect.php");
     $connObj = db_conn_sess();
 
-    $workOrderInsertStr = "INSERT INTO Work_Order (WORKORDER_ID, ADDRESS_ID, EMPL_ID,
+    $workOrderInsertStr = "INSERT INTO Work_Order (WORKORDER_ID, work_address, empl_id,
                  job_type, call_date, ext_company_name, property_name,
                  PO_number, invoice_estimate, invoice_amount, job_description) 
-                 VALUES (:workorder_id, :address_id, :empl_id, :job_type, 
+                 VALUES (:workorder_id, :work_address, :empl_id, :job_type, 
              TO_DATE(:call_date, 'YYYY-MM-DD'), :ext_company_name, :property_name,
             :po_number, :invoice_estimate, :invoice_amount, :job_description)";
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     // Bind parameters
     $workorder_id = strip_tags($_POST['workorder_id']);
-    $address_id = strip_tags($_POST['address_id']);
+    $address_id = strip_tags($_POST['work_address']);
     $empl_id = strip_tags($_POST['empl_id']);
     $job_type = strip_tags($_POST['job_type']);
     $call_date = strip_tags($_POST['call_date']);
@@ -101,8 +101,8 @@ else
         <label for="property_name">Property Name:</label>
         <input type="text" name="property_name" maxlength="50">
         
-        <label for="address_id">Address ID:</label>
-        <input type="text" name="address_id">
+        <label for="work_address">Address :</label>
+        <input type="text" name="work_address">
         
         <label for="po_number">PO Number:</label>
         <input type="text" name="po_number" maxlength="7">
