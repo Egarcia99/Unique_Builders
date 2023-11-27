@@ -47,7 +47,7 @@ create table Work_Order (
     invoice_estimate REAL,
     invoice_amount REAL,
     job_description CLOB,
-    current_status VARCHAR(150),
+    current_status VARCHAR(150) DEFAULT 'In Progress',
     PRIMARY KEY (WORKORDER_ID, ADDRESS_ID, EMPL_ID),
     FOREIGN KEY (ADDRESS_ID) REFERENCES Address(ADDRESS_ID),
     FOREIGN KEY (EMPL_ID) REFERENCES Employee(EMPL_ID)
