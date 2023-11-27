@@ -84,6 +84,7 @@ else
 </head>
 <body>
     <h1>id=Add Work Order</h1>
+    <button onclick="window.location.href='../php/work_orders.php'">Return to Work Orders </button>
     <form action="" method="post">
         <label for="employee">Employee ID:</label>
         <input type="text" name="employee" maxlength="6">
