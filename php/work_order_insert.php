@@ -102,7 +102,7 @@ else
         <input type="text" name="property_name" maxlength="50">
         
         <label for="work_address">Address :</label>
-        <input type="text" name="work_address">
+        <textarea name="work_address" rows="4"></textarea>
         
         <label for="po_number">PO Number:</label>
         <input type="text" name="po_number" maxlength="7">
