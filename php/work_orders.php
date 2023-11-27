@@ -51,7 +51,9 @@
                 <li><a href="../php/cust_contact.php">Contact Us</a></li>
             </ul>
         </nav>
-        
+        <!-- Add this button after the table section in your HTML body -->
+        <button onclick="window.location.href='../php/work_order_insert.php'">Add Work Order</button>
+
         <!-- The table form section below is adapted from: CS 328 hw7 problem2 -->
         <?php
         // Show a form with a table with information about work orders.
@@ -65,8 +67,10 @@
 
 
         // next, query database for all the info about the work orders
-        $work_orders_query = "SELECT Work_Order.WORKORDER_ID, Employee.EMPL_FIRST_NAME || ' ' || Employee.EMPL_LAST_NAME, Work_Order.EXT_COMPANY_NAME, 
-                                     Work_Order.CALL_DATE, Work_Order.JOB_TYPE, Work_Order.ADDRESS_ID, Work_Order.CURRENT_STATUS
+        $work_orders_query = "SELECT Work_Order.WORKORDER_ID, Employee.EMPL_FIRST_NAME || ' ' || Employee.EMPL_LAST_NAME, 
+                                     Work_Order.EXT_COMPANY_NAME , Work_Order.CALL_DATE,Work_Order.JOB_TYPE, Work_Order.ADDRESS_ID, 
+                                     Work_Order.property_name, Work_Order.PO_NUMBER, Work_Order.INVOICE_ESTIMATE, Work_Order.INVOICE_AMOUNT,
+                                     Work_Order.job_description,Work_Order.CURRENT_STATUS
                               FROM Work_Order
                               LEFT JOIN Employee ON Work_Order.EMPL_ID = Employee.EMPL_ID
                               ORDER BY Work_Order.WORKORDER_ID";
@@ -98,6 +102,11 @@
             <th scope="col">Date Assigned</th>
             <th scope="col">Job Type</th> 
             <th scope="col">Address</th>
+            <th scope="col">Property</th>
+            <th scope="col">PO Number </th>
+            <th scope="col">Invoice Estimate</th>
+            <th scope="col">Invoice Amount</th>
+            <th scope="col">Description</th>
             <th scope="col">Status</th>  
         </tr>
 
@@ -115,6 +124,11 @@
     $jobType = oci_result($work_order_stmt, 5);
     $address = oci_result($work_order_stmt, 6);
     $status = oci_result($work_order_stmt, 7);
+    $property = oci_result($work_order_stmt, 8);
+    $poNumber = oci_result($work_order_stmt, 9);
+    $invoiceEstimate = oci_result($work_order_stmt, 10);
+    $invoiceAmount = oci_result($work_order_stmt, 11);
+    $description = oci_result($work_order_stmt, 12);
 
     // putting the data into the html table
     ?>
@@ -128,6 +142,11 @@
             <td><?= $dataAssigned ?></td>
             <td><?= $jobType ?></td>
             <td><?= $address ?></td>
+            <td><?= $property ?></td>
+            <td><?= $poNumber ?></td>
+            <td><?= $invoiceEstimate ?></td>
+            <td><?= $invoiceAmount ?></td>
+            <td><?= $description ?></td>
             <td><?= $status ?></td>
     <?php
         }
