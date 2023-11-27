@@ -97,6 +97,7 @@
         <table>
         <caption>Current Work Orders of the company:</caption>
         <tr> 
+            <th scope="col"></th>  
             <th scope="col">Work Order ID</th>
             <th scope="col">Employee/s or Company</th>
             <th scope="col">Date Assigned</th>
@@ -136,7 +137,7 @@
     <?php 
         if ($previousWorkOrder != $workOrder)
         {
-    ?>   
+    ?>      <td><a href="../php/edit_work_order.php?work_order_id=<?= $workOrder ?>">Edit</a></td>
             <td><?= $workOrder ?></td>
             <td><?= formatEmplCompanyCol($emplName, $company) ?></td>
             <td><?= $dataAssigned ?></td>
