@@ -17,7 +17,7 @@ create table Employee (
     PRIMARY KEY (EMPL_ID)
 );
 
--- Address Table Creation
+/*-- Address Table Creation
 prompt ===== Address Table Creation =====
 
 drop table Address cascade constraints;
@@ -30,14 +30,14 @@ create table Address (
     zipcode CHAR(5),
     PRIMARY KEY (ADDRESS_ID)
 );
-
+*/
 -- Work Order Table Creation
 prompt ===== Work Order Table Creation =====
 
 drop table Work_Order cascade constraints;
 create table Work_Order (
     WORKORDER_ID CHAR(6),
-    ADDRESS_ID CHAR(6),
+    work_address VARCHAR2(255),
     EMPL_ID CHAR(6),
     job_type VARCHAR2(30),
     call_date DATE,
@@ -48,8 +48,7 @@ create table Work_Order (
     invoice_amount REAL,
     job_description CLOB,
     current_status VARCHAR(150) DEFAULT 'In Progress',
-    PRIMARY KEY (WORKORDER_ID, ADDRESS_ID, EMPL_ID),
-    FOREIGN KEY (ADDRESS_ID) REFERENCES Address(ADDRESS_ID),
+    PRIMARY KEY (WORKORDER_ID),
     FOREIGN KEY (EMPL_ID) REFERENCES Employee(EMPL_ID)
 );
 
