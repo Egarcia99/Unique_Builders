@@ -88,7 +88,7 @@ drop table UserLockout cascade constraints;
 create table UserLockout (
     lockout_id NUMBER,
     username CHAR(6) NOT NULL,
-    lockout_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lockout_time TIMESTAMP,
     unlock_time TIMESTAMP,
     failed_attempts NUMBER NOT NULL,
     PRIMARY KEY (lockout_id),
@@ -106,8 +106,12 @@ BEFORE INSERT ON UserLockout
 FOR EACH ROW
 BEGIN
     :NEW.lockout_id := lockout_id_seq.NEXTVAL;
-
-    -- Set unlock_time to be 24 hours after lockout_time
+END;
+/
+CREATE OR REPLACE TRIGGER update_unlock_time_trigger
+BEFORE UPDATE OF lockout_time ON UserLockout
+FOR EACH ROW
+BEGIN
     :NEW.unlock_time := :NEW.lockout_time + INTERVAL '24' HOUR;
 END;
 /
