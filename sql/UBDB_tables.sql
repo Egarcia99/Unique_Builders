@@ -36,17 +36,16 @@ prompt ===== Work Order Table Creation =====
 
 drop table Work_Order cascade constraints;
 create table Work_Order (
-    WORKORDER_ID CHAR(6),
+    WORKORDER_ID CHAR(7),
     work_address VARCHAR2(255),
     empl_id CHAR(6),
     job_type VARCHAR2(30),
     call_date DATE,
     ext_company_name VARCHAR2(50),
     property_name VARCHAR2(50),
-    PO_number char(7),
     invoice_estimate REAL,
     invoice_amount REAL,
-    job_description CLOB,
+    job_description VARCHAR2(500),
     current_status VARCHAR(150) DEFAULT 'In Progress',
     PRIMARY KEY (WORKORDER_ID),
     FOREIGN KEY (empl_id) REFERENCES Employee(empl_id)

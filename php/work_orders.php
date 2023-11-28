@@ -68,8 +68,8 @@
 
         // next, query database for all the info about the work orders
         $work_orders_query = "SELECT Work_Order.WORKORDER_ID, Employee.EMPL_FIRST_NAME || ' ' || Employee.EMPL_LAST_NAME, 
-                                     Work_Order.EXT_COMPANY_NAME , Work_Order.CALL_DATE,Work_Order.JOB_TYPE, Work_Order.work_address, 
-                                     Work_Order.property_name, Work_Order.PO_NUMBER, Work_Order.INVOICE_ESTIMATE, Work_Order.INVOICE_AMOUNT,
+                                     Work_Order.EXT_COMPANY_NAME , Work_Order.CALL_DATE, Work_Order.JOB_TYPE, Work_Order.work_address, 
+                                     Work_Order.property_name, Work_Order.INVOICE_ESTIMATE, Work_Order.INVOICE_AMOUNT,
                                      Work_Order.job_description,Work_Order.CURRENT_STATUS
                               FROM Work_Order
                               LEFT JOIN Employee ON Work_Order.EMPL_ID = Employee.EMPL_ID
@@ -104,7 +104,6 @@
             <th scope="col">Job Type</th> 
             <th scope="col">Address</th>
             <th scope="col">Property</th>
-            <th scope="col">PO Number </th>
             <th scope="col">Invoice Estimate</th>
             <th scope="col">Invoice Amount</th>
             <th scope="col">Description</th>
@@ -124,13 +123,11 @@
     $dataAssigned = oci_result($work_order_stmt, 4);
     $jobType = oci_result($work_order_stmt, 5);
     $address = oci_result($work_order_stmt, 6);
-    $status = oci_result($work_order_stmt, 7);
-    $property = oci_result($work_order_stmt, 8);
-    $poNumber = oci_result($work_order_stmt, 9);
-    $invoiceEstimate = oci_result($work_order_stmt, 10);
-    $invoiceAmount = oci_result($work_order_stmt, 11);
-    $description = oci_result($work_order_stmt, 12);
-
+    $property = oci_result($work_order_stmt, 7);
+    $invoiceEstimate = oci_result($work_order_stmt, 8);
+    $invoiceAmount = oci_result($work_order_stmt, 9);
+    $description = oci_result($work_order_stmt, 10);
+    $status = oci_result($work_order_stmt, 11);
     // putting the data into the html table
     ?>
     <tr> 
@@ -144,7 +141,6 @@
             <td><?= $jobType ?></td>
             <td><?= $address ?></td>
             <td><?= $property ?></td>
-            <td><?= $poNumber ?></td>
             <td><?= $invoiceEstimate ?></td>
             <td><?= $invoiceAmount ?></td>
             <td><?= $description ?></td>
