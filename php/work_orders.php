@@ -14,10 +14,7 @@
 
     This file is incomplete!
 */
-    session_start();
-    // get username from session variable
-    //$username = $_SESSION["username"];
-    $username = "Colton";
+    
 ?>
 
 <!DOCTYPE html>
@@ -38,15 +35,17 @@
     
 	<!-- css file adapted from from cs328 homework 4, problem 9 -->
     <link href="../css/login.css" type="text/css" rel="stylesheet" />
+    <!-- css file for work_orders.php -->
+    <link href="../css/table.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body>
         <!-- Personalized header because they entered their username -->
-        <h1 id="welcomeheader">Welcome <?= $username ?></h1>
+        <h1 id="welcomeheader">Work Orders</h1>
         <!-- Nav bar adapted from homepage -->
         <nav>
             <ul class="nav">
-                <li><a href="../html/homepage.html">Home</a></li>
+                <li><a href="../php/empl_homepage.php">Home</a></li>
                 <li><a href="../php/login_start.php">Employee Login</a></li>
                 <li><a href="../php/cust_contact.php">Contact Us</a></li>
             </ul>
@@ -134,7 +133,7 @@
     <?php 
         if ($previousWorkOrder != $workOrder)
         {
-    ?>      <td><a href="../php/edit_work_order.php?work_order_id=<?= $workOrder ?>">Edit</a></td>
+    ?>      <td><button><a href="../php/edit_work_order.php?work_order_id=<?= $workOrder ?>" style="text-decoration: none; color: inherit;">Edit</a></button></td>
             <td><?= $workOrder ?></td>
             <td><?= formatEmplCompanyCol($emplName, $company) ?></td>
             <td><?= $dataAssigned ?></td>
