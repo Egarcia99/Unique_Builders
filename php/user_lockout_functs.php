@@ -2,7 +2,7 @@
 /*
     file: user_lockout_functs.php
     by: Colton Boyd, Emilyo Garcia, & Gracie Ceja
-    last modified: November 25, 2023
+    last modified: November 28, 2023
 
     This file contains some php functions for locking out users from logging in.
 */
@@ -38,12 +38,13 @@ function incrementFailedAttempts($connObj, $username) {
     oci_execute($updateLockoutStmt);
 
     // Commit the changes
-    //oci_commit($connObj);
-
+    oci_commit($connObj);
     // Check if the user has reached the maximum number of failed attempts, and lock the account if necessary
     $maxAttempts = 5; // Adjust this value based on your security policy
-    if (getFailedAttempts($connObj, $username) >= $maxAttempts) {
+    if (getFailedAttempts($connObj, $username) >= $maxAttempts)
+     {
         lockoutAccount($connObj, $username);
+        oci_close($connObj);
         exit;
     }
 
@@ -69,6 +70,7 @@ function incrementFailedAttempts($connObj, $username) {
 
     // Free the statement
     oci_free_statement($updateLockoutStmt);
+    oci_close($connObj);
 }
 
 
@@ -104,10 +106,9 @@ function lockoutAccount($connObj, $username) {
     
     $lockoutStmt = oci_parse($connObj, $lockoutQuery);
     oci_bind_by_name($lockoutStmt, ":username", $username);
-    oci_bind_by_name($lockoutStmt, ":unlockTime", $unlockTime);
     oci_execute($lockoutStmt);
     // Commit the changes
-    //oci_commit($connObj);
+    oci_commit($connObj);
 
     // the user is not logged in
     $_SESSION["logged_in"] = "F";
