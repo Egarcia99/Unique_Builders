@@ -1,12 +1,12 @@
 <?php
 // add_work_order.php
-
+require_once("../../../private/database_connect.php");
 session_start();
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
-    require_once("../../../private/database_connect.php");
+   
     $connObj = db_conn_sess();
 
     $workOrderInsertStr = "INSERT INTO Work_Order (WORKORDER_ID, work_address, empl_id,
@@ -21,20 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     
 
     // Bind parameters
-    $workOrderID = strip_tags($_POST['workOrderID']);
-    $address = strip_tags($_POST['workAddress']);
-    $emplID = strip_tags($_POST['emplID']);
-    $jobType = strip_tags($_POST['jobType']);
-    $callDate = strip_tags($_POST['callDate']);
-    $extCompanyName = strip_tags($_POST['extCompanyName']);
-    $propertyName = strip_tags($_POST['propertyName']);
-    $poNumber = strip_tags($_POST['poNumber']);
-    $invoiceEstimate = strip_tags($_POST['invoiceEstimate']);
-    $invoiceAmount = strip_tags($_POST['invoiceAmount']);
-    $jobDescription = strip_tags($_POST['jobDescription']);
+    $workOrderID = isset($_POST['workOrderID']) ? strip_tags($_POST['workOrderID']) : null;
+    $address = isset($_POST['workAddress']) ? strip_tags($_POST['workAddress']) : null;
+    $emplID = isset($_POST['emplID']) ? strip_tags($_POST['emplID']) : null;
+    $jobType = isset($_POST['jobType']) ? strip_tags($_POST['jobType']) : null;
+    $callDate = isset($_POST['callDate']) ? strip_tags($_POST['callDate']) : null;
+    $extCompanyName = isset($_POST['extCompanyName']) ? strip_tags($_POST['extCompanyName']) : null;
+    $propertyName = isset($_POST['propertyName']) ? strip_tags($_POST['propertyName']) : null;
+    $poNumber = isset($_POST['poNumber']) ? strip_tags($_POST['poNumber']) : null;
+    $invoiceEstimate = isset($_POST['invoiceEstimate']) ? strip_tags($_POST['invoiceEstimate']) : null;
+    $invoiceAmount = isset($_POST['invoiceAmount']) ? strip_tags($_POST['invoiceAmount']) : null;
+    $jobDescription = isset($_POST['jobDescription']) ? strip_tags($_POST['jobDescription']) : null;
     
     oci_bind_by_name($workOrderInsertStmt, ':workorder_id', $workOrderID);
-    oci_bind_by_name($workOrderInsertStmt, ':address_id', $address);
+    oci_bind_by_name($workOrderInsertStmt, ':work_address', $address);
     oci_bind_by_name($workOrderInsertStmt, ':empl_id', $emplID);
     oci_bind_by_name($workOrderInsertStmt, ':job_type', $jobType);
     oci_bind_by_name($workOrderInsertStmt, ':call_date', $callDate);
@@ -57,10 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     // Free the statement
     oci_free_statement($workOrderInsertStmt);
-
+    oci_commit($connObj);
     // Close the database connection
     oci_close($connObj);
-    header("Location: work_orders.php");
+    //header("Location: work_orders.php");
     }
 else 
 {
@@ -88,9 +88,31 @@ else
     <form action="" method="post">
         <label for="workOrderID">Work Order ID:</label>
         <input type="text" name="workOrderID" maxlength="6">
-        
-        <label for="emplID">Employee ID:</label>
-        <input type="text" name="emplID" maxlength="6">
+        <label for="emplID">Employee:</label>
+        <select name="emplID">
+        <?php
+        // Connect to the database and retrieve the employee IDs
+        $connObj = db_conn_sess();
+        $collectEmplStr = "SELECT empl_id, empl_first_name || ' ' || empl_last_name AS empl_name
+                            FROM employee
+                            Where empl_role = 'Field'
+                            ORDER BY empl_id";
+        $collectEmplStmt = oci_parse($connObj, $collectEmplStr);
+        oci_execute($collectEmplStmt);
+
+        // Fetch the employee IDs and populate the dropdown menu
+        while ($row = oci_fetch_assoc($collectEmplStmt)) {
+            $emplID = $row['EMPL_ID'];
+            $emplFName = $row['EMPL_NAME'];
+            echo "<option value=\"$emplID\">$emplFName</option>";
+        }
+
+        // Free the statement and close the database connection
+        oci_free_statement($collectEmplStmt);
+        oci_close($connObj);
+        ?>
+        </select>
+
         
         <label for="extCompanyName">External Company Name:</label>
         <input type="text" name="extCompanyName" maxlength="50">
