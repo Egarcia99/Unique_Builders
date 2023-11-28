@@ -69,7 +69,7 @@
 
             // check if the entered username exists in the database already or no.
             // set up query string & statement
-            $usernameQueryString = "SELECT empl_id,first_login, is_temporary
+            $usernameQueryString = "SELECT empl_id, first_login, is_temporary
                                     FROM Employee
                                     WHERE empl_id = :username";
             $usernameStmt = oci_parse($connObj, $usernameQueryString);
@@ -82,16 +82,15 @@
             
             $usr = NULL;
             while(oci_fetch($usernameStmt)) {
-                $usr = oci_result($usernameStmt, 'empl_id'); // get next username from database
-                $newUser = oci_result($usernameStmt, 'first_login');
-                $isTemporary = oci_result($usernameStmt, 'is_temporary');
+                $usr = oci_result($usernameStmt, 1); // get next username from database
+                $newUser = oci_result($usernameStmt, 2);
+                $isTemporary = oci_result($usernameStmt, 3);
             }
             oci_free_statement($usernameStmt);
             if(checkLockoutStatus($connObj, $username) !== NULL) {
                 oci_close($connObj);
                 exit;
             }
-
             // the username is in the database
             if($usr == $username) 
             {
@@ -115,7 +114,7 @@
                         // the user is logged in
                         $_SESSION["logged_in"] = "T";
                         // take them to the employee homepage
-                        emplHomepage();
+                        emplHomepage($username);
                     }
                 }
                 else {
