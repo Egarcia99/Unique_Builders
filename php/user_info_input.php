@@ -1,7 +1,7 @@
 <?php
     /*
     by: Colton Boyd
-    last modified: November 25, 2023
+    last modified: November 28, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/loginTesting/login_empl.php
     CS 458 Software Engineering
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     oci_bind_by_name($emplUpdateStmt, ":username", $empl_id);
 
     oci_execute($emplUpdateStmt, OCI_DEFAULT);
-    //oci_commit($connObj); testing purposes don't want on 
+    oci_commit($connObj);// testing purposes don't want on 
     oci_free_statement($emplUpdateStmt);
 
     oci_close($connObj);
@@ -55,5 +55,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     // the user is logged in
     $_SESSION["logged_in"] = "T";
     // take them to the employee homepage
-    emplHomepage();
+    emplHomepage($empl_id);
 }
