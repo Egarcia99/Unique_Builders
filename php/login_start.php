@@ -2,7 +2,7 @@
 /*
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja, Colton Boyd, & Emilyo Garcia
-    last modified: November 25, 2023
+    last modified: November 28, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/login_start.php
     CS 458 Software Engineering
@@ -41,7 +41,9 @@
     // the user is already logged in
     if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == "T")
     {
-        emplHomepage();
+        // get username from session variable
+        $username = $_SESSION["username"];
+        emplHomepage($username);
     }
     // the user isn't logged in, give them the login form
     else
