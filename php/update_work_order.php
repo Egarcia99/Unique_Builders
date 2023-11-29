@@ -1,6 +1,9 @@
-
 <?php
-// update_work_order.php
+/* 
+    update_work_order.php
+    by: Colton Boyd
+    last modified: November 28, 2023
+*/
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data

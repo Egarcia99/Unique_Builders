@@ -36,7 +36,7 @@
 </head>
 <body>
 
-  <h1 id="welcomeheader"> Contact Us</h1>
+  <h1 id="welcomeheader">Contact Us</h1>
   <!-- Nav bar adapted from homepage -->
   <nav>
       <ul class="nav">

@@ -69,10 +69,10 @@
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="../images/UB_logo.jpg" />
 
-        <!-- css file adapted from from cs328 homework 4, problem 9 -->
+    <!-- css file adapted from from cs328 homework 4, problem 9 -->
     <link href="../css/login.css" type="text/css" rel="stylesheet" />
 
-        <!-- default css to make the webpage look nearly the same on all browsers -->
+    <!-- default css to make the webpage look nearly the same on all browsers -->
     <link href="https://nrs-projects.humboldt.edu/~st10/styles/normalize.css"
           type="text/css" rel="stylesheet" />
 

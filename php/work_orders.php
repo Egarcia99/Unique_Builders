@@ -2,7 +2,7 @@
 /*
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja, & Emilyo Garcia & Colton Boyd
-    last modified: November 26, 2023
+    last modified: November 28, 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/work_orders.php
     CS 458 Software Engineering
@@ -12,7 +12,7 @@
     Work Orders Page
     Requirement: 2.5 Job work orders
 
-    This file is incomplete!
+    This file is incomplete?
 */
     
 ?>
@@ -23,7 +23,7 @@
 <!-- cs328 class HTML template: last modified 2023-02-22 -->
 
 <head>
-    <title>Employee Login | Unique Builders</title>
+    <title>Work Orders | Unique Builders</title>
     <meta charset="utf-8" />
 
     <!-- favicon -->
@@ -40,7 +40,6 @@
 
 </head>
 <body>
-        <!-- Personalized header because they entered their username -->
         <h1 id="welcomeheader">Work Orders</h1>
         <!-- Nav bar adapted from homepage -->
         <nav>
