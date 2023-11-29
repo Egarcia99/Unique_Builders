@@ -13,7 +13,7 @@ Requirements: 2.1, 2.2, & 2.6
 
 body {
     background-color: #FAD004; /* Business-friendly yellow */
-    color: #000000; /* Black text for readability */
+    color: #000000; /* Black text for readability */ 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More business-like font */
     font-size: 1em;
     margin: 0 auto;
@@ -157,9 +157,8 @@ td.homepage a:visited {
   color: #c7aaff; /* Light purple for already clicked links */
 }
 
-
 /* this is for contact_confirm.php */
-.lightText
+td.lightText
 {
   color: white;
 }
