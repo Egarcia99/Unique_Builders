@@ -33,7 +33,7 @@
             
 
         <!-- css file adapted from from cs328 homework 4, problem 9 -->
-        <link href="../css/login.css" type="text/css" rel="stylesheet" />4
+        <link href="../css/login.css" type="text/css" rel="stylesheet" />
 
 
         <!-- Variables for the following JS script -->
