@@ -1,4 +1,4 @@
-<?php
+=<?php
    
    /*=====
    
@@ -14,8 +14,7 @@
 <?php
     function newPasswordForm($username)
     {
-        if ($_SERVER["REQUEST_METHOD"] === "GET")
-        {
+        
         ?>
             <!-- login form adapted from hw4 of cs328 -->
             <h1 id="welcomeheader">Welcome <?= $username ?></h1>
@@ -28,7 +27,7 @@
                 </ul>
             </nav>
 
-            <form method="post" action="">
+            <form method="post" action="../php/new_password_input.php" onsubmit="return validateForm()">
                 <h2 id="instructionheader">Please Provide Needed Information Below</h2>
 
                 <label for="newPassword">Password:</label>
@@ -36,6 +35,12 @@
                 
                 <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" id ="confirmPassword" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" />
+
+                <p>Password requirements:</p>
+                <ul>
+                    <li>Must contain at least one special character (!@#$%^&*()_-+=<>?)</li>
+                    <li>Must be at least 12 characters long</li>
+                </ul>
 
                 <input type="submit" value="Submit" />
             </form>
@@ -54,8 +59,8 @@
                     }
                     
                     // checking if the password meets the requirements
-                    if (!password.match(/^(?=.*[!@#$%^&*()_-+=<>?])/)) 
-                    {
+                    if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=<>?])/)) {
+                        console.log("Password must contain at least one special character");
                         alert("Password must contain at least one special character");
                         return false;
                     }
@@ -70,43 +75,11 @@
                 }   // end of function validateForm()
             </script>
         <?php
-        }
-        else
-        {
-            $newPassword = password_hash($_POST["newPassword"], PASSWORD_BCRYPT);
-            updatePassword($username, $newPassword);
-        }
+    }   // end of function newPasswordForm()
+       
         
-    } // end of function newPasswordForm()
+    
+        
+   
 
-    function updatePassword($username, $newPassword)
-    {
-        // connection object
-        //$connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
-        require_once("../../../private/database_connect.php");
-        $connObj = db_conn_sess();
-        /*==============
-            db connection for when we have it setup
-        ==================*/
-        $passwordUpdateQuery = "UPDATE Employee 
-                                SET empl_password = :emplpass,
-                                    is_temporary = 'N'
-                                WHERE empl_id = :username";
-
-        $passwordUpdateStmt = oci_parse($connObj, $passwordUpdateQuery);
-
-        oci_bind_by_name($passwordUpdateStmt, ":emplpass", $newPassword);
-        oci_execute($passwordUpdateStmt, OCI_DEFAULT);
-        //oci_commit($connObj); testing purposes don't want on 
-        oci_free_statement($passwordUpdateStmt);
-
-        // close the connection to the database
-        oci_close($connObj);
-
-        // the user is logged in
-        $_SESSION["logged_in"] = "T";
-        // take them to the employee homepage, via a redirect back to the login page
-        header("Location: ../php/login_start.php");
-        exit;
-    }
-?>
+   
