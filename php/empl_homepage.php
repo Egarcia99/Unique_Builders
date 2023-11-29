@@ -31,12 +31,12 @@
 </head>
 <body>
     <!-- Personalized header because they entered their username -->
-    <h1 id="welcomeheader">Welcome [username]</h1>
+    <h1 id="welcomeheader">Welcome <?= $username ?> </h1>
     <!-- Nav bar adapted from homepage -->
     <nav>
         <ul class="nav">
             <li><a href="../html/homepage.html">Home</a></li>
-            <li><a href="../php/login_start.php">Employee Login</a></li>
+            <li><a href="../php/login_start.php">Employee Homepage</a></li>
             <li><a href="../php/cust_contact.php">Contact Us</a></li>
         </ul>
     </nav>
