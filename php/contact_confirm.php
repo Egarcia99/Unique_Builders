@@ -65,13 +65,12 @@
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="../images/UB_logo.jpg" />
 
+        <!-- css file adapted from from cs328 homework 4, problem 9 -->
+    <link href="../css/login.css" type="text/css" rel="stylesheet" />
+
         <!-- default css to make the webpage look nearly the same on all browsers -->
     <link href="https://nrs-projects.humboldt.edu/~st10/styles/normalize.css"
           type="text/css" rel="stylesheet" />
-
-
-        <!-- css file adapted from from cs328 homework 4, problem 9 -->
-    <link href="../css/login.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body>
@@ -91,7 +90,7 @@
                 </ul>
             </nav>
 
-            <form method="post" action="../php/cust_contact.php" id="goToLogin">
+            <form method="post" action="../php/cust_contact.php">
                 <table class="infoTable">
                     <tr> <td>Hello <?= $custName ?></td> </tr>
                     <tr> <td>You have successfully contacted the company about a potential job! Please be patient as we review your message.</td> </tr>
@@ -122,8 +121,8 @@
                 </ul>
             </nav>
 
-            <form method="post" action="../php/cust_contact.php" id="goToForgotPassword">
-                <table class="infoTable lightText">
+            <form method="post" action="../php/cust_contact.php">
+                <table class="infoTable">
                     <tr> <td class="lightText">Hello <?= $custName ?></td> </tr>
                     <tr> <td class="lightText">Please be patient as we could not send the company an email 
                         about your potential job at this time.</td> </tr>
