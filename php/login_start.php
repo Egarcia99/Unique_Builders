@@ -12,7 +12,10 @@
     Employeee Login part 1: Enter Username & Password
     Requirements: 2.1 & 2.2
 */
-    session_start();
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
     require_once("empl_homepage.php");
 ?>
 
