@@ -26,6 +26,10 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST') 
     {
         // prepare the message
+        $custName =  trim($_POST["name"]);
+        $custEmail = trim($_POST["email"]);
+        $custPhoneNum = trim($_POST["phone"]);
+        $custJob = trim($_POST["job_description"]);
         $message = "Dear Admin,
 
         The potential customer " . $custName . " has contacted the company about a potential job.
@@ -41,7 +45,7 @@
         [This email was sent automatically; I cannot read any replies to it.]";
 
         // send the email
-        mail("glc47@humboldt.edu", "Customer Contact request from: " . $custName,
+        mail("crb119@humboldt.edu", "Customer Contact request from: " . $custName,
         $message, "From: customerContactForm@UniqueBuilders.co");
         
         $_SESSION["contactSent"] = "True";
