@@ -17,6 +17,7 @@
     require_once("verify_password.php");
     require_once("user_lockout_functs.php");
     require_once("empl_homepage.php");
+    require_once("new_password.php");
 ?>
 
 <!DOCTYPE html>
