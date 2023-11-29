@@ -41,7 +41,7 @@ function generateTempPassword($username, $contactType, $contactInfo) {
 
     $passwordQueryString = "UPDATE Employee
                             SET empl_password = :emplpass,
-                                is_temporary = 'N'
+                                is_temporary = 'Y'
                             WHERE empl_id = :username";
     $passwordStmt = oci_parse($connObj, $passwordQueryString);
     oci_bind_by_name($passwordStmt, ":emplpass", $storedPassword);
