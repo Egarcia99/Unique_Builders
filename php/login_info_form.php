@@ -39,39 +39,41 @@
                 
                 <label for="confirmPassword">Confirm Password:</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" class="rectangleinput" placeholder="Confirm Password" required="required" />
+                
+                <p>Password requirements:</p>
+                <ul>
+                    <li>Must contain at least one special character (!@#$%^&*()_-+=<>?)</li>
+                    <li>Must be at least 12 characters long</li>
+                </ul>
 
                 <input type="submit" name="submit" value="Submit" />
             </form>
 
             <script>
-                function validateForm() 
-                {
-                    var password = document.getElementById("password").value;
-                    var confirmPassword = document.getElementById("confirmPassword").value;
+    function validateForm() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
 
-                    // checking if the 2 user-entered passwords match
-                    if (password != confirmPassword) 
-                    {
-                        alert("Confirmed Password do not match Password");
-                        return false;
-                    }
-                    
-                    // checking if the password meets the requirements
-                    if (!password.match(/^(?=.*[!@#$%^&*()_-+=<>?])/)) 
-                    {
-                        alert("Password must contain at least one special character");
-                        return false;
-                    }
-                    if(password.length < 12)
-                    {
-                        alert("Password must be at least 12 characters long");
-                        return false;
-                    }
+        // checking if the 2 user-entered passwords match
+        if (password != confirmPassword) {
+            alert("Confirmed Password does not match Password");
+            return false;
+        }
 
-                    // the new password meets the requirements
-                    return true;
-                }   // end of function validateForm()
-            </script>
+        // checking if the password meets the requirements
+        if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=<>?])/)) {
+            alert("Password must contain at least one special character");
+            return false;
+        }
+        if (password.length < 12) {
+            alert("Password must be at least 12 characters long");
+            return false;
+        }
+
+        // the new password meets the requirements
+        return true;
+    } // end of function validateForm()
+</script>
         <?php
     }   // end of function emplInfoForm()
 ?>
