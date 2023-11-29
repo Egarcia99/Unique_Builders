@@ -41,7 +41,7 @@
         " . $custJob . "
 
         Sincerely,
-        cust_contact.php in UniqueBuilders.net
+        contact_confirm.php in UniqueBuilders.co
         [This email was sent automatically; I cannot read any replies to it.]";
 
         // send the email
