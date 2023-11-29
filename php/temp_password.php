@@ -13,6 +13,7 @@
     Requirements: 2.1 & 2.2
 */
     session_start();
+    $username = $_SESSION["username"];
 ?>
 
 <!DOCTYPE html>
