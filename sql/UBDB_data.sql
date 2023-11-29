@@ -44,5 +44,5 @@ Prompt ==== Populating Employee =====
    
    INSERT INTO Employee (EMPL_ID, empl_first_name, empl_last_name, empl_role, empl_hourly_pay_rate)
    VALUES ('ER6789', 'Erick', 'Rodriguez', 'Field', 27.50);
-
+   commit;
 
