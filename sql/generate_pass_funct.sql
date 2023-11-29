@@ -22,7 +22,7 @@ BEGIN
     UPDATE Employee
     SET empl_password = v_password
     WHERE EMPL_ID = p_empl_id;
-
+    commit;
     -- Return the generated password
     RETURN v_password;
 EXCEPTION
