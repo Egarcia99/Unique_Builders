@@ -56,13 +56,7 @@ function incrementFailedAttempts($connObj, $username) {
     ?>
     <h1 id="notpassword">Login Failed</h1>
     <!-- Nav bar adapted from homepage -->
-    <nav>
-        <ul class="nav">
-            <li><a href="../html/homepage.html">Home</a></li>
-            <li><a href="../php/login_start.php">Employee Login</a></li>
-            <li><a href="../php/cust_contact.php">Contact Us</a></li>
-        </ul>
-    </nav>
+    
 
     <p id="notpasswordmessage">Incorrect Password. Attempts left: <?php echo 5-$attempts; ?>.
     <a href="../php/login_start.php">Try again</a></p>
@@ -115,13 +109,6 @@ function lockoutAccount($connObj, $username) {
     ?>
     <h1 id="actlocked">Account Locked</h1>
     <!-- Nav bar adapted from homepage -->
-    <nav>
-        <ul class="nav">
-            <li><a href="../html/homepage.html">Home</a></li>
-            <li><a href="../php/login_start.php">Employee Login</a></li>
-            <li><a href="../php/cust_contact.php">Contact Us</a></li>
-        </ul>
-    </nav>
 
     <p id="actlockedmessage">This account is temporarily locked. Please try again after 24 hours.</p>
     <?php
@@ -151,13 +138,6 @@ function checkLockoutStatus($connObj, $username) {
         ?>
         <h1 id="notfoundheader">Account Locked</h1>
         <!-- Nav bar adapted from homepage -->
-        <nav>
-            <ul class="nav">
-                <li><a href="../html/homepage.html">Home</a></li>
-                <li><a href="../php/login_start.php">Employee Login</a></li>
-                <li><a href="../php/cust_contact.php">Contact Us</a></li>
-            </ul>
-        </nav>
 
         <p id="notfoundmessage">This account is temporarily locked. Please try again after <?php echo $formattedTime; echo ' ' . $amPm; ?>.</p>
         <?php
