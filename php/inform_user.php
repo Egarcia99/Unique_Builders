@@ -93,7 +93,7 @@
                 </ul>
             </nav>
 
-            <form method="post" action="../php/temp_password.php" id="goToLogin">
+            <form method="post" action="../php/login_start.php" id="goToLogin">
                 <table class="infoTable">
                     <tr> <td>Hello <?= $username ?></td> </tr>
                     <tr> <td>Please be patient as we send you an email or text message 
