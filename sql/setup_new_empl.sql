@@ -14,7 +14,7 @@ BEGIN
     :temp_pass := generate_random_password('&empl_id');
 END;
 /
-
+commit;
 -- Print the generated password and empl_id
 PRINT 'Generated Password: ' || temp_pass;
 
