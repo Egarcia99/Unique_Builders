@@ -2,7 +2,7 @@
 /*
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja & Emilyo Garcia
-    last modified: November 25, 2023
+    last modified: November 28, 2023
 
     you can run this using the URL: https://uniquebuilders.co/cs458/php/cust_contact.php
     (or, for testing purposes: https://nrs-projects.humboldt.edu/~glc47/cs458/Unique_Builders-main/php/cust_contact.php)
@@ -18,36 +18,6 @@
 
     session_start();
 
-    // time to contact the company with a potential job. but first:    
-    // get customer's contact info from form
-    $custName =  trim($_POST["name"]);
-    $custEmail = trim($_POST["email"]);
-    $custPhoneNum = trim($_POST["phone"]);
-    $custJob = trim($_POST["job_description"]);
-            
-    // email to admin to help them contact the customer
-    // this should send to admin's email, but I'll use mine for now
-    if($_SERVER['REQUEST_METHOD'] === 'POST') 
-    {
-        // prepare the message
-        $message = "Dear Admin,
-
-        The potential customer " . $custName . " has contacted the company about a potential job.
-        Here is their contact info: 
-        email: " . $custEmail . "
-        phone number: " . $custPhoneNum . "
-
-        This is the job description they entered: 
-        " . $custJob . "
-
-        Sincerely,
-        cust_contact.php in UniqueBuilders.net
-        [This email was sent automatically; I cannot read any replies to it.]";
-
-        // send the email
-        mail("glc47@humboldt.edu", "Customer Contact request from: " . $custName,
-        $message, "From: customerContactForm@UniqueBuilders.co");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -56,12 +26,12 @@
 <!-- cs328 class HTML template: last modified 2023-02-22 -->
 
 <head>
-    <title>Customer Contact Page</title>
+    <title>Customer Contact | Unique Builders</title>
     <meta charset="utf-8" />
 
     <link href="https://nrs-projects.humboldt.edu/~st10/styles/normalize.css"
     type="text/css" rel="stylesheet" />
-    
+
     <link href="../css/login.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -77,14 +47,14 @@
   </nav>
 
 
-  <form action="#" method="post">
+  <form action="../php/contact_confirm.php" method="post">
     <div class="header">
       <h2 id="instructionheader">Please provide further information to ensure you get contacted accurately and as soon as possible </h2>
     </div>
 
     <label for="name">First and Last Name:</label>
     <input type="text" id="name" name="name" placeholder="Please enter your first and last name" required="required">
-    
+
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" placeholder="Email Address" required="required">
 
