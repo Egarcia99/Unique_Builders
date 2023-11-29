@@ -123,10 +123,10 @@
 
             <form method="post" action="../php/forgot_password.php" id="goToForgotPassword">
                 <table class="infoTable">
-                    <tr> <td>Hello <?= $username ?></td> </tr>
-                    <tr> <td>Please be patient as we could not send the admin an email 
+                    <tr> <td style="color:white;" >Hello <?= $username ?></td> </tr>
+                    <tr> <td style="color:white;">Please be patient as we could not send the admin an email 
                         to help you get a temporary password at this time.</td> </tr>
-                    <tr> <td>Please go back and try again.</td> </tr>
+                    <tr> <td style="color:white;">Please go back and try again.</td> </tr>
                 </table>
                 
                 <!-- button to go back to login -->
