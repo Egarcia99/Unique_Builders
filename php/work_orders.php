@@ -45,8 +45,8 @@
         <!-- Nav bar adapted from homepage -->
         <nav>
             <ul class="nav">
-                <li><a href="../php/empl_homepage.php">Home</a></li>
-                <li><a href="../php/login_start.php">Employee Login</a></li>
+                <li><a href="../html/homepage.html">Home</a></li>
+                <li><a href="../php/empl_homepage.php">Employee Homepage</a></li>
                 <li><a href="../php/cust_contact.php">Contact Us</a></li>
             </ul>
         </nav>
