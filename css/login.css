@@ -1,7 +1,7 @@
 /* 
 adapted from: CS 328 hw4 problem9 & hw7 problem2
 by Gracie Ceja and Emilyo Garcia
-last modified: November 25, 2023
+last modified: November 28, 2023
 
 CS 458 Software Engineering
 Semester Project: Unique Builders Company Website & Database
@@ -157,3 +157,9 @@ td.homepage a:visited {
   color: #c7aaff; /* Light purple for already clicked links */
 }
 
+
+/* this is for contact_confirm.php */
+.lightText
+{
+  color: white;
+}
