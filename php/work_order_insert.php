@@ -1,9 +1,11 @@
 <?php
-// add_work_order.php ??
 /* 
-    work_order_insert.php
+    work_order_insert.php 
+    creates a form for the employee input work order info
+    then inserts a work_order into work_order table to be stored 
+    and view by employees
     by: Colton Boyd
-    last modified: November 27, 2023
+    last modified: December 6, 2023
 */
 
 require_once("../../../private/database_connect.php");
