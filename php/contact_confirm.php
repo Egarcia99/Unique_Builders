@@ -2,7 +2,7 @@
 /*
     adapted from: CS 328 hw7 problem2
     by: Gracie Ceja & Emilyo Garcia
-    last modified: November 28, 2023
+    last modified: December  6 , 2023
 
     you can run this using the URL: https://nrs-projects.humboldt.edu/~glc47/public_html/Unique_Builders-main/php/contact_confirm.php
     CS 458 Software Engineering
@@ -13,14 +13,6 @@
     Requirement: 2.6
 */
     session_start();
-
-    // time to contact the company with a potential job. but first:    
-    // get customer's contact info from form
-    $custName =  trim($_POST["name"]);
-    $custEmail = trim($_POST["email"]);
-    $custPhoneNum = trim($_POST["phone"]);
-    $custJob = trim($_POST["job_description"]);
-
     // email to admin to help them contact the customer
     // this should send to admin's email, but I'll use mine for now
     if($_SERVER['REQUEST_METHOD'] === 'POST') 
