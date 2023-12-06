@@ -14,12 +14,11 @@
 // Check if the workOrderID is provided in the URL
 if (!isset($_GET['work_order_id'])) 
 {
-    echo "Work Order ID is missing.";
     header("Location: work_orders.php");
 }
 else
 {
-        $workOrderID = $_GET['work_order_id'];
+        $workOrderID = strip_tags($_GET['work_order_id']);
 
         // Connect to the database
         require_once("../../../private/database_connect.php");
@@ -36,10 +35,9 @@ else
         // Fetch the work order details
         if (oci_fetch($workOrderStmt)) 
         {
-            $workOrder = oci_result($workOrderStmt, "WORKORDER_ID");
             $selectedEmplID = oci_result($workOrderStmt, "EMPL_ID");
             $emplName = oci_result($workOrderStmt, "EMPL_ID");
-            $company = oci_result($workOrderStmt, "EXT_COMPANY_NAME");
+            $extCompanyName = oci_result($workOrderStmt, "EXT_COMPANY_NAME");
             $dataAssigned = oci_result($workOrderStmt, "CALL_DATE");
             $jobType = oci_result($workOrderStmt, "JOB_TYPE");
             $address = oci_result($workOrderStmt, "WORK_ADDRESS");
@@ -83,6 +81,8 @@ else
         <body>
             <h1>Edit Work Order</h1>
             <form method="post" action="update_work_order.php">
+                <input type="hidden" name="oldWorkOrderID" value="<?= $workOrderID ?>">
+
                 <label for="workOrderID">PO Number:</label>
                 <input type="text" name="workOrderID" maxlength="7" value="<?= $workOrderID ?>" required>
 
@@ -116,7 +116,7 @@ else
                     oci_close($connObj);
                     ?>
                 </select>
-
+                
                 <label for="extCompanyName">External Company Name:</label>
                 <input type="text" name="extCompanyName" value="<?= empty($extCompanyName) ? null : $extCompanyName ?>">
 

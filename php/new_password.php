@@ -3,9 +3,12 @@
    /*=====
    
        file: new_password.php
+       creates a form for an employee to create their new password
+       that will be sent to newpassword_input.php to be added to the 
+       database.
        
        by: Colton Boyd, Gracie Ceja, & Emilyo Garcia
-       last modified: 2023-11-25
+       last modified: 2023-12-6
    =====*/
    
    
@@ -59,7 +62,8 @@
                     }
                     
                     // checking if the password meets the requirements
-                    if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=<>?])/)) {
+                    if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=<>?])/)) 
+                    {
                         console.log("Password must contain at least one special character");
                         alert("Password must contain at least one special character");
                         return false;
@@ -73,9 +77,10 @@
                     // the new password meets the requirements
                     return true;
                 }   // end of function validateForm()
-            </script>
-        <?php
+        </script>
+    <?php
     }   // end of function newPasswordForm()
+    ?>
        
         
     
