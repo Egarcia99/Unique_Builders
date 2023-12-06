@@ -34,7 +34,8 @@ else
         oci_execute($workOrderStmt, OCI_DEFAULT);
 
         // Fetch the work order details
-        if (oci_fetch($workOrderStmt)) {
+        if (oci_fetch($workOrderStmt)) 
+        {
             $workOrder = oci_result($workOrderStmt, "WORKORDER_ID");
             $selectedEmplID = oci_result($workOrderStmt, "EMPL_ID");
             $emplName = oci_result($workOrderStmt, "EMPL_ID");
@@ -99,7 +100,8 @@ else
                     oci_execute($collectEmplStmt);
 
                     // Fetch the employee IDs and populate the dropdown menu
-                    while ($row = oci_fetch_assoc($collectEmplStmt)) {
+                    while ($row = oci_fetch_assoc($collectEmplStmt)) 
+                    {
                         $emplID = $row['EMPL_ID'];
                         $emplName = $row['EMPL_NAME'];
                         if ($emplID == $selectedEmplID) {
