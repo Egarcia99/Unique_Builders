@@ -2,9 +2,12 @@
     /*=====
    
        file: new_password.php
+        this file take the input from form on new_password.php 
+        and updates the empl_id password in the datebase
+        for their new password.
        
        by: Colton Boyd, Gracie Ceja, & Emilyo Garcia
-       last modified: 2023-11-25
+       last modified: 2023-12-6
    =====*/
    
     session_start();
