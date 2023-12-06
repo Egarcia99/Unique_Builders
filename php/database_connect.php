@@ -26,17 +26,17 @@
             $host = "cedar.humboldt.edu"; // The host where Oracle database is running
             $port = 1521; // The port for Oracle database
             $sid = "STUDENT"; // The Oracle service name
-            $db_username = "your_username"; // Your Oracle username
-            $db_password = "your_password"; // Your Oracle password
+            $dbUsername = "your_username"; // Your Oracle username
+            $dbPassword = "your_password"; // Your Oracle password
 
-            $db_conn_str = 
+            $dbConnStr = 
             "(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)
                                         (HOST = " . $host . ")
                                         (PORT = " . $port . "))
                             (CONNECT_DATA = (SID = " . $sid . ")))";
 
             // Establish the Oracle database connection
-            $connection = oci_connect($db_username, $db_password, $db_conn_str);
+            $connection = oci_connect($dbUsername, $dbPassword, $dbConnStr);
 
             if (!$connection) {
                 $error = oci_error();
