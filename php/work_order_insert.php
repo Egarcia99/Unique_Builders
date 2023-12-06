@@ -13,7 +13,8 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
    
-    $connObj = db_conn_sess();
+    $connObj = dbConnSess();
+
 
     $workOrderInsertStr = "INSERT INTO Work_Order (WORKORDER_ID, work_address, empl_id,
                  job_type, call_date, ext_company_name, property_name,
@@ -99,7 +100,8 @@ else
         <option value="NULL">N/A</option>
         <?php
         // Connect to the database and retrieve the employee IDs
-        $connObj = db_conn_sess();
+        $connObj = dbConnSess();
+
         $collectEmplStr = "SELECT empl_id, empl_first_name || ' ' || empl_last_name AS empl_name
                             FROM employee
                             Where empl_role = 'Field'

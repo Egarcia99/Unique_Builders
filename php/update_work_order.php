@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Connect to the database
     require_once("../../../private/database_connect.php");
-    $connObj = db_conn_sess();
+    $connObj = dbConnSess();
 
     // Update the work order in the database
     $updateWorkOrderStr = "UPDATE Work_Order

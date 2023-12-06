@@ -63,7 +63,8 @@
             
             // connection object
             require_once("../../../private/database_connect.php");
-            $connObj = db_conn_sess();
+            $connObj = dbConnSess();
+
             /*==============
                 db connection for when we have it setup
             ==================*/

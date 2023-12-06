@@ -72,7 +72,8 @@
         // use account that can only see usernames & contact info (not an actual account on nrs-projects)
         // set up db connection 
         require_once("../../../private/database_connect.php");
-        $connObj = db_conn_sess();
+        $connObj = dbConnSess();
+
         /*==============
             db connection for when we have it setup
         ==================*/

@@ -73,7 +73,8 @@
     // login with username & password
     // set up db connection 
     require_once("../../../database_connect.php");
-    $connObj = db_conn_sess();
+    $connObj = dbConnSess();
+
     /*==============
         db connection for when we have it setup
     ==================*/

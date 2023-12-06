@@ -12,7 +12,8 @@
     function  verifyPassword($username, $password)
     {
         require_once("../../../private/database_connect.php");
-        $connObj = db_conn_sess();
+        $connObj = dbConnSess();
+
         
         $passwordQueryString = "SELECT empl_password, first_login
                                 FROM Employee

@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     // connection object
     //$connObj = oci_connect($conn1Username, $conn1Password, $dbConnStr);
     require_once("../../../private/database_connect.php");
-    $connObj = db_conn_sess();
+    $connObj = dbConnSess();
+
     /*==============
         db connection for when we have it setup
     ==================*/

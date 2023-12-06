@@ -17,7 +17,7 @@ else
 
         // Connect to the database
         require_once("../../../private/database_connect.php");
-        $connObj = db_conn_sess();
+        $connObj = dbConnSess();
 
         // Query to get the details of the specified work order
         $workOrderStr = "SELECT * 
@@ -84,7 +84,7 @@ else
                     <option value="NULL">N/A</option>
                     <?php
                     // Connect to the database and retrieve the employee IDs
-                    $connObj = db_conn_sess();
+                    $connObj = dbConnSess();
                     $collectEmplStr = "SELECT empl_id, empl_first_name || ' ' || empl_last_name AS empl_name
                                         FROM employee
                                         Where empl_role = 'Field'

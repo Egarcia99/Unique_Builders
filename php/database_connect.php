@@ -16,10 +16,10 @@
             *   destroys the current session, and
             *   exits the calling PHP
 
-        last modified: November 7, 2023
+       last modified: 2023-12-06
     -----*/
 
-        function db_conn_sess()
+        function dbConnSess()
         {
             // set up db connection string
             // first, declare variables for the connection (must use an actual username and password for it to work)
