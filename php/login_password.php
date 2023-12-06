@@ -43,7 +43,8 @@
 <body>
 
     <?php
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") 
+        {
             /*  
             webpage 2.0 (displays either webpage 2.1 or webpage 2.2):
             user has attempted to login with username but not password yet
@@ -83,13 +84,15 @@
             // loop through usernames until username is found or all usernames have been checked
             
             $usr = NULL;
-            while(oci_fetch($usernameStmt)) {
+            while(oci_fetch($usernameStmt)) 
+            {
                 $usr = oci_result($usernameStmt, 1); // get next username from database
                 $newUser = oci_result($usernameStmt, 2);
                 $isTemporary = oci_result($usernameStmt, 3);
             }
             oci_free_statement($usernameStmt);
-            if(checkLockoutStatus($connObj, $username) !== NULL) {
+            if(checkLockoutStatus($connObj, $username) !== NULL) 
+            {
                 oci_close($connObj);
                 exit;
             }
@@ -111,7 +114,8 @@
                         // they logged in with temp password, so give them form to make new password
                         newPasswordForm($username);
                     }
-                    else {
+                    else 
+                    {
                         // user is a current user and not a new user, so take them to the employee homepage
                         // the user is logged in
                         $_SESSION["logged_in"] = "T";
@@ -119,7 +123,8 @@
                         emplHomepage($username);
                     }
                 }
-                else {
+                else 
+                {
                     // the password was incorrect, so increment the failed attempts in the database
                     // and send them back to the login page with message of attempts
                     incrementFailedAttempts($connObj, $username);
@@ -127,7 +132,8 @@
                     oci_close($connObj);
                 }
             } 
-            else {
+            else 
+            {
                 // the user does not have an account.
                 // free the statement & close the connection to the database
                 oci_close($connObj);

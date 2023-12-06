@@ -1,10 +1,13 @@
 <?php
     /*=====
 
-        file: password_form.php
+        file: login_info_form.php
+        creates a form for a new user to enter their info to be used for later logins and 
+        forgot password if needed 
+        that will be stored into the database
         
         by: Colton Boyd, Gracie Ceja, & Emilyo Garcia
-        last modified: 2023-11-25
+        last modified: 2023-12-6
     =====*/
 
 ?>
@@ -49,23 +52,27 @@
                 <input type="submit" name="submit" value="Submit" />
             </form>
 
-            <script>
-    function validateForm() {
+<script>
+    function validateForm() 
+    {
         var password = document.getElementById("password").value;
         var confirmPassword = document.getElementById("confirmPassword").value;
 
         // checking if the 2 user-entered passwords match
-        if (password != confirmPassword) {
+        if (password != confirmPassword) 
+        {
             alert("Confirmed Password does not match Password");
             return false;
         }
 
         // checking if the password meets the requirements
-        if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=<>?])/)) {
+        if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=<>?])/)) 
+        {
             alert("Password must contain at least one special character");
             return false;
         }
-        if (password.length < 12) {
+        if (password.length < 12) 
+        {
             alert("Password must be at least 12 characters long");
             return false;
         }
@@ -74,6 +81,6 @@
         return true;
     } // end of function validateForm()
 </script>
-        <?php
+<?php
     }   // end of function emplInfoForm()
 ?>
