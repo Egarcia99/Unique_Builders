@@ -3,11 +3,17 @@
     edit_work_order.php
     by: Colton Boyd
     last modified: November 28, 2023
+
+    edit_work_order.php allows employee edit previous created work orders, 
+    it will populate the form fields with stored work order info, the employee then can
+    changes the values of the field and press the update button to input info into data 
+    will be redirected to update_work_orders.php
 */
 
 
 // Check if the workOrderID is provided in the URL
-if (!isset($_GET['work_order_id'])) {
+if (!isset($_GET['work_order_id'])) 
+{
     echo "Work Order ID is missing.";
     header("Location: work_orders.php");
 }
@@ -119,20 +125,20 @@ else
                 <label for="callDate">Call Date:</label>
                 <input type="date" name="callDate" value="<?= empty($dataAssigned) ? null : date('Y-m-d', strtotime($dataAssigned)) ?>" required>
                 
-                <label for="work_address">Address :</label>
-                <textarea name="work_address" rows="4"><?= empty($address) ? null : $address ?></textarea>
+                <label for="workAddress">Address :</label>
+                <textarea name="workAddress" rows="4"><?= empty($address) ? null : $address ?></textarea>
 
-                <label for="property_name">Property Name:</label>
-                <input type="text" name="property_name" value="<?= empty($property) ? null : $property ?>" maxlength="50">
+                <label for="propertyName">Property Name:</label>
+                <input type="text" name="propertyName" value="<?= empty($property) ? null : $property ?>" maxlength="50">
 
-                <label for="invoice_estimate">Invoice Estimate:</label>
-                <input type="number" name="invoice_estimate" step="0.01" value="<?= empty($invoiceEstimate) ? null : $invoiceEstimate ?>" placeholder="$">
+                <label for="invoiceEstimate">Invoice Estimate:</label>
+                <input type="number" name="invoiceEstimate" step="0.01" value="<?= empty($invoiceEstimate) ? null : $invoiceEstimate ?>" placeholder="$">
 
-                <label for="invoice_amount">Invoice Amount:</label>
-                <input type="number" name="invoice_amount" step="0.01" value="<?= empty($invoiceAmount) ? null : $invoiceAmount ?>" placeholder="$">
+                <label for="invoiceAmount">Invoice Amount:</label>
+                <input type="number" name="invoiceAmount" step="0.01" value="<?= empty($invoiceAmount) ? null : $invoiceAmount ?>" placeholder="$">
 
-                <label for="job_description">Job Description:</label>
-                <textarea name="job_description" rows="4"><?= empty($description) ? null : $description ?></textarea>
+                <label for="jobDescription">Job Description:</label>
+                <textarea name="jobDescription" rows="4"><?= empty($description) ? null : $description ?></textarea>
 
                 <label for="status">Status:</label>
                 <select name="status">

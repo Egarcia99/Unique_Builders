@@ -2,21 +2,26 @@
 /* 
     update_work_order.php
     by: Colton Boyd
-    last modified: November 28, 2023
+    update_work_order.php
+    takes in the info from edit_work_order 
+    last modified: December 6, 2023
 */
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
     // Retrieve form data
-    $workOrderID = $_POST['workOrderID'];
-    $emplID = $_POST['emplID'];
-    $extCompanyName = $_POST['extCompanyName'];
-    $jobType = $_POST['jobType'];
-    $callDate = $_POST['callDate'];
-    $workAddress = $_POST['work_address'];
-    $propertyName = $_POST['property_name'];
-    $invoiceEstimate = $_POST['invoice_estimate'];
-    $invoiceAmount = $_POST['invoice_amount'];
-    $jobDescription = $_POST['job_description'];
+
+    // Bind parameters
+    $workOrderID = isset($_POST['workOrderID']) ? strip_tags($_POST['workOrderID']) : null;
+    $address = isset($_POST['workAddress']) ? strip_tags($_POST['workAddress']) : null;
+    $emplID = isset($_POST['emplID']) ? strip_tags($_POST['emplID']) : null;
+    $jobType = isset($_POST['jobType']) ? strip_tags($_POST['jobType']) : null;
+    $callDate = isset($_POST['callDate']) ? strip_tags($_POST['callDate']) : null;
+    $extCompanyName = isset($_POST['extCompanyName']) ? strip_tags($_POST['extCompanyName']) : null;
+    $propertyName = isset($_POST['propertyName']) ? strip_tags($_POST['propertyName']) : null;
+    $invoiceEstimate = isset($_POST['invoiceEstimate']) ? strip_tags($_POST['invoiceEstimate']) : null;
+    $invoiceAmount = isset($_POST['invoiceAmount']) ? strip_tags($_POST['invoiceAmount']) : null;
+    $jobDescription = isset($_POST['jobDescription']) ? strip_tags($_POST['jobDescription']) : null;
     $status = $_POST['status'];
 
     // Connect to the database
@@ -64,9 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Free the statement and close the database connection
     oci_free_statement($updateWorkOrderStmt);
     oci_close($connObj);
-    header("Location: edit_work_order.php");
-} else {
+    header("Location: work_orders.php");
+} else 
+{
     // Redirect to the form if accessed without form submission
-    header("Location: edit_work_order.php");
+    header("Location: work_orders.php");
 }
 ?>
