@@ -13,14 +13,7 @@
     Requirements: 2.1 & 2.2
 */
     session_start();
-
-    
-            
-    // email to admin to ask them to help user to reset password
-    // this should send to admin's email, but I'll use mine for now
-    if($_SERVER['REQUEST_METHOD'] === 'POST' && $infoSent == "False") 
-    {
-            // time to contact admin for help, but first:
+         // time to contact admin for help, but first:
         // get info from previous page:
         // get username & infoSent from session variables
         $username = $_SESSION["username"];
@@ -36,6 +29,11 @@
             $contactInfo = $_POST["phoneNumForgotPassword"];
             $contactType = "phone number";
         }
+    // email to admin to ask them to help user to reset password
+    // this should send to admin's email, but I'll use mine for now
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && $infoSent == "False") 
+    {
+    
         require_once("../../../private/assign_temp_pass.php");
         generateTempPassword($username, $contactType, $contactInfo);
         $infoSent = "True";
