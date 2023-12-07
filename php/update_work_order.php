@@ -63,9 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         oci_bind_by_name($updateWorkOrderStmt, ":workOrderID", $workOrderID);
 
         // Execute the update statement
-        $success = oci_execute($updateWorkOrderStmt, OCI_DEFAULT);
-        oci_free_statement($updateWorkOrderStmt);
-        if ($success) 
+        if (oci_execute($updateWorkOrderStmt, OCI_DEFAULT);) 
         {
             oci_commit($connObj);
         }
@@ -77,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             // Display a user-friendly error message
             echo "An error occurred while updating the work order. Please try again later.";
         }
+        oci_free_statement($updateWorkOrderStmt);
         oci_close($connObj);
 
         // Free the statement and close the database connection

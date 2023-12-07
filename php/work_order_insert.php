@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     // Execute the statement
     $executeResult = oci_execute($workOrderInsertStmt);
-    oci_free_statement($workOrderInsertStmt);
     if (!$executeResult) 
     {
         $error = oci_error($workOrderInsertStmt);
@@ -64,16 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         // Display a user-friendly error message
         echo "An error occurred while processing your request. Please try again later.";
-        oci_close($connObj);
     }
     else
-    {   // Free the statement
-        oci_free_statement($workOrderInsertStmt);
+    {   
         oci_commit($connObj);
-        // Close the database connection
-        oci_close($connObj);
-        header("Location: work_orders.php");
     }
+    header("Location: work_orders.php");
+    oci_free_statement($workOrderInsertStmt);
+    oci_close($connObj);
 }
 else 
 {
@@ -115,9 +112,7 @@ else
                             Where empl_role = 'Field'
                             ORDER BY empl_id";
         $collectEmplStmt = oci_parse($connObj, $collectEmplStr);
-        $executeResult = oci_execute($collectEmplStmt);
-        oci_free_statement($collectEmplStmt);
-        if (!$executeResult) 
+        if (!oci_execute($collectEmplStmt)) 
         {
             $error = oci_error($collectEmplStmt);
 
@@ -126,7 +121,6 @@ else
 
             // Display a user-friendly error message
             echo "An error occurred while processing your request. Please try again later.";
-            oci_close($connObj);
 
         }
         else
@@ -140,6 +134,7 @@ else
             }  
 
             // Free the statement and close the database connection
+            oci_free_statement($collectEmplStmt);
             oci_close($connObj);
             ?>
             </select>
