@@ -66,114 +66,131 @@
 
 
         // next, query database for all the info about the work orders
-        $work_orders_query = "SELECT Work_Order.WORKORDER_ID, Employee.EMPL_FIRST_NAME || ' ' || Employee.EMPL_LAST_NAME, 
+        $workOrdersStr = "SELECT Work_Order.WORKORDER_ID, Employee.EMPL_FIRST_NAME || ' ' || Employee.EMPL_LAST_NAME, 
                                      Work_Order.EXT_COMPANY_NAME , Work_Order.CALL_DATE, Work_Order.JOB_TYPE, Work_Order.work_address, 
                                      Work_Order.property_name, Work_Order.INVOICE_ESTIMATE, Work_Order.INVOICE_AMOUNT,
                                      Work_Order.job_description,Work_Order.CURRENT_STATUS
                               FROM Work_Order
                               LEFT JOIN Employee ON Work_Order.EMPL_ID = Employee.EMPL_ID
                               ORDER BY Work_Order.WORKORDER_ID";
-        $work_order_stmt = oci_parse($connObj, $work_orders_query);
-        oci_execute($work_order_stmt, OCI_DEFAULT);  
-
-        /*
-        WORKORDER_ID CHAR(6),
-        ADDRESS_ID CHAR(6),
-        EMPL_ID CHAR(6),
-        job_type VARCHAR2(30),
-        call_date DATE,
-        ext_company_name VARCHAR2(50),
-        property_name VARCHAR2(50),
-        PO_number char(7),
-        invoice_estimate REAL,
-        invoice_amount REAL,
-        job_description CLOB,
-        current_status VARCHAR(150),
-        */
-
-        // next, set up table:
-        ?>
-        <table>
-        <caption>Current Work Orders of the company:</caption>
-        <tr> 
-            <th scope="col"></th>  
-            <th scope="col">Work Order ID</th>
-            <th scope="col">Employee/s or Company</th>
-            <th scope="col">Date Assigned</th>
-            <th scope="col">Job Type</th> 
-            <th scope="col">Address</th>
-            <th scope="col">Property</th>
-            <th scope="col">Invoice Estimate</th>
-            <th scope="col">Invoice Amount</th>
-            <th scope="col">Description</th>
-            <th scope="col">Status</th>  
-        </tr>
-
-        <?php
-        $company = NULL;
-        $emplName = NULL;
-        $previousWorkOrder = NULL;
-        // getting data from the title table in the database:
-        while (oci_fetch($work_order_stmt))
-{
-    $workOrder = oci_result($work_order_stmt, 1);
-    $emplName = oci_result($work_order_stmt, 2);
-    $company = oci_result($work_order_stmt, 3);
-    $dataAssigned = oci_result($work_order_stmt, 4);
-    $jobType = oci_result($work_order_stmt, 5);
-    $address = oci_result($work_order_stmt, 6);
-    $property = oci_result($work_order_stmt, 7);
-    $invoiceEstimate = oci_result($work_order_stmt, 8);
-    $invoiceAmount = oci_result($work_order_stmt, 9);
-    $description = oci_result($work_order_stmt, 10);
-    $status = oci_result($work_order_stmt, 11);
-    // putting the data into the html table
-    ?>
-    <tr> 
-    <?php 
-        if ($previousWorkOrder != $workOrder)
+        $workOrderStmt = oci_parse($connObj, $workOrdersStr);
+        oci_execute( $workOrderStmt, OCI_DEFAULT);  
+        // Check if the execution was successful
+        if (!$workOrderStmt) 
         {
-    ?>      <td><button><a href="../php/edit_work_order.php?work_order_id=<?= $workOrder ?>" style="text-decoration: none; color: inherit;">Edit</a></button></td>
-            <td><?= $workOrder ?></td>
-            <td><?= formatEmplCompanyCol($emplName, $company) ?></td>
-            <td><?= $dataAssigned ?></td>
-            <td><?= $jobType ?></td>
-            <td><?= $address ?></td>
-            <td><?= $property ?></td>
-            <td><?= $invoiceEstimate ?></td>
-            <td><?= $invoiceAmount ?></td>
-            <td><?= $description ?></td>
-            <td><?= $status ?></td>
-    <?php
+            // Log the error for debugging purposes (do not expose detailed errors to users)
+            $error = oci_error($workOrderStmt);
+            error_log("Error executing statement: " . $error['message']);
+            // Display a user-friendly error message
+            echo "An error occurred while retrieving work orders. Please try again later.";
+            oci_close($connObj);
         }
         else
         {
-    ?>
-            <td><?= formatEmplCompanyCol($emplName, $company) ?></td>
-    <?php
-        }
-        ?>    
-    </tr>
-    <?php
-    $previousWorkOrder = $workOrder;
-}
 
-function formatEmplCompanyCol($emplName, $company) {
-    if ($company != NULL && $emplName != NULL) {
-        return $emplName . " / " . $company;
-    } elseif ($company != NULL) {
-        return $company;
-    } else {
-        return $emplName;
-    }
-}
-?>
-</table>
         
-        <?php
-        // free statement & close the connection to the database
-        oci_free_statement($work_order_stmt);
-        oci_close($connObj);
+            /*
+            WORKORDER_ID CHAR(6),
+            ADDRESS_ID CHAR(6),
+            EMPL_ID CHAR(6),
+            job_type VARCHAR2(30),
+            call_date DATE,
+            ext_company_name VARCHAR2(50),
+            property_name VARCHAR2(50),
+            PO_number char(7),
+            invoice_estimate REAL,
+            invoice_amount REAL,
+            job_description CLOB,
+            current_status VARCHAR(150),
+            */
+
+            // next, set up table:
+            ?>
+            <table>
+            <caption>Current Work Orders of the company:</caption>
+            <tr> 
+                <th scope="col"></th>  
+                <th scope="col">Work Order ID</th>
+                <th scope="col">Employee/s or Company</th>
+                <th scope="col">Date Assigned</th>
+                <th scope="col">Job Type</th> 
+                <th scope="col">Address</th>
+                <th scope="col">Property</th>
+                <th scope="col">Invoice Estimate</th>
+                <th scope="col">Invoice Amount</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>  
+            </tr>
+
+            <?php
+            $company = NULL;
+            $emplName = NULL;
+            $previousWorkOrder = NULL;
+            // getting data from the title table in the database:
+            while (oci_fetch( $workOrderStmt))
+            {
+                $workOrder = oci_result($workOrderStmt, 1);
+                $emplName = oci_result($workOrderStmt, 2);
+                $company = oci_result($workOrderStmt, 3);
+                $dataAssigned = oci_result($workOrderStmt, 4);
+                $jobType = oci_result($workOrderStmt, 5);
+                $address = oci_result($workOrderStmt, 6);
+                $property = oci_result($workOrderStmt, 7);
+                $invoiceEstimate = oci_result($workOrderStmt, 8);
+                $invoiceAmount = oci_result($workOrderStmt, 9);
+                $description = oci_result($workOrderStmt, 10);
+                $status = oci_result($workOrderStmt, 11);
+                // putting the data into the html table
+                ?>
+                <tr> 
+                <?php 
+                    if ($previousWorkOrder != $workOrder)
+                    {
+                ?>      <td><button><a href="../php/edit_work_order.php?work_order_id=<?= $workOrder ?>" style="text-decoration: none; color: inherit;">Edit</a></button></td>
+                        <td><?= $workOrder ?></td>
+                        <td><?= formatEmplCompanyCol($emplName, $company) ?></td>
+                        <td><?= $dataAssigned ?></td>
+                        <td><?= $jobType ?></td>
+                        <td><?= $address ?></td>
+                        <td><?= $property ?></td>
+                        <td><?= $invoiceEstimate ?></td>
+                        <td><?= $invoiceAmount ?></td>
+                        <td><?= $description ?></td>
+                        <td><?= $status ?></td>
+                <?php
+                    }
+                    else
+                    {
+                ?>
+                        <td><?= formatEmplCompanyCol($emplName, $company) ?></td>
+                <?php
+                    }
+                ?>
+
+                </tr>
+                <?php
+                $previousWorkOrder = $workOrder;
+            }
+
+            function formatEmplCompanyCol($emplName, $company) 
+            {
+                if ($company != NULL && $emplName != NULL) {
+                    return $emplName . " / " . $company;
+                } elseif ($company != NULL) {
+                    return $company;
+                } else {
+                    return $emplName;
+                }
+            }
+        
+            ?>
+            </table>
+            <?php
+            // free statement & close the connection to the database
+            oci_free_statement($workOrderStmt);
+            oci_close($connObj);
+        }
+        
         ?>
         
 </body>

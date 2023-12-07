@@ -53,25 +53,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     oci_bind_by_name($workOrderInsertStmt, ':job_description', $jobDescription);
 
     // Execute the statement
-    oci_execute($workOrderInsertStmt);
+    if (!$executeResult) 
+    {
+        $error = oci_error($workOrderInsertStmt);
 
-    // Optionally, you can check if the execution was successful
-   /* if (oci_num_rows($workOrderInsertStmt) > 0) {
-    echo "Work order inserted successfully!";
-    } else {
-    echo "Error inserting work order.";
+        // Log the error for debugging purposes (do not expose detailed errors to users)
+        error_log("Error executing statement: " . $error['message']);
+
+        // Display a user-friendly error message
+        echo "An error occurred while processing your request. Please try again later.";
+        oci_close($connObj);
     }
-   */
-    // Free the statement
-    oci_free_statement($workOrderInsertStmt);
-    oci_commit($connObj);
-    // Close the database connection
-    oci_close($connObj);
-    header("Location: work_orders.php");
+    else
+    {   // Free the statement
+        oci_free_statement($workOrderInsertStmt);
+        oci_commit($connObj);
+        // Close the database connection
+        oci_close($connObj);
+        header("Location: work_orders.php");
     }
+}
 else 
 {
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -109,49 +113,65 @@ else
                             Where empl_role = 'Field'
                             ORDER BY empl_id";
         $collectEmplStmt = oci_parse($connObj, $collectEmplStr);
-        oci_execute($collectEmplStmt);
+        $executeResult = oci_execute($collectEmplStmt);
+        if (!$executeResult) 
+        {
+            $error = oci_error($collectEmplStmt);
 
+            // Log the error for debugging purposes (do not expose detailed errors to users)
+            error_log("Error executing statement: " . $error['message']);
+
+            // Display a user-friendly error message
+            echo "An error occurred while processing your request. Please try again later.";
+            oci_close($connObj);
+
+        }
+        else
+        {
         // Fetch the employee IDs and populate the dropdown menu
-        while ($row = oci_fetch_assoc($collectEmplStmt)) {
-            $emplID = $row['EMPL_ID'];
-            $emplName = $row['EMPL_NAME'];
-            echo "<option value=\"$emplID\">$emplName</option>";
-        }  
+            while ($row = oci_fetch_assoc($collectEmplStmt)) 
+            {
+                $emplID = $row['EMPL_ID'];
+                $emplName = $row['EMPL_NAME'];
+                echo "<option value=\"$emplID\">$emplName</option>";
+            }  
 
-        // Free the statement and close the database connection
-        oci_free_statement($collectEmplStmt);
-        oci_close($connObj);
-        ?>
-        </select>
+            // Free the statement and close the database connection
+            oci_free_statement($collectEmplStmt);
+            oci_close($connObj);
+            ?>
+            </select>
 
-        
-        <label for="extCompanyName">External Company Name:</label>
-        <input type="text" name="extCompanyName" maxlength="50">
-        
-        <label for="jobType">Job Type:</label>
-        <input type="text" name="jobType" maxlength="30" required>
-        
-        <label for="callDate">Call Date:</label>
-        <input type="date" name="callDate"required>
-        
-        <label for="propertyName">Property Name:</label>
-        <input type="text" name="propertyName" maxlength="50" required>
-        
-        <label for="workAddress">Address :</label>
-        <textarea name="workAddress" rows="4"></textarea>
-        
-        <label for="invoiceEstimate">Invoice Estimate:</label>
-        <input type="number" name="invoiceEstimate" step="0.01" placeholder="$">
-        
-        <label for="invoiceAmount">Invoice Amount:</label>
-        <input type="number" name="invoiceAmount" step="0.01" placeholder="$">
-        
-        <label for="jobDescription">Job Description:</label>
-        <textarea name="jobDescription" rows="4"></textarea>
-        
-        <button type="submit">Submit Work Order</button>
+            
+            <label for="extCompanyName">External Company Name:</label>
+            <input type="text" name="extCompanyName" maxlength="50">
+            
+            <label for="jobType">Job Type:</label>
+            <input type="text" name="jobType" maxlength="30" required>
+            
+            <label for="callDate">Call Date:</label>
+            <input type="date" name="callDate"required>
+            
+            <label for="propertyName">Property Name:</label>
+            <input type="text" name="propertyName" maxlength="50" required>
+            
+            <label for="workAddress">Address :</label>
+            <textarea name="workAddress" rows="4"></textarea>
+            
+            <label for="invoiceEstimate">Invoice Estimate:</label>
+            <input type="number" name="invoiceEstimate" step="0.01" placeholder="$">
+            
+            <label for="invoiceAmount">Invoice Amount:</label>
+            <input type="number" name="invoiceAmount" step="0.01" placeholder="$">
+            
+            <label for="jobDescription">Job Description:</label>
+            <textarea name="jobDescription" rows="4"></textarea>
+            
+            <button type="submit">Submit Work Order</button>
     </form>
-    
+<?php
+    }
+?>
 </body>
 </html>
 <?php

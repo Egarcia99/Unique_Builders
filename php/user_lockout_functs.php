@@ -7,9 +7,12 @@
     This file contains some php functions for locking out users from logging in.
 */
 
-function incrementFailedAttempts($connObj, $username) {
+function incrementFailedAttempts($connObj, $username) 
+{
     // Check if the user exists in the UserLockout table
-    $checkUserQuery = "SELECT * FROM UserLockout WHERE username = :username";
+    $checkUserQuery = "SELECT * 
+                       FROM UserLockout 
+                       WHERE username = :username";
     $checkUserStmt = oci_parse($connObj, $checkUserQuery);
     oci_bind_by_name($checkUserStmt, ":username", $username);
     oci_execute($checkUserStmt);
@@ -68,7 +71,8 @@ function incrementFailedAttempts($connObj, $username) {
 }
 
 
-function getFailedAttempts($connObj, $username) {
+function getFailedAttempts($connObj, $username) 
+{
     // Get the current number of failed attempts from the UserLockout table
     $getAttemptsQuery = "SELECT failed_attempts 
                          FROM UserLockout 
@@ -90,7 +94,8 @@ function getFailedAttempts($connObj, $username) {
     return $failedAttempts;
 }
 
-function lockoutAccount($connObj, $username) {
+function lockoutAccount($connObj, $username) 
+{
     // Lock the account by setting unlock_time to lockout_time + 24 hours in database
     
     // Update the UserLockout table
@@ -118,7 +123,8 @@ function lockoutAccount($connObj, $username) {
 }
 
 
-function checkLockoutStatus($connObj, $username) {
+function checkLockoutStatus($connObj, $username) 
+{
     $checkLockoutQuery = "SELECT TO_CHAR(unlock_time, 'Mon-DD-RR HH:MI') AS formatted_time,
                                   TO_CHAR(unlock_time, 'AM') AS am_pm
                           FROM UserLockout 
@@ -127,7 +133,8 @@ function checkLockoutStatus($connObj, $username) {
     oci_bind_by_name($checkLockoutStmt, ":username", $username);
     oci_execute($checkLockoutStmt);
 
-    if (oci_fetch($checkLockoutStmt)) {
+    if (oci_fetch($checkLockoutStmt)) 
+    {
         // Account is locked out
         $formattedTime = oci_result($checkLockoutStmt, 'FORMATTED_TIME');
         $amPm = oci_result($checkLockoutStmt, 'AM_PM');
