@@ -14,6 +14,16 @@
 
     This file is incomplete?
 */
+    function formatEmplCompanyCol($emplName, $company) 
+                {
+                    if ($company != NULL && $emplName != NULL) {
+                        return $emplName . " / " . $company;
+                    } elseif ($company != NULL) {
+                        return $company;
+                    } else {
+                        return $emplName;
+                    }
+                }
     
 ?>
 
@@ -173,16 +183,7 @@
                 $previousWorkOrder = $workOrder;
             }
 
-            function formatEmplCompanyCol($emplName, $company) 
-            {
-                if ($company != NULL && $emplName != NULL) {
-                    return $emplName . " / " . $company;
-                } elseif ($company != NULL) {
-                    return $company;
-                } else {
-                    return $emplName;
-                }
-            }
+            
         
             ?>
             </table>
