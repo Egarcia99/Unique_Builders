@@ -97,12 +97,12 @@ else
     <button onclick="window.location.href='../php/work_orders.php'">Return to Work Orders </button>
     <form action="" method="post">
         <label for="workOrderID">PO Number:</label>
-        <input type="text" name="workOrderID" maxlength="7" required>
+        <input type="text" name="workOrderID" minlength="7"  maxlength="7" required>
         
         <label for="emplID">Employee:</label>
         <select name="emplID">
-        <option value="NULL">Select an Employee</option>
-        <option value="NULL">N/A</option>
+        <option value="">Select an Employee</option>
+        <option value="">N/A</option>
         <?php
         // Connect to the database and retrieve the employee IDs
         $connObj = dbConnSess();

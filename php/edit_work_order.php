@@ -84,7 +84,7 @@ else
                 <input type="hidden" name="oldWorkOrderID" value="<?= $workOrderID ?>">
 
                 <label for="workOrderID">PO Number:</label>
-                <input type="text" name="workOrderID" maxlength="7" value="<?= $workOrderID ?>" required>
+                <input type="text" name="workOrderID" minlength="7"  maxlength="7" value="<?= $workOrderID ?>" required>
 
                 <label for="emplID">Employee:</label>
                 <select name="emplID">
