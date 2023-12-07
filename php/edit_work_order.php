@@ -88,7 +88,7 @@ else
 
                 <label for="emplID">Employee:</label>
                 <select name="emplID">
-                    <option value="NULL">N/A</option>
+                    <option value="">N/A</option>
                     <?php
                     // Connect to the database and retrieve the employee IDs
                     $connObj = dbConnSess();
