@@ -48,6 +48,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
     oci_bind_by_name($emplUpdateStmt, ":username", $emplID);
 
     oci_execute($emplUpdateStmt, OCI_DEFAULT);
+    if (!$emplUpdateStmt) 
+    {
+        // Log the error for debugging purposes (do not expose detailed errors to users)
+        $error = oci_error($emplUpdateStmt);
+        error_log("Error executing statement: " . $error['message']);
+        // Display a more specific error message
+        echo "An error occurred while processing your request. Please try again later.";
+        oci_free_statement($emplUpdateStmt);
+        oci_close($connObj);
+        exit;
+    }
+
     oci_commit($connObj);// testing purposes don't want on 
     oci_free_statement($emplUpdateStmt);
 

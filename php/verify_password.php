@@ -30,9 +30,10 @@
             error_log("Error executing statement: " . $error['message']);
             // Display a more specific error message
             echo "An error occurred while processing your request. Please try again later.";
+            oci_free_statement($passwordStmt);
+            oci_close($connObj);
             return false; // Return false to indicate failure
         }
-        
         if(oci_fetch($passwordStmt))
         {   
             $storedPass = oci_result($passwordStmt, 1);

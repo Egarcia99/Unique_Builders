@@ -74,7 +74,7 @@
                               LEFT JOIN Employee ON Work_Order.EMPL_ID = Employee.EMPL_ID
                               ORDER BY Work_Order.WORKORDER_ID";
         $workOrderStmt = oci_parse($connObj, $workOrdersStr);
-        oci_execute( $workOrderStmt, OCI_DEFAULT);  
+        oci_execute( $workOrderStmt, OCI_DEFAULT);
         // Check if the execution was successful
         if (!$workOrderStmt) 
         {
@@ -83,6 +83,7 @@
             error_log("Error executing statement: " . $error['message']);
             // Display a user-friendly error message
             echo "An error occurred while retrieving work orders. Please try again later.";
+            oci_free_statement($workOrderStmt);  
             oci_close($connObj);
         }
         else
@@ -187,7 +188,7 @@
             </table>
             <?php
             // free statement & close the connection to the database
-            oci_free_statement($workOrderStmt);
+            oci_free_statement($workOrderStmt);  
             oci_close($connObj);
         }
         

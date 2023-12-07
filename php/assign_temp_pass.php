@@ -74,11 +74,12 @@ function generateTempPassword($username, $contactType, $contactInfo)
             echo "Error sending email.";
         }
 
-    oci_close($connObj);
+        oci_close($connObj);
     } 
     else 
     {
         echo "Error updating password.";
+        oci_close($connObj);
     }
 }
 

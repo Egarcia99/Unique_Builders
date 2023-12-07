@@ -53,6 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     oci_bind_by_name($workOrderInsertStmt, ':job_description', $jobDescription);
 
     // Execute the statement
+    $executeResult = oci_execute($workOrderInsertStmt);
+    oci_free_statement($workOrderInsertStmt);
     if (!$executeResult) 
     {
         $error = oci_error($workOrderInsertStmt);
@@ -114,6 +116,7 @@ else
                             ORDER BY empl_id";
         $collectEmplStmt = oci_parse($connObj, $collectEmplStr);
         $executeResult = oci_execute($collectEmplStmt);
+        oci_free_statement($collectEmplStmt);
         if (!$executeResult) 
         {
             $error = oci_error($collectEmplStmt);
@@ -137,7 +140,6 @@ else
             }  
 
             // Free the statement and close the database connection
-            oci_free_statement($collectEmplStmt);
             oci_close($connObj);
             ?>
             </select>

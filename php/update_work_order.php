@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         // Execute the update statement
         $success = oci_execute($updateWorkOrderStmt, OCI_DEFAULT);
-
+        oci_free_statement($updateWorkOrderStmt);
         if ($success) 
         {
             oci_commit($connObj);
@@ -72,10 +72,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         else 
         {
             oci_rollback($connObj);
+            $error = oci_error($updateWorkOrderStmt);
+            error_log("Error updating work order: " . $error['message']);
+            // Display a user-friendly error message
+            echo "An error occurred while updating the work order. Please try again later.";
         }
+        oci_close($connObj);
 
         // Free the statement and close the database connection
-        oci_free_statement($updateWorkOrderStmt);
     }
     else
     {
@@ -85,7 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $deleteOldWorkOrderStmt = oci_parse($connObj, $deleteOldWorkOrderStr);
         oci_bind_by_name($deleteOldWorkOrderStmt, ":oldWorkOrderID", $oldWorkOrderID);
         $deleteSuccess = oci_execute($deleteOldWorkOrderStmt, OCI_DEFAULT);
-
+        oci_free_statement($deleteOldWorkOrderStmt);
+        
         if ($deleteSuccess) 
         {
             $workOrderInsertStr = "INSERT INTO Work_Order (WORKORDER_ID, work_address, empl_id,
@@ -107,15 +112,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             oci_bind_by_name($workOrderInsertStmt, ":invoiceAmount", $invoiceAmount);
             oci_bind_by_name($workOrderInsertStmt, ":jobDescription", $jobDescription);
             oci_bind_by_name($workOrderInsertStmt, ":updateStatus", $status);
+
             oci_free_statement($workOrderInsertStmt);
             oci_commit($connObj);
         } 
         else 
         {
             oci_rollback($connObj);
+            $error = oci_error($workOrderInsertStmt);
+            error_log("Error inserting new work order: " . $error['message']);
+            // Display a user-friendly error message
+            echo "An error occurred while inserting the new work order. Please try again later.";
         }
-        oci_close($connObj);
-        header("Location: work_orders.php");
+            oci_close($connObj);
+            header("Location: work_orders.php");
     }
     
 } 
