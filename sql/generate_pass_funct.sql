@@ -1,3 +1,8 @@
+/*
+    function generate_random_password 
+    create a random 12 character password to assign the empl_id that call this function
+    
+*/
 CREATE OR REPLACE FUNCTION generate_random_password(p_empl_id IN CHAR) RETURN VARCHAR2 IS
     v_password VARCHAR2(20); -- Adjust the length of the password as needed
     v_exists NUMBER;

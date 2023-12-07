@@ -1,3 +1,8 @@
+/*
+    sql script to give a empl_id a first time temp password 
+    so a new employee can setup their account;
+*/
+
 --- Enable output in SQL*Plus
 SET SERVEROUTPUT ON;
 

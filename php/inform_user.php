@@ -14,27 +14,28 @@
 */
     session_start();
 
-    // time to contact admin for help, but first:
-    // get info from previous page:
-    // get username & infoSent from session variables
-    $username = $_SESSION["username"];
-    $infoSent = $_SESSION["infoSent"]; 
-    // get contact info from form, but first determine which was entered
-    if(null != trim($_POST["emailForgotPassword"]))
-    {
-        $contactInfo = $_POST["emailForgotPassword"];
-        $contactType = "email address";
-    }
-    else
-    {
-        $contactInfo = $_POST["phoneNumForgotPassword"];
-        $contactType = "phone number";
-    }
+    
             
     // email to admin to ask them to help user to reset password
     // this should send to admin's email, but I'll use mine for now
     if($_SERVER['REQUEST_METHOD'] === 'POST' && $infoSent == "False") 
     {
+            // time to contact admin for help, but first:
+        // get info from previous page:
+        // get username & infoSent from session variables
+        $username = $_SESSION["username"];
+        $infoSent = $_SESSION["infoSent"]; 
+        // get contact info from form, but first determine which was entered
+        if(null != trim($_POST["emailForgotPassword"]))
+        {
+            $contactInfo = $_POST["emailForgotPassword"];
+            $contactType = "email address";
+        }
+        else
+        {
+            $contactInfo = $_POST["phoneNumForgotPassword"];
+            $contactType = "phone number";
+        }
         require_once("../../../private/assign_temp_pass.php");
         generateTempPassword($username, $contactType, $contactInfo);
         $infoSent = "True";

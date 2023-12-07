@@ -80,8 +80,6 @@
 
             // execute statement & get info from it
             oci_execute($usernameStmt, OCI_DEFAULT);
-            //echo $username;
-            // loop through usernames until username is found or all usernames have been checked
             
             $usr = NULL;
             while(oci_fetch($usernameStmt)) 

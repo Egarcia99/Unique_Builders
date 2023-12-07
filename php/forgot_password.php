@@ -38,10 +38,9 @@
 
         <!-- Variables for the following JS script -->
         <script type="text/javascript">
-            var email = "<?php Print($_SESSION["email"]); ?>";
-            var phoneNum = <?php Print($_SESSION["phoneNum"]); ?>;
+        var email = "<?php echo htmlspecialchars($_SESSION["email"]); ?>";
+        var phoneNum = "<?php echo htmlspecialchars($_SESSION["phoneNum"]); ?>";
         </script>
-
         <!-- js for checking if the form info is correct -->
         <script defer src="../js/validate_contact_info.js" type="text/javascript"></script>
     </head>
@@ -88,7 +87,7 @@
 
         // execute statement & get info from it
         oci_execute($contactInfoStmt, OCI_DEFAULT);
-        
+        $usr = NULL;
         // loop through usernames until username is found or all usernames have been checked
         while(oci_fetch($contactInfoStmt)){
             $usr = oci_result($contactInfoStmt, 1);  // get next username from database
@@ -96,6 +95,7 @@
                 // get user's contact info
                 $_SESSION["email"] = oci_result($contactInfoStmt, 2);
                 $_SESSION["phoneNum"] = oci_result($contactInfoStmt, 3);
+                $userFound = false;
                 break;
             }
         }
