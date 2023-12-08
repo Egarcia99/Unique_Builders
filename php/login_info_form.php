@@ -45,7 +45,7 @@
                 
                 <p>Password requirements:</p>
                 <ul>
-                    <li>Must contain at least one special character (!@#$%^&*()_-+=<>?)</li>
+                    <li>Must contain at least one special character (!@#$%^&*()_-+=?)</li>
                     <li>Must be at least 12 characters long</li>
                 </ul>
 
@@ -66,7 +66,7 @@
         }
 
         // checking if the password meets the requirements
-        if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=<>?])/)) 
+        if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=?])/)) 
         {
             alert("Password must contain at least one special character");
             return false;
@@ -74,6 +74,11 @@
         if (password.length < 12) 
         {
             alert("Password must be at least 12 characters long");
+            return false;
+        }
+        if (password.includes('<') || password.includes('>')) 
+        {
+            alert("Password cannot contain '<' or '>' characters");
             return false;
         }
 

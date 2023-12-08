@@ -41,7 +41,7 @@
 
                 <p>Password requirements:</p>
                 <ul>
-                    <li>Must contain at least one special character (!@#$%^&*()_-+=<>?)</li>
+                    <li>Must contain at least one special character (!@#$%^&*()_-+=?)</li>
                     <li>Must be at least 12 characters long</li>
                 </ul>
 
@@ -62,7 +62,7 @@
                     }
                     
                     // checking if the password meets the requirements
-                    if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=<>?])/)) 
+                    if (!password.match(/^(?=.*[!@#\$%\^&\*\(\)_\-\+=?])/)) 
                     {
                         console.log("Password must contain at least one special character");
                         alert("Password must contain at least one special character");
@@ -73,7 +73,11 @@
                         alert("Password must be at least 12 characters long");
                         return false;
                     }
-                    
+                    if (password.includes('<') || password.includes('>')) 
+                    {
+                        alert("Password cannot contain '<' or '>' characters");
+                        return false;
+                    }
                     // the new password meets the requirements
                     return true;
                 }   // end of function validateForm()

@@ -16,7 +16,7 @@ function generateTempPassword($username, $contactType, $contactInfo)
     $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $lowercase = 'abcdefghijklmnopqrstuvwxyz';
     $numbers = '0123456789';
-    $specialCharacters = '!@#$%^&*()_-+=<>?';
+    $specialCharacters = '!@#$%^&*()_-+=?';
 
     // Combine all character sets
     $allCharacters = $uppercase . $lowercase . $numbers . $specialCharacters;
