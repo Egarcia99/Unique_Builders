@@ -101,14 +101,16 @@
                 if(verifyPassword($username,$password)) 
                 {
                     // close the connection to the database
-                    oci_close($connObj);
+                   
                     if($newUser == "Y") 
-                    {
+                    {    
+                        oci_close($connObj);
                         // they are a new user, so ask them for info to put into the database (create new account page)
                         emplInfoForm($username);
                     } 
                     elseif($isTemporary == "Y") 
                     {
+                        oci_close($connObj);
                         // they logged in with temp password, so give them form to make new password
                         newPasswordForm($username);
                     }
@@ -117,8 +119,11 @@
                         // user is a current user and not a new user, so take them to the employee homepage
                         // the user is logged in
                         $_SESSION["logged_in"] = "T";
+                        //clears the fail attempts because they logined in
+                        clearFailedAttempts($connObj, $username);
                         // take them to the employee homepage
                         emplHomepage($username);
+                        oci_close($connObj);
                     }
                 }
                 else 

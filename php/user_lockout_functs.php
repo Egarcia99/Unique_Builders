@@ -153,5 +153,22 @@ function checkLockoutStatus($connObj, $username)
 
     return null; // Account is not locked out
 }
+function clearFailedAttempts($connObj, $username)
+{
+    // Clear the failed attempts for the user in the UserLockout table
+    $clearAttemptsQuery = "UPDATE UserLockout 
+                           SET failed_attempts = 0, lockout_time = NULL 
+                           WHERE username = :username";
+
+    $clearAttemptsStmt = oci_parse($connObj, $clearAttemptsQuery);
+    oci_bind_by_name($clearAttemptsStmt, ":username", $username);
+    oci_execute($clearAttemptsStmt);
+
+    // Commit the changes
+    oci_commit($connObj);
+
+    // Free the statement
+    oci_free_statement($clearAttemptsStmt);
+}
 
 ?>
