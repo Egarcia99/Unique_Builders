@@ -63,7 +63,7 @@ function generateTempPassword($username, $contactType, $contactInfo)
         // Email content formatting
         $subject = "Password Reset request from user: " . $username;
         $message = "Dear Admin,\n\nThe user " . $username . " has requested a password reset because they forgot their password."
-            . "\nPlease send them a temporary password: " . $tempPassword . " at their " . $contactType . ": " . $contactInfo . ".\n\n"
+            . "\nPlease send them a temporary password: [".$tempPassword."] at their " . $contactType . ": " . $contactInfo . ".\n\n"
             . "Sincerely,\ninform_user.php in UniqueBuilders.net\n[This email was sent automatically; I cannot read any replies to it.]";
 
         // Send the email and check for errors
